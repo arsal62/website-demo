@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - O and A Level English by Dr. Kamran Ali</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #2ecc71;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Logo styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Premium DK Logo Animation */
+        .dk-logo-container {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            perspective: 1000px;
+            margin-right: 10px;
+        }
+        
+        .dk-logo-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: logoFloat 6s ease-in-out infinite;
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0) rotateY(0deg); }
+            25% { transform: translateY(-2px) rotateY(5deg); }
+            50% { transform: translateY(0) rotateY(0deg); }
+            75% { transform: translateY(2px) rotateY(-5deg); }
+        }
+        
+        .dk-logo-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 
+                0 0 15px rgba(59, 130, 246, 0.5),
+                0 0 30px rgba(59, 130, 246, 0.2);
+            transform: translateZ(0);
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .dk-logo-circle::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: rotate(45deg) translateY(-30px);
+            animation: shineEffect 3s infinite;
+        }
+        
+        @keyframes shineEffect {
+            0% { transform: rotate(45deg) translateY(-80px); }
+            50% { transform: rotate(45deg) translateY(80px); }
+            100% { transform: rotate(45deg) translateY(80px); }
+        }
+        
+        .dk-logo-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(10px);
+            font-size: 24px;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+            z-index: 3;
+        }
+        
+        .dk-logo-glow {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: transparent;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.7);
+            opacity: 0.5;
+            animation: glowPulse 2s ease-in-out infinite;
+            z-index: 0;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        
+        .logo {
+            display: none; /* Hide the old logo */
+        }
+        
+        .brand-text {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        /* Navbar styles */
+        .navbar {
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: white !important;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-color) !important;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--primary-color) !important;
+            font-weight: 600;
+        }
+
+        /* Hero section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 140px 0 120px;
+            margin-top: -80px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            opacity: 0.1;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hero-img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Services section */
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            font-weight: 800;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            border-bottom: 4px solid var(--primary-color);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover i {
+            transform: scale(1.2);
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* Testimonials */
+        .testimonial-section {
+            background-color: #f8f9fa;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            font-size: 150px;
+            color: #f0f0f0;
+            font-family: serif;
+            line-height: 1;
+            top: -20px;
+            right: 20px;
+            z-index: 0;
+        }
+
+        .testimonial-card img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--primary-color);
+            padding: 2px;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card h5 {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Stats section */
+        .stats-section {
+            padding: 80px 0;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Call to action */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #212529;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 80px 0 20px;
+            position: relative;
+        }
+
+        .footer-logo {
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        .footer-text {
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            max-width: 80%;
+        }
+
+        .footer h5 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        /* Modal styles */
+        .modal-content {
+            border-radius: 15px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+            border-bottom: none;
+            padding: 20px 30px;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .form-control {
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed-top">
+        <div class="container">
+            <a class="navbar-brand logo-container" href="#">
+                <div class="dk-logo-container">
+                    <div class="dk-logo-inner">
+                        <div class="dk-logo-glow"></div>
+                        <div class="dk-logo-circle"></div>
+                        <div class="dk-logo-text">DK</div>
+                    </div>
+                </div>
+                <span class="brand-text">Dr. Kamran Ali</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1>Excel in Your O & A Level English Journey</h1>
+                    <p>Get expert guidance, comprehensive resources, and personalized support from Dr. Kamran Ali to master English Language and Literature.</p>
+                    <div class="d-flex gap-3">
+                        <a href="resources.html" class="btn btn-light btn-lg">Explore Resources</a>
+                        <a href="#services" class="btn btn-outline-light btn-lg">Our Services</a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Students studying" class="hero-img float-animation d-none d-lg-block">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6" data-aos="fade-up">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-text">English Success Stories</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-text">Years Experience</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-item">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-text">Resources</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-text">Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="container my-5 py-5">
+        <h2 class="text-center section-title" data-aos="fade-up">Our English Services</h2>
+        <div class="row">
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="service-card text-center">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>English Tutoring</h3>
+                    <p>Get personalized English Language and Literature tutoring from Dr. Kamran Ali to excel in your O and A Level exams.</p>
+                    <a href="#" class="btn btn-outline-primary mt-3">Learn More</a>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-card text-center">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>English Resources</h3>
+                    <p>Access a wide range of English study materials, past papers, essays, and practice questions to enhance your preparation.</p>
+                    <a href="#" class="btn btn-outline-primary mt-3">Browse Resources</a>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-card text-center">
+                    <i class="fas fa-users"></i>
+                    <h3>English Study Groups</h3>
+                    <p>Join our community of English learners to practice speaking, writing, and literary analysis in a collaborative environment.</p>
+                    <a href="#" class="btn btn-outline-primary mt-3">Join Community</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Subjects -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center section-title" data-aos="fade-up">English Specializations</h2>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in">
+                    <div class="service-card text-center">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Essay Writing</h3>
+                        <p>Master the art of essay writing with structured frameworks, analytical techniques, and persuasive language skills.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="service-card text-center">
+                        <i class="fas fa-book"></i>
+                        <h3>Literature Analysis</h3>
+                        <p>Develop deep understanding of literary texts, themes, characters, and stylistic devices in prose, poetry, and drama.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="service-card text-center">
+                        <i class="fas fa-comments"></i>
+                        <h3>Speaking & Listening</h3>
+                        <p>Improve your oral communication skills through structured practice, debates, presentations, and group discussions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="service-card text-center">
+                        <i class="fas fa-language"></i>
+                        <h3>Language Skills</h3>
+                        <p>Enhance your grammar, vocabulary, comprehension, and summarizing abilities for exam excellence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonial-section">
+        <div class="container">
+            <h2 class="text-center section-title" data-aos="fade-up">What Our Students Say</h2>
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="testimonial-card text-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Student 1">
+                        <p>"Dr. Kamran Ali's approach to teaching English Literature transformed my understanding of complex texts. I improved from a C to an A* in my A Level English exam!"</p>
+                        <h5>- Ahmed K.</h5>
+                        <div class="text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card text-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Student 2">
+                        <p>"The English Language resources provided are exceptional. The essay frameworks and practice materials helped me structure my writing and achieve an A in my O Level exam."</p>
+                        <h5>- Sarah M.</h5>
+                        <div class="text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="testimonial-card text-center">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Student 3">
+                        <p>"The English community support is invaluable. Regular feedback on my essays and literature analysis significantly improved my critical thinking and writing style."</p>
+                        <h5>- Rayan T.</h5>
+                        <div class="text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content" data-aos="zoom-in">
+                <h2 class="mb-4">Ready to Excel in Your O & A Level English Exams?</h2>
+                <p class="mb-4">Join our English learning community today and get access to premium resources, expert guidance, and a supportive learning environment.</p>
+                <button class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <a href="#" class="footer-logo logo-container">
+                        <div class="dk-logo-container">
+                            <div class="dk-logo-inner">
+                                <div class="dk-logo-glow"></div>
+                                <div class="dk-logo-circle"></div>
+                                <div class="dk-logo-text">DK</div>
+                            </div>
+                        </div>
+                        <span class="brand-text text-white">Dr. Kamran Ali</span>
+                    </a>
+                    <p class="footer-text">Dedicated to helping O and A Level students achieve excellence in English Language and Literature through expert guidance, comprehensive resources, and personalized support.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-5 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-5 mb-md-0">
+                    <h5>Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">O Level English</a></li>
+                        <li><a href="#">A Level English</a></li>
+                        <li><a href="#">Past Papers</a></li>
+                        <li><a href="#">Essay Examples</a></li>
+                        <li><a href="#">Literature Guides</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5>Contact Us</h5>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Education Street, Academic City</li>
+                        <li><i class="fas fa-phone-alt me-2"></i> +1 (234) 567-8901</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@drkamranali.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center footer-bottom">
+                <p>&copy; 2023 O and A Level by Dr. Kamran Ali. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login to Your Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                        <div class="text-center mt-3">
+                            <a href="#" class="text-decoration-none">Forgot Password?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalLabel">Create Your Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="signupEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="signupEmail" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="signupPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="signupPassword" placeholder="Create a password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms">
+                            <label class="form-check-label" for="agreeTerms">I agree to the Terms and Conditions</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Create Account</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS Animations -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        // Add scrolled class to navbar on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Animate DK Logo
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoContainers = document.querySelectorAll('.dk-logo-container');
+            
+            logoContainers.forEach(logoContainer => {
+                const logoInner = logoContainer.querySelector('.dk-logo-inner');
+                
+                // Hover effect
+                logoContainer.addEventListener('mouseenter', () => {
+                    logoInner.style.transform = 'scale(1.1) rotateY(10deg)';
+                    const glow = logoContainer.querySelector('.dk-logo-glow');
+                    if (glow) glow.style.opacity = '0.8';
+                });
+                
+                logoContainer.addEventListener('mouseleave', () => {
+                    logoInner.style.transform = '';
+                    const glow = logoContainer.querySelector('.dk-logo-glow');
+                    if (glow) glow.style.opacity = '0.5';
+                });
+                
+                // Click effect
+                logoContainer.addEventListener('click', () => {
+                    // Quick pulse animation
+                    logoInner.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        logoInner.style.transform = 'scale(1.1)';
+                        setTimeout(() => {
+                            logoInner.style.transform = '';
+                        }, 200);
+                    }, 200);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

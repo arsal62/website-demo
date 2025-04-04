@@ -1,0 +1,121 @@
+<!-- Add this inside your sidebar <nav> after the lecture list -->
+    <div class="course-scroller">
+        <h3 class="section-title">
+            <i class="fas fa-layer-group"></i> All Courses
+        </h3>
+        <div class="course-list">
+            <!-- Course items will be added here -->
+            <div class="course-item">
+                <div class="course-icon" style="background-color: #3b82f6;">
+                    <i class="fas fa-language"></i>
+                </div>
+                <div class="course-info">
+                    <h4>O Level English</h4>
+                </div>
+            </div>
+            <div class="course-item">
+                <div class="course-icon" style="background-color: #ef4444;">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="course-info">
+                    <h4>O Level Mathematics</h4>
+                </div>
+            </div>
+            <!-- Add more courses as needed -->
+        </div>
+    </div>
+    
+    <style>
+        /* Course Scroller Styles */
+        .course-scroller {
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+        }
+    
+        .course-list {
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 8px;
+            margin-top: 1rem;
+        }
+    
+        /* Custom scrollbar */
+        .course-list::-webkit-scrollbar {
+            width: 6px;
+        }
+    
+        .course-list::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 3px;
+        }
+    
+        .course-list::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+        }
+    
+        .course-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+    
+        .course-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(5px);
+        }
+    
+        .course-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+    
+        .course-info h4 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: white;
+            margin: 0;
+        }
+    </style>
+    
+    <script>
+        // Sample course data - replace with your actual courses
+        const courses = [
+            { title: "O Level English", icon: "language", color: "#3b82f6" },
+            { title: "O Level Mathematics", icon: "calculator", color: "#ef4444" },
+            { title: "O Level Physics", icon: "atom", color: "#10b981" },
+            { title: "O Level Chemistry", icon: "flask", color: "#f59e0b" },
+            { title: "O Level Biology", icon: "dna", color: "#8b5cf6" },
+            { title: "O Level History", icon: "landmark", color: "#ec4899" },
+            { title: "O Level Geography", icon: "globe-asia", color: "#14b8a6" }
+        ];
+    
+        // Render courses
+        const courseList = document.querySelector('.course-list');
+        courses.forEach(course => {
+            const courseItem = document.createElement('div');
+            courseItem.className = 'course-item';
+            courseItem.innerHTML = `
+                <div class="course-icon" style="background-color: ${course.color};">
+                    <i class="fas fa-${course.icon}"></i>
+                </div>
+                <div class="course-info">
+                    <h4>${course.title}</h4>
+                </div>
+            `;
+            courseList.appendChild(courseItem);
+        });
+    </script>

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - O and A Level English by Dr. Kamran Ali</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #2ecc71;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Logo styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            margin-right: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .brand-text {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        /* Navbar styles */
+        .navbar {
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: white !important;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-color) !important;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--primary-color) !important;
+            font-weight: 600;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 140px 0 120px;
+            margin-top: -80px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            position: relative;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            opacity: 0.1;
+        }
+        
+        .profile-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+            border-bottom: 4px solid var(--primary-color);
+        }
+        
+        .timeline-item {
+            border-left: 3px solid var(--primary-color);
+            padding-left: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            left: -11px;
+            top: 0;
+            border-radius: 50%;
+            box-shadow: 0 0 0 5px rgba(67, 97, 238, 0.2);
+        }
+        
+        .achievement-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            border-bottom: 4px solid transparent;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 4px solid var(--primary-color);
+        }
+        
+        .icon-highlight {
+            color: var(--primary-color);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            font-weight: 800;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--primary-color);
+            bottom: -15px;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #212529;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 80px 0 20px;
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .footer-logo {
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        .footer-text {
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            max-width: 80%;
+        }
+
+        .footer h5 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+        
+        /* Modal styles */
+        .modal-content {
+            border-radius: 15px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+            border-bottom: none;
+            padding: 20px 30px;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .form-control {
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+        
+        /* Credential pill */
+        .credential-pill {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary-color);
+            border-radius: 30px;
+            padding: 5px 15px;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed-top">
+        <div class="container">
+            <a class="navbar-brand logo-container" href="#">
+                <div class="logo">DKA</div>
+                <span class="brand-text">Dr. Kamran Ali</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 data-aos="fade-up" class="display-4 fw-bold">Dr. Kamran Ali</h1>
+                    <p data-aos="fade-up" data-aos-delay="200" class="lead">
+                        English Language Expert | Educational Innovator | O & A Level Specialist
+                    </p>
+                    <div class="d-flex justify-content-center gap-2 mt-4" data-aos="fade-up" data-aos-delay="300">
+                        <span class="credential-pill"><i class="fas fa-book-reader me-2"></i>PhD in Linguistics</span>
+                        <span class="credential-pill"><i class="fas fa-university me-2"></i>20+ Years Experience</span>
+                        <span class="credential-pill"><i class="fas fa-award me-2"></i>Award Winning Educator</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="profile-section">
+                    <div class="row">
+                        <div class="col-md-8" data-aos="fade-right">
+                            <h2 class="section-title">Professional Profile</h2>
+                            <p class="lead">A committed and engaging English language specialist with exceptional research skills and expertise in English Linguistics and Literature. With over 20 years of teaching experience, I am dedicated to helping O and A Level students achieve excellence in their English exams.</p>
+                    
+                            <h3 class="mt-5 mb-4">Key Highlights</h3>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="achievement-card h-100">
+                                        <i class="fas fa-book fa-2x mb-3 text-primary"></i>
+                                        <h5>Author & Researcher</h5>
+                                        <p>Authored 8 English textbooks and published 14 research papers in HEC recognized journals</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="achievement-card h-100">
+                                        <i class="fas fa-graduation-cap fa-2x mb-3 text-primary"></i>
+                                        <h5>Specialized in O & A Level</h5>
+                                        <p>Developed curriculum and teaching methodologies specifically for English Language and Literature at O and A Level</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="achievement-card h-100">
+                                        <i class="fas fa-users fa-2x mb-3 text-primary"></i>
+                                        <h5>Student Success</h5>
+                                        <p>Mentored over 500 students to achieve A* and A grades in O and A Level English exams</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="achievement-card h-100">
+                                        <i class="fas fa-trophy fa-2x mb-3 text-primary"></i>
+                                        <h5>Award Winning</h5>
+                                        <p>Recipient of multiple best teacher awards and recognized for innovative teaching methods</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" data-aos="fade-left">
+                            <h3 class="section-title">Academic Journey</h3>
+                            <div class="timeline-item">
+                                <h5>PhD in Humanities (Linguistics)</h5>
+                                <p>Hamdard University, 2023</p>
+                                <p class="text-muted">Thesis: "Analysis of English Language Teaching Methods for O and A Level Students"</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>M.Phil in Linguistics</h5>
+                                <p>Hamdard University, 2015</p>
+                                <p class="text-muted">Focus: Language Acquisition Strategies</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>MA English Linguistics</h5>
+                                <p>University of Karachi, 2007</p>
+                                <p class="text-muted">Specialized in Teaching Methodologies</p>
+                            </div>
+                            
+                            <h3 class="section-title mt-5">Specializations</h3>
+                            <div class="d-flex flex-wrap">
+                                <span class="credential-pill"><i class="fas fa-check me-1"></i>Essay Writing</span>
+                                <span class="credential-pill"><i class="fas fa-check me-1"></i>Literature Analysis</span>
+                                <span class="credential-pill"><i class="fas fa-check me-1"></i>Critical Thinking</span>
+                                <span class="credential-pill"><i class="fas fa-check me-1"></i>Exam Preparation</span>
+                                <span class="credential-pill"><i class="fas fa-check me-1"></i>Language Skills</span>
+                                <span class="credential-pill"><i class="fas fa-check me-1"></i>Creative Writing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <h3 class="section-title">Current Positions</h3>
+                            <div class="row g-4">
+                                <div class="col-md-4" data-aos="fade-up">
+                                    <div class="achievement-card h-100">
+                                        <h5>Hamdard University</h5>
+                                        <p class="text-primary mb-1">Head of Department of English</p>
+                                        <small class="text-muted d-block mb-3">March 2023 - Present</small>
+                                        <p>Leading curriculum development and teaching excellence initiatives for undergraduate and graduate English programs.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="achievement-card h-100">
+                                        <h5>O & A Level English Specialist</h5>
+                                        <p class="text-primary mb-1">Highbrow College</p>
+                                        <small class="text-muted d-block mb-3">March 2021 - Present</small>
+                                        <p>Providing specialized instruction in English Language and Literature for Cambridge International Examinations.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="achievement-card h-100">
+                                        <h5>English Skills Training</h5>
+                                        <p class="text-primary mb-1">Communication & Business Writing</p>
+                                        <small class="text-muted d-block mb-3">March 2019 - Present</small>
+                                        <p>Developing and delivering specialized communication and writing skills programs for professionals and students.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-5">
+                        <div class="col-12 text-center">
+                            <h3 class="mb-4">Ready to enhance your English skills?</h3>
+                            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <a href="#" class="footer-logo logo-container">
+                        <div class="logo">DKA</div>
+                        <span class="brand-text text-white">Dr. Kamran Ali</span>
+                    </a>
+                    <p class="footer-text">Dedicated to helping O and A Level students achieve excellence in English Language and Literature through expert guidance, comprehensive resources, and personalized support.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-5 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-5 mb-md-0">
+                    <h5>Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">O Level English</a></li>
+                        <li><a href="#">A Level English</a></li>
+                        <li><a href="#">Past Papers</a></li>
+                        <li><a href="#">Essay Examples</a></li>
+                        <li><a href="#">Literature Guides</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5>Contact Us</h5>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Education Street, Academic City</li>
+                        <li><i class="fas fa-phone-alt me-2"></i> +1 (234) 567-8901</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@drkamranali.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center footer-bottom">
+                <p>&copy; 2023 O and A Level English by Dr. Kamran Ali. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login to Your Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                        <div class="text-center mt-3">
+                            <a href="#" class="text-decoration-none">Forgot Password?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalLabel">Create Your Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="signupEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="signupEmail" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="signupPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="signupPassword" placeholder="Create a password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms">
+                            <label class="form-check-label" for="agreeTerms">I agree to the Terms and Conditions</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Create Account</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animations -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        // Add scrolled class to navbar on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+    
+</body>
+</html>
