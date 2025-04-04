@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Level English Paper 2 Mastery</title>
+    <title>Paper 2 - Video Lectures | DK Academy</title>
     <!-- Preload critical resources -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" as="style">
@@ -28,6 +28,14 @@
             --sidebar-width: 280px;
             --card-radius: 10px;
             --transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --border: #e2e8f0;
+            --input-bg: #f8fafc;
+            --text: #475569;
+            --text-secondary: #64748b;
+            --star: #ffd700;
+            --success-bg: rgba(16, 185, 129, 0.1);
         }
 
         * {
@@ -691,121 +699,96 @@
 
         /* Enhanced Feedback Section */
         .feedback-section {
-            background: linear-gradient(to right, #ffffff, #f8f9fa);
-            border-radius: var(--card-radius);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            transform-style: preserve-3d;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feedback-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(59,130,246,0.05) 0%, rgba(239,68,68,0.05) 100%);
-            border-radius: var(--card-radius);
-            z-index: -1;
-            transform: translateZ(-5px);
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: var(--card-shadow);
         }
         
-        .feedback-section .section-header {
-            border-bottom: 2px solid #f0f0f0;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-        }
-
-        .feedback-section .section-header h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
+        .feedback-section h3 {
+            margin-top: 0;
             color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .feedback-form {
-            margin-top: 1.5rem;
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transform: translateZ(5px);
-            transition: all 0.3s ease;
-        }
-        
-        .feedback-form:hover {
-            transform: translateZ(10px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-        }
-
-        .form-group {
-            margin-bottom: 1.2rem;
-            transform: translateZ(5px);
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.7rem;
-            font-weight: 500;
-            color: var(--dark);
-            font-size: 1.05rem;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.9rem;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            background: #f8fafc;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
-        }
-        
-        #submitFeedbackBtn {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            transition: all 0.3s ease;
-            transform: translateZ(5px);
-        }
-        
-        #submitFeedbackBtn:hover {
-            transform: translateY(-3px) translateZ(10px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
-        }
-        
-        #feedbackSuccess {
-            background: rgba(16, 185, 129, 0.1);
-            border-left: 4px solid var(--success);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1.5rem;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
             gap: 10px;
-            transform: translateZ(5px);
-            animation: fadeInUp 0.5s ease forwards;
         }
         
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px) translateZ(0);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) translateZ(5px);
-            }
+        .feedback-section h3 i {
+            color: var(--accent);
+        }
+        
+        .star-rating {
+            display: flex;
+            gap: 5px;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .star-rating i {
+            cursor: pointer;
+            color: #ccc;
+            transition: color 0.2s ease;
+        }
+        
+        .star-rating i.fas {
+            color: var(--star);
+        }
+        
+        .rating-text {
+            font-size: 14px;
+            margin-top: 5px;
+            color: var(--text-secondary);
+        }
+        
+        .feedback-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .feedback-form textarea,
+        .feedback-form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--input-bg);
+            color: var(--text);
+            resize: vertical;
+            transition: border-color 0.2s ease;
+        }
+        
+        .feedback-form textarea:focus,
+        .feedback-form input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .feedback-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s ease;
+            align-self: flex-start;
+        }
+        
+        .feedback-form button:hover {
+            background: var(--primary-dark);
+        }
+        
+        .feedback-success {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: var(--success-bg);
+            color: var(--success);
+            display: none;
         }
 
         /* User Profile Styles */
@@ -943,21 +926,57 @@
         /* Responsive Design */
         @media (max-width: 992px) {
             .sidebar {
-                transform: translateX(-100%) rotateY(-15deg);
-                transform-origin: right;
-                transition: var(--transition);
+                position: fixed;
+                left: -300px;
+                width: 280px;
+                height: 100%;
+                transition: all 0.3s ease;
+                z-index: 9999;
+                background: var(--sidebar-bg);
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             }
-
+            
             .sidebar.active {
-                transform: translateX(0) rotateY(0deg);
+                left: 0;
             }
-
-            .main-content {
+            
+            .content {
                 margin-left: 0;
+                width: 100%;
             }
-
-            .menu-toggle {
+            
+            .toggle-btn {
+                display: flex !important;
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                z-index: 10000;
+                background: var(--primary);
+                color: white;
+                border: none;
+                border-radius: 4px;
+                padding: 8px 12px;
+                cursor: pointer;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+            
+            .video-player-container {
+                height: auto;
+                min-height: 250px;
+            }
+            
+            /* Make feedback section visible on mobile */
+            .feedback-section {
                 display: block !important;
+                width: 100%;
+                margin-top: 20px;
+                padding: 15px;
+            }
+            
+            /* Ensure proper spacing in content area */
+            .content-area {
+                padding: 15px;
+                padding-top: 60px; /* Give space for fixed toggle button */
             }
         }
 
@@ -1399,209 +1418,230 @@
     </style>
 </head>
 <body>
-    <!-- 3D Sidebar -->
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h1>O Level English</h1>
-            <p>Paper 2 Mastery Course</p>
-        </div>
+    <div class="app-container">
+        <!-- Toggle button for mobile -->
+        <button class="toggle-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1>O Level English</h1>
+                <p>Paper 2 Mastery Course</p>
+            </div>
 
-        <!-- Premium DK Logo -->
-        <div class="dk-logo-container">
-            <div class="dk-logo-inner">
-                <div class="dk-logo-glow"></div>
-                <div class="dk-logo-circle"></div>
-                <div class="dk-logo-text">DK</div>
-                <div class="dk-logo-ring">
-                    <div class="dk-logo-dot" style="top: 0; left: 50%;"></div>
-                    <div class="dk-logo-dot" style="top: 25%; left: 93%;"></div>
-                    <div class="dk-logo-dot" style="top: 75%; left: 93%;"></div>
-                    <div class="dk-logo-dot" style="top: 100%; left: 50%;"></div>
-                    <div class="dk-logo-dot" style="top: 75%; left: 7%;"></div>
-                    <div class="dk-logo-dot" style="top: 25%; left: 7%;"></div>
+            <!-- Premium DK Logo -->
+            <div class="dk-logo-container">
+                <div class="dk-logo-inner">
+                    <div class="dk-logo-glow"></div>
+                    <div class="dk-logo-circle"></div>
+                    <div class="dk-logo-text">DK</div>
+                    <div class="dk-logo-ring">
+                        <div class="dk-logo-dot" style="top: 0; left: 50%;"></div>
+                        <div class="dk-logo-dot" style="top: 25%; left: 93%;"></div>
+                        <div class="dk-logo-dot" style="top: 75%; left: 93%;"></div>
+                        <div class="dk-logo-dot" style="top: 100%; left: 50%;"></div>
+                        <div class="dk-logo-dot" style="top: 75%; left: 7%;"></div>
+                        <div class="dk-logo-dot" style="top: 25%; left: 7%;"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- User Profile Section -->
-        <div class="user-profile">
-            <div class="user-avatar">
-                <img src="https://ui-avatars.com/api/?name=Student&background=random" alt="Student" id="userAvatar">
+            <!-- User Profile Section -->
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <img src="https://ui-avatars.com/api/?name=Student&background=random" alt="Student" id="userAvatar">
+                </div>
+                <div class="user-info">
+                    <h3 id="userName">Student</h3>
+                    <p id="userEmail">student@example.com</p>
+                </div>
             </div>
-            <div class="user-info">
-                <h3 id="userName">Student</h3>
-                <p id="userEmail">student@example.com</p>
+
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" id="lectureSearch" placeholder="Search lectures...">
+                    <span class="search-icon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
             </div>
-        </div>
 
-        <div class="search-container">
-            <div class="search-bar">
-                <input type="text" id="lectureSearch" placeholder="Search lectures...">
-                <span class="search-icon">
-                    <i class="fas fa-search"></i>
-                </span>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
             </div>
-        </div>
 
-        <div class="progress-bar-container">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
+            <!-- Categories filter -->
+            <div class="categories-filter">
+                <h3 class="section-title">
+                    <i class="fas fa-filter"></i> Categories
+                </h3>
+                <div class="filter-options">
+                    <span class="filter-option active" data-filter="all">All</span>
+                    <span class="filter-option" data-filter="comprehension">Comprehension</span>
+                    <span class="filter-option" data-filter="summary">Summary</span>
+                    <span class="filter-option" data-filter="vocabulary">Vocabulary</span>
+                    <span class="filter-option" data-filter="inference">Inference</span>
+                    <span class="filter-option" data-filter="exam">Exam Prep</span>
+                </div>
+            </div>
 
-        <!-- Categories filter -->
-        <div class="categories-filter">
             <h3 class="section-title">
-                <i class="fas fa-filter"></i> Categories
+                <i class="fas fa-video"></i> Video Lectures
             </h3>
-            <div class="filter-options">
-                <span class="filter-option active" data-filter="all">All</span>
-                <span class="filter-option" data-filter="comprehension">Comprehension</span>
-                <span class="filter-option" data-filter="summary">Summary</span>
-                <span class="filter-option" data-filter="vocabulary">Vocabulary</span>
-                <span class="filter-option" data-filter="inference">Inference</span>
-                <span class="filter-option" data-filter="exam">Exam Prep</span>
-            </div>
-        </div>
+            <ul class="lecture-list" id="lectureList">
+                <!-- Lectures will be added by JavaScript -->
+            </ul>
 
-        <h3 class="section-title">
-            <i class="fas fa-video"></i> Video Lectures
-        </h3>
-        <ul class="lecture-list" id="lectureList">
-            <!-- Lectures will be added by JavaScript -->
-        </ul>
-
-        <h3 class="section-title">
-            <i class="fas fa-bookmark"></i> Saved Lectures
-        </h3>
-        <ul class="saved-lecture-list" id="savedLectureList">
-            <!-- Saved lectures will be added by JavaScript -->
-        </ul>
-    </nav>
-
-    <!-- Main Content with 3D Effects -->
-    <main class="main-content">
-        <div class="content-header">
-            <div>
-                <a href="resources.html" class="back-btn">
-                    <i class="fas fa-arrow-left"></i> Back to Resources
-                </a>
-                <h1 class="page-title">Paper 2 Video Masterclass</h1>
-            </div>
-            <div class="header-buttons">
-                <button id="resetProgressBtn" class="btn btn-outline">
-                    <i class="fas fa-redo"></i> Reset Progress
-                </button>
-                <button id="darkModeToggle" class="btn btn-outline dark-mode-toggle">
-                    <i class="fas fa-moon"></i> Dark Mode
-                </button>
-            </div>
-        </div>
-
-        <!-- 3D Video Card -->
-        <div class="video-card animated floating">
-            <div class="video-player-container">
-                <div id="videoPlaceholder" style="position:absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; background:linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
-                    <i class="fas fa-play-circle" style="font-size:3rem; margin-bottom:1rem;"></i>
-                    <h2 style="font-weight:500; margin-bottom:0.5rem;">Select a Lecture</h2>
-                    <p style="opacity:0.8;">Choose from the sidebar to begin</p>
-                </div>
-                <div id="loadingSpinner" class="loading-spinner">
-                    <div class="spinner"></div>
-                    <div class="loading-text">Loading video...</div>
-                </div>
-                <iframe id="videoPlayer" class="video-player" frameborder="0" allowfullscreen style="display:none;"></iframe>
-            </div>
-
-            <div class="video-info">
-                <h1 class="video-title" id="videoTitle">Paper 2 Video Lectures</h1>
-                <div class="video-meta">
-                    <span><i class="fas fa-chalkboard-teacher"></i> <span id="videoInstructor">Dr. Kamran Ali</span></span>
-                    <span><i class="far fa-clock"></i> <span id="videoDuration">Select a lecture</span></span>
-                    <span><i class="fas fa-star" style="color:var(--warning);"></i> <span id="videoRating">4.9</span></span>
-                </div>
-                <p class="video-description" id="videoDescription">Select a lecture from the sidebar to view detailed video explanations of key Paper 2 concepts, including reading comprehension, summary writing, and vocabulary in context.</p>
-
-                <div class="action-buttons">
-                    <button class="btn btn-primary" id="completeBtn" disabled>
-                        <i class="fas fa-check-circle"></i> Mark as Complete
-                    </button>
-                    <button class="btn btn-outline" id="saveForLaterBtn">
-                        <i class="fas fa-bookmark"></i> Save for Later
-                    </button>
-                </div>
-
-                <div class="custom-video-controls">
-                    <button class="btn btn-primary play-pause-btn">
-                        <i class="fas fa-play"></i>
-                    </button>
-                    <button class="btn btn-outline speed-btn">
-                        <i class="fas fa-tachometer-alt"></i> Speed
-                    </button>
-                    <button class="btn btn-outline captions-btn">
-                        <i class="fas fa-closed-captioning"></i> Captions
-                    </button>
-                    <div class="video-timeline">
-                        <input type="range" class="timeline-slider" min="0" max="100" value="0">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 3D Resources Section -->
-        <div class="resources-section animated" id="resourcesSection" style="display:none;">
-            <div class="section-header">
-                <h3>
-                    <i class="fas fa-paperclip"></i> Lecture Resources
-                </h3>
-            </div>
-            <div class="resources-grid" id="resourcesGrid">
-                <!-- Resources will be added by JavaScript -->
-            </div>
-        </div>
-
-        <!-- Tips Section -->
-        <div class="tips-section animated" id="tipsSection">
-            <div class="section-header">
-                <h3>
-                    <i class="fas fa-lightbulb"></i> Paper 2 Exam Tips
-                </h3>
-            </div>
-            <div class="tips-icons">
-                <div class="tip-icon active" data-tip="1">1</div>
-                <div class="tip-icon" data-tip="2">2</div>
-                <div class="tip-icon" data-tip="3">3</div>
-            </div>
-            <div class="tip-cards-container">
-                <div class="tip-card active" data-tip="1">
-                    <div class="tip-content">
-                        <h4>Reading Strategy</h4>
-                        <p>Read the passage thoroughly first, then scan the questions. Return to the passage with specific questions in mind, focusing on key words and context for accurate answers.</p>
-                    </div>
-                </div>
-                <div class="tip-card" data-tip="2">
-                    <div class="tip-content">
-                        <h4>Summary Writing</h4>
-                        <p>Identify main points quickly, paraphrase effectively, and maintain a concise response within the word limit. Avoid copying phrases directly from the text unless necessary.</p>
-                    </div>
-                </div>
-                <div class="tip-card" data-tip="3">
-                    <div class="tip-content">
-                        <h4>Time Management</h4>
-                        <p>Allocate approximately 1 hour for Sections 1 & 2 (reading comprehension) and 45 minutes for Section 3 (summary). Allow time to review your responses for accuracy and completeness.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Feedback Form -->
-        <div class="feedback-section" id="feedbackSection" style="display:none;">
-            <!-- Feedback form content -->
+            <h3 class="section-title">
+                <i class="fas fa-bookmark"></i> Saved Lectures
+            </h3>
+            <ul class="saved-lecture-list" id="savedLectureList">
+                <!-- Saved lectures will be added by JavaScript -->
+            </ul>
         </div>
         
-    </main>
-    
-    <!-- Mobile Menu Toggle -->
-    <div class="menu-toggle" id="menuToggle">
-        <i class="fas fa-bars"></i>
+        <!-- Main Content with 3D Effects -->
+        <main class="main-content">
+            <div class="content-header">
+                <div>
+                    <a href="resources.html" class="back-btn">
+                        <i class="fas fa-arrow-left"></i> Back to Resources
+                    </a>
+                    <h1 class="page-title">Paper 2 Video Masterclass</h1>
+                </div>
+                <div class="header-buttons">
+                    <button id="resetProgressBtn" class="btn btn-outline">
+                        <i class="fas fa-redo"></i> Reset Progress
+                    </button>
+                    <button id="darkModeToggle" class="btn btn-outline dark-mode-toggle">
+                        <i class="fas fa-moon"></i> Dark Mode
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3D Video Card -->
+            <div class="video-card animated floating">
+                <div class="video-player-container">
+                    <div id="videoPlaceholder" style="position:absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; background:linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
+                        <i class="fas fa-play-circle" style="font-size:3rem; margin-bottom:1rem;"></i>
+                        <h2 style="font-weight:500; margin-bottom:0.5rem;">Select a Lecture</h2>
+                        <p style="opacity:0.8;">Choose from the sidebar to begin</p>
+                    </div>
+                    <div id="loadingSpinner" class="loading-spinner">
+                        <div class="spinner"></div>
+                        <div class="loading-text">Loading video...</div>
+                    </div>
+                    <iframe id="videoPlayer" class="video-player" frameborder="0" allowfullscreen="allowfullscreen" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allow="autoplay; encrypted-media"></iframe>
+                </div>
+
+                <div class="video-info">
+                    <h1 class="video-title" id="videoTitle">Paper 2 Video Lectures</h1>
+                    <div class="video-meta">
+                        <span><i class="fas fa-chalkboard-teacher"></i> <span id="videoInstructor">Dr. Kamran Ali</span></span>
+                        <span><i class="far fa-clock"></i> <span id="videoDuration">Select a lecture</span></span>
+                        <span><i class="fas fa-star" style="color:var(--warning);"></i> <span id="videoRating">4.9</span></span>
+                    </div>
+                    <p class="video-description" id="videoDescription">Select a lecture from the sidebar to view detailed video explanations of key Paper 2 concepts, including reading comprehension, summary writing, and vocabulary in context.</p>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="completeBtn" disabled>
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                        <button class="btn btn-outline" id="saveForLaterBtn">
+                            <i class="fas fa-bookmark"></i> Save for Later
+                        </button>
+                    </div>
+
+                    <div class="custom-video-controls">
+                        <button class="btn btn-primary play-pause-btn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="btn btn-outline speed-btn">
+                            <i class="fas fa-tachometer-alt"></i> Speed
+                        </button>
+                        <button class="btn btn-outline captions-btn">
+                            <i class="fas fa-closed-captioning"></i> Captions
+                        </button>
+                        <div class="video-timeline">
+                            <input type="range" class="timeline-slider" min="0" max="100" value="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3D Resources Section -->
+            <div class="resources-section animated" id="resourcesSection" style="display:none;">
+                <div class="section-header">
+                    <h3>
+                        <i class="fas fa-paperclip"></i> Lecture Resources
+                    </h3>
+                </div>
+                <div class="resources-grid" id="resourcesGrid">
+                    <!-- Resources will be added by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Tips Section -->
+            <div class="tips-section animated" id="tipsSection">
+                <div class="section-header">
+                    <h3>
+                        <i class="fas fa-lightbulb"></i> Paper 2 Exam Tips
+                    </h3>
+                </div>
+                <div class="tips-icons">
+                    <div class="tip-icon active" data-tip="1">1</div>
+                    <div class="tip-icon" data-tip="2">2</div>
+                    <div class="tip-icon" data-tip="3">3</div>
+                </div>
+                <div class="tip-cards-container">
+                    <div class="tip-card active" data-tip="1">
+                        <div class="tip-content">
+                            <h4>Reading Strategy</h4>
+                            <p>Read the passage thoroughly first, then scan the questions. Return to the passage with specific questions in mind, focusing on key words and context for accurate answers.</p>
+                        </div>
+                    </div>
+                    <div class="tip-card" data-tip="2">
+                        <div class="tip-content">
+                            <h4>Summary Writing</h4>
+                            <p>Identify main points quickly, paraphrase effectively, and maintain a concise response within the word limit. Avoid copying phrases directly from the text unless necessary.</p>
+                        </div>
+                    </div>
+                    <div class="tip-card" data-tip="3">
+                        <div class="tip-content">
+                            <h4>Time Management</h4>
+                            <p>Allocate approximately 1 hour for Sections 1 & 2 (reading comprehension) and 45 minutes for Section 3 (summary). Allow time to review your responses for accuracy and completeness.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback Form -->
+            <div class="feedback-section" id="feedbackSection">
+                <div class="section-header">
+                    <h3><i class="fas fa-comment-alt"></i> Leave Your Feedback</h3>
+                </div>
+                <div id="starRating" class="star-rating">
+                    <i class="far fa-star" data-rating="1"></i>
+                    <i class="far fa-star" data-rating="2"></i>
+                    <i class="far fa-star" data-rating="3"></i>
+                    <i class="far fa-star" data-rating="4"></i>
+                    <i class="far fa-star" data-rating="5"></i>
+                </div>
+                <div class="rating-text" id="ratingText">Select rating</div>
+                
+                <form id="feedbackForm" class="feedback-form">
+                    <textarea id="feedbackComment" rows="3" placeholder="What did you like about this lecture?"></textarea>
+                    <textarea id="feedbackImprovement" rows="3" placeholder="How can we improve this lecture?"></textarea>
+                    <button type="submit">Submit Feedback</button>
+                </form>
+                <div id="feedbackSuccess" class="feedback-success">
+                    <i class="fas fa-check-circle"></i> Thank you for your feedback!
+                </div>
+            </div>
+            
+        </main>
     </div>
 
     <script>
@@ -1631,7 +1671,7 @@
                 duration: "10:13",
                 instructor: "Dr. Kamran Ali",
                 rating: "4.8",
-                videoUrl: "https://www.youtube.com/embed/8uvdsjmQ_G0",
+                videoUrl: "https://www.youtube.com/embed/8uvdsjmQ_G0?enablejsapi=1",
                 thumbnail: "https://img.youtube.com/vi/EXAMPLE_ID_6/maxresdefault.jpg",
                 category: " Directed Writing",
                 resources: [
@@ -1852,88 +1892,86 @@
 
             // Initialize event listeners
             initEventListeners();
+            
+            // Setup tips section
+            setupTipsSection();
 
-            // Load first lecture if available
-            if (courseData.length > 0) {
-                setTimeout(() => {
-                    loadLecture(courseData[0].id);
-                }, 500);
+            // Add click handler for video container to prevent opening in browser
+            const videoContainer = document.querySelector('.video-player-container');
+            if (videoContainer) {
+                videoContainer.addEventListener('click', function(e) {
+                    // Prevent default behavior if this is a direct click on the iframe
+                    if (e.target.tagName === 'IFRAME') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // Toggle play/pause when video is clicked
+                        if (player && typeof player.getPlayerState === 'function') {
+                            togglePlayPause();
+                        }
+                    }
+                });
             }
-
+            
             // Load YouTube API
             loadYouTubeAPI();
+
+            // Load first lecture after a short delay
+            console.log("Will load first lecture shortly...");
+            setTimeout(() => {
+                if (courseData && courseData.length > 0) {
+                    console.log("Loading first lecture (ID:", courseData[0].id, ")");
+                    loadLecture(courseData[0].id);
+                } else {
+                    console.error("No lectures available in courseData");
+                }
+            }, 1000);
         }
 
         // Initialize all event listeners
         function initEventListeners() {
-            // Search functionality
-            lectureSearch.addEventListener('input', handleSearch);
+            // Check if elements exist before adding event listeners
+            const toggleBtn = document.querySelector('.toggle-btn');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', toggleSidebar);
+            }
 
-            // Category filter
-            filterOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    filterOptions.forEach(o => o.classList.remove('active'));
-                    option.classList.add('active');
-                    currentFilter = option.getAttribute('data-filter');
-                    renderLectures();
+            const starRatingEl = document.getElementById('starRating');
+            if (starRatingEl) {
+                const stars = starRatingEl.querySelectorAll('.fa-star');
+                stars.forEach((star, index) => {
+                    star.addEventListener('click', () => {
+                        currentRating = index + 1;
+                        highlightStars(currentRating);
+                        updateRatingText(currentRating);
+                    });
                 });
-            });
+            }
 
-            // Reset progress button
-            document.getElementById('resetProgressBtn').addEventListener('click', resetAllProgress);
+            const feedbackForm = document.getElementById('feedbackForm');
+            if (feedbackForm) {
+                feedbackForm.addEventListener('submit', submitFeedback);
+            }
 
-            // Star rating system
-            const stars = starRating.querySelectorAll('.fa-star');
-            stars.forEach(star => {
-                star.addEventListener('mouseover', () => {
-                    const rating = parseInt(star.getAttribute('data-rating'));
-                    highlightStars(rating);
-                });
-
-                star.addEventListener('mouseout', () => {
-                    highlightStars(currentRating);
-                });
-
-                star.addEventListener('click', () => {
-                    currentRating = parseInt(star.getAttribute('data-rating'));
-                    highlightStars(currentRating);
-                    ratingText.textContent = `${currentRating} of 5 stars`;
-                });
-            });
-
-            // Feedback form submission
-            submitFeedbackBtn.addEventListener('click', submitFeedback);
-
-            // Menu toggle for mobile
-            menuToggle.addEventListener('click', () => {
-                sidebar.classList.toggle('active');
-                menuToggle.innerHTML = sidebar.classList.contains('active') ?
-                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-            });
-
-            // Dark mode toggle
-            darkModeToggle.addEventListener('click', () => {
-                document.body.classList.toggle('dark-mode');
-                darkModeToggle.innerHTML = document.body.classList.contains('dark-mode') ?
-                    '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode';
-                localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-            });
-
-            // Complete button
-            completeBtn.addEventListener('click', markLectureComplete);
-
-            // Save for later button
-            saveForLaterBtn.addEventListener('click', () => {
-                if (currentLectureId) {
-                    toggleSaveForLater(currentLectureId);
-                }
-            });
-
-            // Video controls
-            playPauseBtn.addEventListener('click', togglePlayPause);
-            speedBtn.addEventListener('click', cyclePlaybackSpeed);
-            captionsBtn.addEventListener('click', toggleCaptions);
-            timelineSlider.addEventListener('input', seekVideo);
+            // Rest of the event listeners with null checks
+            const filterCategorySelect = document.getElementById('filterCategory');
+            if (filterCategorySelect) {
+                filterCategorySelect.addEventListener('change', filterLectures);
+            }
+            
+            const filterSearch = document.getElementById('filterSearch');
+            if (filterSearch) {
+                filterSearch.addEventListener('input', filterLectures);
+            }
+            
+            const completeButton = document.getElementById('completeBtn');
+            if (completeButton) {
+                completeButton.addEventListener('click', markAsComplete);
+            }
+            
+            const saveButton = document.getElementById('saveBtn');
+            if (saveButton) {
+                saveButton.addEventListener('click', saveForLater);
+            }
         }
 
         // Update user profile UI
@@ -1961,7 +1999,10 @@
 
         // Highlight stars for rating
         function highlightStars(rating) {
-            const stars = starRating.querySelectorAll('.fa-star');
+            const starRatingEl = document.getElementById('starRating');
+            if (!starRatingEl) return;
+            
+            const stars = starRatingEl.querySelectorAll('.fa-star');
             stars.forEach((star, index) => {
                 if (index < rating) {
                     star.classList.remove('far');
@@ -1972,48 +2013,102 @@
                 }
             });
         }
+        
+        // Update rating text
+        function updateRatingText(rating) {
+            const ratingText = document.getElementById('ratingText');
+            if (ratingText) {
+                ratingText.textContent = rating > 0 ? `${rating} of 5 stars` : 'Select rating';
+            }
+        }
+
+        // Setup tips section
+        function setupTipsSection() {
+            const tipIcons = document.querySelectorAll('.tip-icon');
+            const tipCards = document.querySelectorAll('.tip-card');
+            
+            tipIcons.forEach(icon => {
+                icon.addEventListener('click', () => {
+                    const tipNumber = icon.getAttribute('data-tip');
+                    
+                    // Update active state for icons
+                    tipIcons.forEach(i => i.classList.remove('active'));
+                    icon.classList.add('active');
+                    
+                    // Hide all cards, then show the selected one
+                    tipCards.forEach(card => {
+                        card.classList.remove('active');
+                        if (card.getAttribute('data-tip') === tipNumber) {
+                            card.classList.add('active');
+                        }
+                    });
+                });
+            });
+        }
 
         // Submit feedback
-        function submitFeedback() {
-            if (!currentLectureId || currentRating === 0) {
-                alert('Please select a rating before submitting feedback.');
+        function submitFeedback(e) {
+            if (e) e.preventDefault();
+            
+            const feedbackComment = document.getElementById('feedbackComment');
+            const feedbackImprovement = document.getElementById('feedbackImprovement');
+            const feedbackSuccess = document.getElementById('feedbackSuccess');
+            
+            // Validate required fields
+            if (!feedbackComment || !feedbackImprovement || !feedbackSuccess) {
+                console.error('Required feedback elements not found');
                 return;
             }
-
-            const lecture = courseData.find(l => l.id === currentLectureId);
-            if (lecture) {
-                const feedback = {
-                    rating: currentRating,
-                    comment: feedbackComment.value.trim(),
-                    improvement: feedbackImprovement.value,
-                    date: new Date().toISOString()
-                };
-
-                lecture.feedbacks.push(feedback);
-                
-                // Update lecture rating (average of all feedback ratings)
-                if (lecture.feedbacks.length > 0) {
-                    const totalRating = lecture.feedbacks.reduce((sum, item) => sum + item.rating, 0);
-                    lecture.rating = (totalRating / lecture.feedbacks.length).toFixed(1);
-                    videoRating.textContent = lecture.rating;
-                }
-
-                // Save to localStorage
-                saveFeedbacks();
-
-                // Reset form
-                currentRating = 0;
-                highlightStars(0);
-                ratingText.textContent = 'Select rating';
-                feedbackComment.value = '';
-                feedbackImprovement.value = '';
-
-                // Show success message
-                feedbackSuccess.style.display = 'block';
-                setTimeout(() => {
-                    feedbackSuccess.style.display = 'none';
-                }, 3000);
+            
+            if (currentRating === 0) {
+                alert('Please select a rating before submitting.');
+                return;
             }
+            
+            if (!feedbackComment.value.trim()) {
+                alert('Please provide feedback about the lecture.');
+                return;
+            }
+            
+            // Get the current lecture
+            const lecture = courseData.find(l => l.id === currentLectureId);
+            if (!lecture) {
+                console.error('No lecture found with ID:', currentLectureId);
+                return;
+            }
+            
+            // Create feedback
+            const feedback = {
+                id: Date.now(),
+                rating: currentRating,
+                comment: feedbackComment.value.trim(),
+                improvement: feedbackImprovement.value.trim(),
+                date: new Date().toISOString()
+            };
+            
+            // Add feedback to lecture
+            if (!lecture.feedbacks) {
+                lecture.feedbacks = [];
+            }
+            lecture.feedbacks.push(feedback);
+            
+            // Update storage
+            localStorage.setItem('courseData', JSON.stringify(courseData));
+            
+            // Show success message
+            feedbackSuccess.style.display = 'block';
+            
+            // Reset form
+            currentRating = 0;
+            highlightStars(0);
+            updateRatingText(0);
+            feedbackComment.value = '';
+            feedbackImprovement.value = '';
+            
+            // Hide success message after a delay
+            setTimeout(() => {
+                feedbackSuccess.style.display = 'none';
+            }, 3000);
         }
 
         // Save feedbacks to localStorage
@@ -2423,28 +2518,41 @@
         function loadLecture(lectureId) {
             showLoadingSpinner();
             currentLectureId = lectureId;
+            console.log("Loading lecture ID:", lectureId);
             const lecture = courseData.find(l => l.id === lectureId);
 
             if (lecture) {
-                // Hide placeholder
-                videoPlaceholder.style.display = 'none';
-
-                // Update lecture info
-                videoTitle.textContent = lecture.title;
-                videoDuration.textContent = lecture.duration;
-                videoInstructor.textContent = lecture.instructor;
-                videoRating.textContent = lecture.rating;
-                videoDescription.textContent = lecture.description;
+                console.log("Found lecture:", lecture.title);
+                
+                // Get DOM elements with null checks
+                const videoTitle = document.getElementById('videoTitle');
+                const videoDuration = document.getElementById('videoDuration');
+                const videoInstructor = document.getElementById('videoInstructor');
+                const videoRating = document.getElementById('videoRating');
+                const videoDescription = document.getElementById('videoDescription');
+                const videoPlayer = document.getElementById('videoPlayer');
+                const videoPlaceholder = document.getElementById('videoPlaceholder');
+                const completeBtn = document.getElementById('completeBtn');
+                const resourcesSection = document.getElementById('resourcesSection');
+                
+                // Update lecture info (with null checks)
+                if (videoTitle) videoTitle.textContent = lecture.title;
+                if (videoDuration) videoDuration.textContent = lecture.duration;
+                if (videoInstructor) videoInstructor.textContent = lecture.instructor;
+                if (videoRating) videoRating.textContent = lecture.rating;
+                if (videoDescription) videoDescription.textContent = lecture.description;
 
                 // Update button states
-                completeBtn.disabled = false;
-                if (lecture.completed) {
-                    completeBtn.innerHTML = '<i class="fas fa-check"></i> Completed';
-                    completeBtn.style.background = 'var(--success)';
-                    completeBtn.disabled = true;
-                } else {
-                    completeBtn.innerHTML = '<i class="fas fa-check-circle"></i> Mark as Complete';
-                    completeBtn.style.background = '';
+                if (completeBtn) {
+                    completeBtn.disabled = false;
+                    if (lecture.completed) {
+                        completeBtn.innerHTML = '<i class="fas fa-check"></i> Completed';
+                        completeBtn.style.background = 'var(--success)';
+                        completeBtn.disabled = true;
+                    } else {
+                        completeBtn.innerHTML = '<i class="fas fa-check-circle"></i> Mark as Complete';
+                        completeBtn.style.background = '';
+                    }
                 }
 
                 // Update save for later button
@@ -2452,17 +2560,23 @@
 
                 // Update resources
                 renderResources(lecture.resources);
-                resourcesSection.style.display = 'block';
+                if (resourcesSection) resourcesSection.style.display = 'block';
 
-                // Reset feedback form
+                // Reset feedback form with null checks
                 currentRating = 0;
                 highlightStars(0);
-                ratingText.textContent = 'Select rating';
-                feedbackComment.value = '';
-                feedbackImprovement.value = '';
-                feedbackSuccess.style.display = 'none';
+                updateRatingText(0);
+                
+                const feedbackComment = document.getElementById('feedbackComment');
+                if (feedbackComment) feedbackComment.value = '';
+                
+                const feedbackImprovement = document.getElementById('feedbackImprovement');
+                if (feedbackImprovement) feedbackImprovement.value = '';
+                
+                const feedbackSuccess = document.getElementById('feedbackSuccess');
+                if (feedbackSuccess) feedbackSuccess.style.display = 'none';
 
-                // Update active state
+                // Update active state in sidebar
                 document.querySelectorAll('.lecture-link').forEach(link => {
                     link.classList.remove('active');
                 });
@@ -2472,28 +2586,55 @@
                     activeLink.classList.add('active');
                 }
                 
-                // Simple direct embedding approach
-                const videoContainer = document.querySelector('.video-player-container');
-                // Extract video ID from URL
-                const videoIdMatch = lecture.videoUrl.match(/(?:embed\/|watch\?v=)([^?&]+)/);
-                const videoId = videoIdMatch ? videoIdMatch[1] : '';
-                
-                if (videoId) {
-                    videoPlayer.style.display = 'block';
-                    videoPlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`;
+                // Load the video
+                if (lecture.videoUrl && videoPlayer && videoPlaceholder) {
+                    console.log("Setting up video with URL:", lecture.videoUrl);
                     
-                    // Hide loading spinner after a short delay
-                    setTimeout(hideLoadingSpinner, 1000);
+                    // IMPORTANT: Set display properties first
+                    videoPlaceholder.style.display = 'none';
+                    videoPlayer.style.display = 'block';
+                    
+                    // Clear any previous iframe attributes and src
+                    videoPlayer.removeAttribute('src');
+                    
+                    // Ensure full iframe attributes are set
+                    videoPlayer.setAttribute('allowfullscreen', 'allowfullscreen');
+                    videoPlayer.setAttribute('webkitallowfullscreen', 'webkitallowfullscreen');
+                    videoPlayer.setAttribute('mozallowfullscreen', 'mozallowfullscreen');
+                    videoPlayer.setAttribute('allow', 'autoplay; encrypted-media');
+                    videoPlayer.setAttribute('frameborder', '0');
+                    
+                    // Add a small delay before setting the src to ensure display properties take effect
+                    setTimeout(() => {
+                        // Set the src with all required parameters
+                        const finalUrl = lecture.videoUrl + (lecture.videoUrl.includes('?') ? '&' : '?') + 
+                            'autoplay=1&rel=0&modestbranding=1&origin=' + encodeURIComponent(window.location.origin);
+                        console.log("Final video URL:", finalUrl);
+                        videoPlayer.src = finalUrl;
+                        
+                        // Ensure the video container is visible
+                        const videoContainer = document.querySelector('.video-player-container');
+                        if (videoContainer) videoContainer.style.display = 'block';
+                        
+                        // Hide loading spinner after video should be loaded
+                        setTimeout(hideLoadingSpinner, 1500);
+                    }, 100);
                 } else {
-                    console.error('Invalid YouTube URL:', lecture.videoUrl);
-                    videoPlaceholder.style.display = 'flex';
-                    videoPlaceholder.innerHTML = `
-                        <i class="fas fa-exclamation-circle" style="font-size:3rem; margin-bottom:1rem; color:var(--accent);"></i>
-                        <h2 style="font-weight:500; margin-bottom:0.5rem;">Invalid Video URL</h2>
-                        <p style="opacity:0.8;">Could not extract video ID from URL.</p>
-                    `;
+                    console.error('No video URL provided for lecture:', lecture);
+                    if (videoPlayer) videoPlayer.style.display = 'none';
+                    if (videoPlaceholder) {
+                        videoPlaceholder.style.display = 'flex';
+                        videoPlaceholder.innerHTML = `
+                            <i class="fas fa-exclamation-circle" style="font-size:3rem; margin-bottom:1rem; color:var(--accent);"></i>
+                            <h2 style="font-weight:500; margin-bottom:0.5rem;">Missing Video URL</h2>
+                            <p style="opacity:0.8;">No video URL was provided for this lecture.</p>
+                        `;
+                    }
                     hideLoadingSpinner();
                 }
+            } else {
+                console.error("Lecture not found with ID:", lectureId);
+                hideLoadingSpinner();
             }
         }
 
@@ -2633,33 +2774,37 @@
             
             alert("Progress successfully reset!");
         }
-    </script>
-    
-    <!-- Immediate logo initialization -->
-    <script>
-        // Initialize logo immediately
-        (function() {
-            setTimeout(function() {
-                try {
-                    // Check if logo elements exist
-                    const logoContainer = document.querySelector('.dk-logo-container');
-                    const logoInner = document.querySelector('.dk-logo-inner');
-                    
-                    if (logoContainer && logoInner) {
-                        // Try to animate it
-                        if (typeof animateDKLogo === 'function') {
-                            animateDKLogo();
-                        } else {
-                            console.error("animateDKLogo function not found");
-                        }
+
+        // Prevent errors from missing functions
+        function animateDKLogo() {
+            // This is a placeholder function to prevent errors
+            // The real implementation is in index.html
+            console.log("DK Logo animation not implemented in this page");
+        }
+        
+        // Document ready function
+        document.addEventListener('DOMContentLoaded', () => {
+            initApp();
+        });
+
+        // Toggle sidebar function
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const toggleBtn = document.querySelector('.toggle-btn');
+            
+            if (sidebar) {
+                sidebar.classList.toggle('active');
+                
+                // Update toggle button icon
+                if (toggleBtn) {
+                    if (sidebar.classList.contains('active')) {
+                        toggleBtn.innerHTML = '<i class="fas fa-times"></i>';
                     } else {
-                        console.error("DK Logo elements not found in DOM");
+                        toggleBtn.innerHTML = '<i class="fas fa-bars"></i>';
                     }
-                } catch (error) {
-                    console.error("Error during logo initialization:", error);
                 }
-            }, 200); // Short delay to ensure DOM is parsed
-        })();
+            }
+        }
     </script>
 </body>
 </html>
