@@ -961,6 +961,123 @@
             }
         }
 
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .header-buttons {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .video-meta {
+                flex-wrap: wrap;
+            }
+            
+            .video-title {
+                font-size: 1.3rem;
+            }
+            
+            .video-description {
+                font-size: 0.95rem;
+            }
+            
+            .tips-section, .resources-section {
+                padding: 1rem;
+            }
+            
+            .tips-icons {
+                justify-content: center;
+            }
+            
+            .tip-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .tip-content h4 {
+                font-size: 1.1rem;
+            }
+            
+            .tip-content p {
+                font-size: 0.9rem;
+            }
+            
+            .custom-video-controls {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            
+            .video-timeline {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .sidebar-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .sidebar-header p {
+                font-size: 0.8rem;
+            }
+            
+            .lecture-title {
+                font-size: 0.9rem;
+            }
+            
+            .custom-video-controls {
+                gap: 3px;
+            }
+            
+            .custom-video-controls .btn {
+                padding: 5px 8px;
+                font-size: 0.8rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .action-buttons .btn {
+                width: 100%;
+            }
+            
+            .filter-options {
+                overflow-x: auto;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                white-space: nowrap;
+                display: flex;
+                flex-wrap: nowrap;
+            }
+            
+            .filter-option {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+            
+            .video-info {
+                padding: 1rem;
+            }
+            
+            .page-title {
+                font-size: 1.4rem;
+            }
+            
+            .back-btn {
+                font-size: 0.9rem;
+            }
+        }
+
         /* Mobile Menu Toggle */
         .menu-toggle {
             position: fixed;
@@ -1441,279 +1558,49 @@
             </div>
         </div>
 
-        <!-- Interactive Tips Section -->
-        <div class="tips-section animated">
+        <!-- Tips Section -->
+        <div class="tips-section animated" id="tipsSection">
             <div class="section-header">
                 <h3>
                     <i class="fas fa-lightbulb"></i> Paper 2 Exam Tips
                 </h3>
             </div>
-            
             <div class="tips-icons">
-                <div class="tip-icon-btn active" data-tip="tip1">
-                    <i class="fas fa-book-reader"></i>
-                </div>
-                <div class="tip-icon-btn" data-tip="tip2">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="tip-icon-btn" data-tip="tip3">
-                    <i class="fas fa-quote-right"></i>
-                </div>
-                <div class="tip-icon-btn" data-tip="tip4">
-                    <i class="fas fa-clock"></i>
-                </div>
+                <div class="tip-icon active" data-tip="1">1</div>
+                <div class="tip-icon" data-tip="2">2</div>
+                <div class="tip-icon" data-tip="3">3</div>
             </div>
-
             <div class="tip-cards-container">
-                <div class="tip-card active" id="tip1">
+                <div class="tip-card active" data-tip="1">
                     <div class="tip-content">
-                        <h4>Close Reading</h4>
-                        <p>Read passages multiple times, first for general understanding and then for specific details. Underline key points and make margin notes to improve comprehension.</p>
+                        <h4>Reading Strategy</h4>
+                        <p>Read the passage thoroughly first, then scan the questions. Return to the passage with specific questions in mind, focusing on key words and context for accurate answers.</p>
                     </div>
                 </div>
-
-                <div class="tip-card" id="tip2">
+                <div class="tip-card" data-tip="2">
                     <div class="tip-content">
                         <h4>Summary Writing</h4>
-                        <p>Identify and extract only the relevant points, use your own words where possible, and connect ideas logically. Stick to the word limit precisely.</p>
+                        <p>Identify main points quickly, paraphrase effectively, and maintain a concise response within the word limit. Avoid copying phrases directly from the text unless necessary.</p>
                     </div>
                 </div>
-
-                <div class="tip-card" id="tip3">
-                    <div class="tip-content">
-                        <h4>Vocabulary In Context</h4>
-                        <p>Consider the entire sentence and surrounding context when determining word meanings. Choose synonyms that match both meaning and grammatical function.</p>
-                    </div>
-                </div>
-                
-                <div class="tip-card" id="tip4">
+                <div class="tip-card" data-tip="3">
                     <div class="tip-content">
                         <h4>Time Management</h4>
-                        <p>Allocate 15 minutes for reading passages, 50 minutes for comprehension questions, and 25 minutes for summary writing. Leave time to proofread your work.</p>
+                        <p>Allocate approximately 1 hour for Sections 1 & 2 (reading comprehension) and 45 minutes for Section 3 (summary). Allow time to review your responses for accuracy and completeness.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- JavaScript for interactive tips -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Animate DK Logo - Try this immediately
-                try {
-                    animateDKLogo();
-                    console.log("DK Logo animation started");
-                } catch (error) {
-                    console.error("Error animating DK logo:", error);
-                }
-                
-                // Find all tip icon buttons
-                const tipButtons = document.querySelectorAll('.tip-icon-btn');
-                
-                // Add click event to each button
-                tipButtons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        // Get the associated tip ID
-                        const tipId = button.getAttribute('data-tip');
-                        
-                        // Remove active class from all buttons and tips
-                        document.querySelectorAll('.tip-icon-btn').forEach(btn => {
-                            btn.classList.remove('active');
-                        });
-                        document.querySelectorAll('.tip-card').forEach(tip => {
-                            tip.classList.remove('active');
-                        });
-                        
-                        // Add active class to clicked button and its associated tip
-                        button.classList.add('active');
-                        document.getElementById(tipId).classList.add('active');
-                    });
-                });
-            });
-            
-            // DK Logo Animation
-            function animateDKLogo() {
-                const logoContainer = document.querySelector('.dk-logo-container');
-                const logoInner = document.querySelector('.dk-logo-inner');
-                
-                if (!logoContainer || !logoInner) {
-                    console.error('DK Logo elements not found');
-                    return;
-                }
-                
-                console.log('DK Logo animation starting');
-                
-                // Create particles
-                for (let i = 0; i < 15; i++) {
-                    createParticle();
-                }
-                
-                // Hover effect
-                logoContainer.addEventListener('mouseenter', () => {
-                    logoInner.style.transform = 'scale(1.05) rotateY(10deg)';
-                    document.querySelector('.dk-logo-glow').style.opacity = '0.8';
-                });
-                
-                logoContainer.addEventListener('mouseleave', () => {
-                    logoInner.style.transform = '';
-                    document.querySelector('.dk-logo-glow').style.opacity = '0.5';
-                });
-                
-                // Click effect
-                logoContainer.addEventListener('click', () => {
-                    // Quick pulse animation
-                    logoInner.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        logoInner.style.transform = 'scale(1.1)';
-                        setTimeout(() => {
-                            logoInner.style.transform = '';
-                        }, 200);
-                    }, 200);
-                    
-                    // Create explosion effect
-                    for (let i = 0; i < 20; i++) {
-                        createExplosionParticle();
-                    }
-                });
-                
-                // Function to create floating particles
-                function createParticle() {
-                    const particle = document.createElement('div');
-                    particle.className = 'dk-particle';
-                    logoInner.appendChild(particle);
-                    
-                    // Random position
-                    const angle = Math.random() * Math.PI * 2;
-                    const distance = 30 + Math.random() * 40;
-                    const x = 60 + Math.cos(angle) * distance;
-                    const y = 60 + Math.sin(angle) * distance;
-                    
-                    // Random size
-                    const size = 1 + Math.random() * 3;
-                    
-                    // Set styles
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-                    particle.style.left = `${x}px`;
-                    particle.style.top = `${y}px`;
-                    particle.style.opacity = `${0.1 + Math.random() * 0.4}`;
-                    
-                    // Animate the particle
-                    const duration = 3 + Math.random() * 5;
-                    const delay = Math.random() * 5;
-                    
-                    particle.style.animation = `floatParticle ${duration}s ease-in-out ${delay}s infinite`;
-                    
-                    // Add keyframe animation dynamically
-                    if (!document.querySelector('#particle-keyframes')) {
-                        const style = document.createElement('style');
-                        style.id = 'particle-keyframes';
-                        style.textContent = `
-                            @keyframes floatParticle {
-                                0%, 100% { transform: translate(0, 0); opacity: 0.1; }
-                                50% { transform: translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px); opacity: 0.6; }
-                            }
-                        `;
-                        document.head.appendChild(style);
-                    }
-                }
-                
-                // Function to create explosion particles
-                function createExplosionParticle() {
-                    const particle = document.createElement('div');
-                    particle.className = 'dk-particle';
-                    logoInner.appendChild(particle);
-                    
-                    // Start at center
-                    const x = 60;
-                    const y = 60;
-                    
-                    // Random size
-                    const size = 1 + Math.random() * 4;
-                    
-                    // Set initial styles
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-                    particle.style.left = `${x}px`;
-                    particle.style.top = `${y}px`;
-                    particle.style.opacity = '0.7';
-                    
-                    // Random end position
-                    const angle = Math.random() * Math.PI * 2;
-                    const distance = 50 + Math.random() * 80;
-                    const endX = x + Math.cos(angle) * distance;
-                    const endY = y + Math.sin(angle) * distance;
-                    
-                    // Animate
-                    const duration = 0.5 + Math.random() * 0.8;
-                    particle.style.transition = `all ${duration}s cubic-bezier(0.075, 0.82, 0.165, 1)`;
-                    
-                    setTimeout(() => {
-                        particle.style.left = `${endX}px`;
-                        particle.style.top = `${endY}px`;
-                        particle.style.opacity = '0';
-                    }, 10);
-                    
-                    // Remove after animation
-                    setTimeout(() => {
-                        particle.remove();
-                    }, duration * 1000 + 100);
-                }
-            }
-        </script>
-
-        <!-- 3D Feedback Section -->
-        <div class="feedback-section animated">
-            <div class="section-header">
-                <h3>
-                    <i class="fas fa-comment-dots"></i> Provide Feedback
-                </h3>
-            </div>
-            
-            <div class="feedback-form">
-                <div class="form-group">
-                    <label for="feedbackRating">Rate this lecture</label>
-                    <div class="rating-container">
-                        <div class="star-rating" id="starRating">
-                            <i class="far fa-star" data-rating="1"></i>
-                            <i class="far fa-star" data-rating="2"></i>
-                            <i class="far fa-star" data-rating="3"></i>
-                            <i class="far fa-star" data-rating="4"></i>
-                            <i class="far fa-star" data-rating="5"></i>
-                        </div>
-                        <span id="ratingText">Select rating</span>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="feedbackComment">Comments (optional)</label>
-                    <textarea id="feedbackComment" class="form-control" rows="3" placeholder="Share your thoughts about this lecture..."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="feedbackImprovement">What could be improved?</label>
-                    <select id="feedbackImprovement" class="form-control">
-                        <option value="">Select an option</option>
-                        <option value="content">Content quality</option>
-                        <option value="clarity">Explanation clarity</option>
-                        <option value="examples">More examples</option>
-                        <option value="resources">Additional resources</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                
-                <button class="btn btn-primary" id="submitFeedbackBtn">
-                    <i class="fas fa-paper-plane"></i> Submit Feedback
-                </button>
-            </div>
-            
-            <div id="feedbackSuccess" style="display: none; color: var(--success); margin-top: 1rem; padding: 10px; background: rgba(16, 185, 129, 0.1); border-radius: 6px;">
-                <i class="fas fa-check-circle"></i> Thank you for your feedback!
-            </div>
+        <!-- Feedback Form -->
+        <div class="feedback-section" id="feedbackSection" style="display:none;">
+            <!-- Feedback form content -->
         </div>
+        
     </main>
-
-    <!-- 3D Floating Action Button -->
-    <div class="fab" id="menuToggle">
+    
+    <!-- Mobile Menu Toggle -->
+    <div class="menu-toggle" id="menuToggle">
         <i class="fas fa-bars"></i>
     </div>
 

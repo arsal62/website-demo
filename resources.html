@@ -137,6 +137,79 @@
             cursor: not-allowed;
         }
 
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .section-header {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+            
+            .level-card, .subject-card, .paper-card, .resource-card {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .resource-title {
+                font-size: 1.1rem;
+            }
+            
+            .resource-meta {
+                font-size: 0.8rem;
+            }
+            
+            .btn-download, .category-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .pagination-controls {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .page-indicator {
+                order: -1;
+                margin-bottom: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container.my-5 {
+                padding: 0 10px;
+            }
+            
+            .section-header {
+                font-size: 1.5rem;
+            }
+            
+            .level-card i, .subject-card i, .paper-card i {
+                font-size: 2rem;
+            }
+            
+            .breadcrumb {
+                flex-wrap: wrap;
+                font-size: 0.9rem;
+            }
+            
+            .resource-card {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .resource-actions {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
+            }
+            
+            .btn-download {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
         
 
 

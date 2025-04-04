@@ -806,6 +806,123 @@
             }
         }
 
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .header-buttons {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .video-meta {
+                flex-wrap: wrap;
+            }
+            
+            .video-title {
+                font-size: 1.3rem;
+            }
+            
+            .video-description {
+                font-size: 0.95rem;
+            }
+            
+            .tips-section, .resources-section {
+                padding: 1rem;
+            }
+            
+            .tips-icons {
+                justify-content: center;
+            }
+            
+            .tip-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .tip-content h4 {
+                font-size: 1.1rem;
+            }
+            
+            .tip-content p {
+                font-size: 0.9rem;
+            }
+            
+            .custom-video-controls {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            
+            .video-timeline {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .sidebar-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .sidebar-header p {
+                font-size: 0.8rem;
+            }
+            
+            .lecture-title {
+                font-size: 0.9rem;
+            }
+            
+            .custom-video-controls {
+                gap: 3px;
+            }
+            
+            .custom-video-controls .btn {
+                padding: 5px 8px;
+                font-size: 0.8rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .action-buttons .btn {
+                width: 100%;
+            }
+            
+            .filter-options {
+                overflow-x: auto;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                white-space: nowrap;
+                display: flex;
+                flex-wrap: nowrap;
+            }
+            
+            .filter-option {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+            
+            .video-info {
+                padding: 1rem;
+            }
+            
+            .page-title {
+                font-size: 1.4rem;
+            }
+            
+            .back-btn {
+                font-size: 0.9rem;
+            }
+        }
+
         /* Mobile Menu Toggle */
         .menu-toggle {
             position: fixed;
@@ -1223,9 +1340,9 @@
             </div>
         </div>
     </main>
-
-    <!-- 3D Floating Action Button -->
-    <div class="fab" id="menuToggle">
+    
+    <!-- Mobile Menu Toggle -->
+    <div class="menu-toggle" id="menuToggle">
         <i class="fas fa-bars"></i>
     </div>
 

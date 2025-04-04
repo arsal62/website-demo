@@ -911,6 +911,123 @@
             }
         }
 
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .header-buttons {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .video-meta {
+                flex-wrap: wrap;
+            }
+            
+            .video-title {
+                font-size: 1.3rem;
+            }
+            
+            .video-description {
+                font-size: 0.95rem;
+            }
+            
+            .tips-section, .resources-section {
+                padding: 1rem;
+            }
+            
+            .tips-icons {
+                justify-content: center;
+            }
+            
+            .tip-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .tip-content h4 {
+                font-size: 1.1rem;
+            }
+            
+            .tip-content p {
+                font-size: 0.9rem;
+            }
+            
+            .custom-video-controls {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            
+            .video-timeline {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .sidebar-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .sidebar-header p {
+                font-size: 0.8rem;
+            }
+            
+            .lecture-title {
+                font-size: 0.9rem;
+            }
+            
+            .custom-video-controls {
+                gap: 3px;
+            }
+            
+            .custom-video-controls .btn {
+                padding: 5px 8px;
+                font-size: 0.8rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .action-buttons .btn {
+                width: 100%;
+            }
+            
+            .filter-options {
+                overflow-x: auto;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                white-space: nowrap;
+                display: flex;
+                flex-wrap: nowrap;
+            }
+            
+            .filter-option {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+            
+            .video-info {
+                padding: 1rem;
+            }
+            
+            .page-title {
+                font-size: 1.4rem;
+            }
+            
+            .back-btn {
+                font-size: 0.9rem;
+            }
+        }
+
         /* Mobile Menu Toggle */
         .menu-toggle {
             position: fixed;
@@ -1239,131 +1356,49 @@
             </div>
         </div>
 
-        <!-- Interactive Tips Section -->
-        <div class="tips-section animated">
+        <!-- Tips Section -->
+        <div class="tips-section animated" id="tipsSection">
             <div class="section-header">
                 <h3>
                     <i class="fas fa-lightbulb"></i> Paper 1 Exam Tips
                 </h3>
             </div>
-            
             <div class="tips-icons">
-                <div class="tip-icon-btn active" data-tip="tip1">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <div class="tip-icon-btn" data-tip="tip2">
-                    <i class="fas fa-edit"></i>
-                </div>
-                <div class="tip-icon-btn" data-tip="tip3">
-                    <i class="fas fa-book-open"></i>
-                </div>
+                <div class="tip-icon active" data-tip="1">1</div>
+                <div class="tip-icon" data-tip="2">2</div>
+                <div class="tip-icon" data-tip="3">3</div>
             </div>
-
             <div class="tip-cards-container">
-                <div class="tip-card active" id="tip1">
+                <div class="tip-card active" data-tip="1">
+                    <div class="tip-content">
+                        <h4>Directed Writing Strategy</h4>
+                        <p>Always start by carefully analyzing the audience, purpose, and format requirements. Highlight the key points that must be addressed, then organize your response with a clear beginning, middle, and end structure.</p>
+                    </div>
+                </div>
+                <div class="tip-card" data-tip="2">
+                    <div class="tip-content">
+                        <h4>Continuous Writing Success</h4>
+                        <p>Choose a topic you're comfortable with, plan your narrative arc or argument flow before writing, and include descriptive language with varied sentence structures to engage your reader and showcase your language skills.</p>
+                    </div>
+                </div>
+                <div class="tip-card" data-tip="3">
                     <div class="tip-content">
                         <h4>Time Management</h4>
-                        <p>Allocate 45 minutes for directed writing and 1 hour 15 minutes for continuous writing.</p>
-                    </div>
-                </div>
-
-                <div class="tip-card" id="tip2">
-                    <div class="tip-content">
-                        <h4>Directed Writing</h4>
-                        <p>Always follow the given format (letter, report, etc.) and address all content points.</p>
-                    </div>
-                </div>
-
-                <div class="tip-card" id="tip3">
-                    <div class="tip-content">
-                        <h4>Continuous Writing</h4>
-                        <p>Plan your essay structure before writing - introduction, 3 body paragraphs, conclusion.</p>
+                        <p>Allocate approximately 1 hour for Section 1 (Directed Writing) and 1 hour for Section 2 (Continuous Writing). Always leave 5-10 minutes at the end to review your work for spelling, grammar, and punctuation errors.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- JavaScript for interactive tips -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Find all tip icon buttons
-                const tipButtons = document.querySelectorAll('.tip-icon-btn');
-                
-                // Add click event to each button
-                tipButtons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        // Get the associated tip ID
-                        const tipId = button.getAttribute('data-tip');
-                        
-                        // Remove active class from all buttons and tips
-                        document.querySelectorAll('.tip-icon-btn').forEach(btn => {
-                            btn.classList.remove('active');
-                        });
-                        document.querySelectorAll('.tip-card').forEach(tip => {
-                            tip.classList.remove('active');
-                        });
-                        
-                        // Add active class to clicked button and its associated tip
-                        button.classList.add('active');
-                        document.getElementById(tipId).classList.add('active');
-                    });
-                });
-            });
-        </script>
-
-        <!-- 3D Feedback Section -->
-        <div class="feedback-section animated">
-            <div class="section-header">
-                <h3>
-                    <i class="fas fa-comment-dots"></i> Provide Feedback
-                </h3>
-            </div>
-            
-            <div class="feedback-form">
-                <div class="form-group">
-                    <label for="feedbackRating">Rate this lecture</label>
-                    <div class="rating-container">
-                        <div class="star-rating" id="starRating">
-                            <i class="far fa-star" data-rating="1"></i>
-                            <i class="far fa-star" data-rating="2"></i>
-                            <i class="far fa-star" data-rating="3"></i>
-                            <i class="far fa-star" data-rating="4"></i>
-                            <i class="far fa-star" data-rating="5"></i>
-                        </div>
-                        <span id="ratingText">Select rating</span>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="feedbackComment">Comments (optional)</label>
-                    <textarea id="feedbackComment" class="form-control" rows="3" placeholder="Share your thoughts about this lecture..."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="feedbackImprovement">What could be improved?</label>
-                    <select id="feedbackImprovement" class="form-control">
-                        <option value="">Select an option</option>
-                        <option value="content">Content quality</option>
-                        <option value="clarity">Explanation clarity</option>
-                        <option value="examples">More examples</option>
-                        <option value="resources">Additional resources</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                
-                <button class="btn btn-primary" id="submitFeedbackBtn">
-                    <i class="fas fa-paper-plane"></i> Submit Feedback
-                </button>
-            </div>
-            
-            <div id="feedbackSuccess" style="display: none; color: var(--success); margin-top: 1rem; padding: 10px; background: rgba(16, 185, 129, 0.1); border-radius: 6px;">
-                <i class="fas fa-check-circle"></i> Thank you for your feedback!
-            </div>
+        <!-- Feedback Form -->
+        <div class="feedback-section" id="feedbackSection" style="display:none;">
+            <!-- Feedback form content -->
         </div>
+        
     </main>
-
-    <!-- 3D Floating Action Button -->
-    <div class="fab" id="menuToggle">
+    
+    <!-- Mobile Menu Toggle -->
+    <div class="menu-toggle" id="menuToggle">
         <i class="fas fa-bars"></i>
     </div>
 
