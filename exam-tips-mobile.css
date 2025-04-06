@@ -1,0 +1,132 @@
+/* Responsive adjustments for Exam Tips section */
+/* Medium screen sizes */
+@media (min-width: 481px) and (max-width: 767px) {
+    .tips-section {
+        padding: 1rem;
+        min-height: auto;
+    }
+
+    .tips-icons {
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 1.5rem;
+    }
+
+    .tip-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(59, 130, 246, 0.1);
+        color: var(--primary);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 0 5px;
+    }
+
+    .tip-icon.active {
+        background-color: var(--primary);
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .tip-cards-container {
+        min-height: auto;
+    }
+
+    .tip-card {
+        padding: 1rem;
+        gap: 10px;
+    }
+
+    .tip-content h4 {
+        font-size: 1rem;
+    }
+
+    .tip-content p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Small screen sizes */
+@media (max-width: 480px) {
+    .tips-section {
+        padding: 0.75rem;
+    }
+
+    .tips-icons {
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 1.25rem;
+    }
+
+    .tip-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(59, 130, 246, 0.1);
+        color: var(--primary);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 0 4px;
+    }
+
+    .tip-icon.active {
+        background-color: var(--primary);
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .tip-card {
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+        border-left-width: 3px;
+    }
+
+    .tip-content h4 {
+        font-size: 0.9rem;
+    }
+
+    .tip-content p {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+    .tips-section {
+        padding: 0.5rem;
+    }
+
+    .tips-icons {
+        gap: 5px;
+    }
+
+    .tip-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
+        margin: 0 3px;
+    }
+
+    .tip-card {
+        padding: 0.6rem;
+    }
+
+    .tip-content h4 {
+        font-size: 0.85rem;
+    }
+
+    .tip-content p {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+}

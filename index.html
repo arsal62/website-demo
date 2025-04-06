@@ -200,165 +200,244 @@
             position: relative;
             transition: all 0.3s ease;
         }
-        
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
         .nav-link::after {
             content: '';
             position: absolute;
+            bottom: -5px;
+            left: 0;
             width: 0;
             height: 2px;
             background-color: var(--primary-color);
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
             transition: width 0.3s ease;
         }
-        
-        .nav-link:hover::after,
-        .nav-link.active::after {
+
+        .nav-link:hover::after {
             width: 100%;
         }
 
         .nav-link.active {
             color: var(--primary-color) !important;
-            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
         }
 
         /* Hero section */
         .hero-section {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 140px 0 120px;
-            margin-top: -80px;
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            padding: 150px 0 100px;
             position: relative;
+            overflow: hidden;
+            border-radius: 0 0 0 100px;
         }
 
         .hero-section::before {
             content: '';
             position: absolute;
             top: 0;
-            right: 0;
-            bottom: 0;
             left: 0;
-            background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,213.3C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"%3E%3C/path%3E%3C/svg%3E');
             background-size: cover;
-            opacity: 0.1;
+            background-position: center;
+            opacity: 0.2;
         }
 
-        .hero-section h1 {
+        .hero-title {
             font-size: 3.5rem;
-            margin-bottom: 20px;
             font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
 
-        .hero-section p {
-            font-size: 1.25rem;
-            margin-bottom: 40px;
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 30px;
             opacity: 0.9;
         }
 
-        .hero-img {
-            max-width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        .hero-buttons {
+            margin-top: 30px;
         }
 
-        /* Services section */
-        .section-title {
-            position: relative;
-            margin-bottom: 50px;
-            font-weight: 800;
+        .hero-image {
+            max-width: 100%;
+            animation: float 6s ease-in-out infinite;
         }
-        
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Feature section */
+        .feature-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
         .section-title::after {
             content: '';
             position: absolute;
-            width: 70px;
-            height: 4px;
-            background-color: var(--primary-color);
-            bottom: -15px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            border-radius: 2px;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
         }
 
-        .service-card {
-            background: white;
-            border-radius: 15px;
+        .feature-card {
             padding: 30px;
-            margin: 20px 0;
+            border-radius: 15px;
+            background-color: white;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
-            border-bottom: 4px solid transparent;
             height: 100%;
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px);
-            border-bottom: 4px solid var(--primary-color);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-card i {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover i {
-            transform: scale(1.2);
-        }
-
-        .service-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        /* Testimonials */
-        .testimonial-section {
-            background-color: #f8f9fa;
-            padding: 100px 0;
             position: relative;
-        }
-
-        .testimonial-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 20px 0;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            position: relative;
+            z-index: 1;
             overflow: hidden;
         }
 
-        .testimonial-card::before {
-            content: '"';
+        .feature-card::before {
+            content: '';
             position: absolute;
-            font-size: 150px;
-            color: #f0f0f0;
-            font-family: serif;
-            line-height: 1;
-            top: -20px;
-            right: 20px;
-            z-index: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transition: all 0.3s ease;
+            z-index: -1;
+            opacity: 0;
         }
 
-        .testimonial-card img {
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+
+        .feature-card:hover::before {
+            height: 100%;
+            opacity: 1;
+        }
+
+        .feature-card:hover h3, .feature-card:hover p {
+            color: white;
+        }
+
+        .feature-card:hover .feature-icon {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .feature-icon {
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 3px solid var(--primary-color);
-            padding: 2px;
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
         }
 
-        .testimonial-card p {
-            font-style: italic;
-            margin-bottom: 20px;
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card p {
+            transition: all 0.3s ease;
+        }
+
+        /* Service section */
+        .service-card {
+            padding: 30px;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            border-bottom: 3px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Testimonial section */
+        .testimonial-section {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+        }
+
+        .testimonial-card {
+            padding: 30px;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
             position: relative;
-            z-index: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-card::before {
+            content: '\201C';
+            font-size: 120px;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            color: rgba(67, 97, 238, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
         }
 
         .testimonial-card h5 {
@@ -366,35 +445,9 @@
             color: var(--primary-color);
         }
 
-        /* Stats section */
-        .stats-section {
-            padding: 80px 0;
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .stat-text {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* Call to action */
+        /* CTA Section */
         .cta-section {
-            padding: 100px 0;
+            padding: 80px 0;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             text-align: center;
@@ -405,53 +458,43 @@
         .cta-section::before {
             content: '';
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            top: -100px;
-            right: -100px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%23ffffff" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,154.7C384,128,480,96,576,117.3C672,139,768,213,864,218.7C960,224,1056,160,1152,144C1248,128,1344,160,1392,176L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"%3E%3C/path%3E%3C/svg%3E');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
         }
 
-        .cta-section::after {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            bottom: -50px;
-            left: -50px;
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
         }
 
-        .cta-content {
-            position: relative;
-            z-index: 10;
+        .cta-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
 
         /* Footer */
         .footer {
             background-color: #212529;
-            color: rgba(255, 255, 255, 0.8);
-            padding: 80px 0 20px;
-            position: relative;
+            color: #f8f9fa;
+            padding: 80px 0 30px;
         }
 
         .footer-logo {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             display: inline-block;
         }
 
-        .footer-text {
-            margin-bottom: 25px;
-            font-size: 0.95rem;
-            max-width: 80%;
-        }
-
         .footer h5 {
-            color: white;
-            margin-bottom: 25px;
             font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
         }
 
         .footer-links {
@@ -461,74 +504,87 @@
         }
 
         .footer-links li {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             transition: all 0.3s ease;
-            display: inline-block;
         }
 
         .footer-links a:hover {
             color: white;
-            transform: translateX(5px);
+            padding-left: 5px;
         }
 
         .social-icons {
-            margin-top: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .social-icons li {
+            margin-right: 15px;
         }
 
         .social-icons a {
-            color: white;
-            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
             transition: all 0.3s ease;
         }
 
         .social-icons a:hover {
             background-color: var(--primary-color);
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
 
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            margin-top: 60px;
-            font-size: 0.9rem;
+            padding-top: 30px;
+            margin-top: 50px;
         }
 
-        /* Modal styles */
+        .footer-bottom p {
+            margin-bottom: 0;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Login/Signup Modal */
         .modal-content {
             border-radius: 15px;
-            overflow: hidden;
             border: none;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .modal-header {
-            background-color: var(--primary-color);
-            color: white;
             border-bottom: none;
-            padding: 20px 30px;
+            padding: 20px 30px 0;
         }
 
         .modal-body {
-            padding: 30px;
+            padding: 20px 30px;
+        }
+
+        .modal-footer {
+            border-top: none;
+            padding: 0 30px 20px;
         }
 
         .form-control {
-            padding: 12px 15px;
+            height: 50px;
             border-radius: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #e0e0e0;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 1px solid #e1e1e1;
+            transition: all 0.3s ease;
         }
 
         .form-control:focus {
@@ -536,15 +592,170 @@
             border-color: var(--primary-color);
         }
 
-        /* Floating animation */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        .form-label {
+            font-weight: 500;
         }
 
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Mobile Responsiveness Improvements */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                margin-top: 15px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-section {
+                padding: 120px 0 80px;
+                text-align: center;
+            }
+            
+            .hero-image {
+                margin-top: 40px;
+            }
+            
+            .feature-card, .service-card, .testimonial-card {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 767.98px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .cta-title {
+                font-size: 1.8rem;
+            }
+            
+            .cta-subtitle {
+                font-size: 1rem;
+            }
+            
+            .feature-section, .testimonial-section {
+                padding: 60px 0;
+            }
+            
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+            
+            .dk-logo-container {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .dk-logo-circle {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .dk-logo-text {
+                font-size: 18px;
+            }
+            
+            .btn-primary, .btn-secondary {
+                padding: 8px 20px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 575.98px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-buttons .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .hero-buttons .btn:last-child {
+                margin-bottom: 0;
+            }
+            
+            .hero-buttons .btn + .btn {
+                margin-left: 0;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .footer {
+                padding: 50px 0 20px;
+                text-align: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            
+            .footer-bottom {
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -562,20 +773,38 @@
                 </div>
                 <span class="brand-text">Dr. Kamran Ali</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resources-loader.html">Resources</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <!-- User Info Container (Hidden by default) -->
+                    <li class="nav-item" id="userInfoContainer" style="display: none;">
+                        <div class="d-flex align-items-center">
+                            <span class="me-2">Welcome, <span id="userName"></span></span>
+                            <button id="logoutBtn" class="btn btn-sm btn-outline-danger">Logout</button>
+                        </div>
+                    </li>
+                    <!-- Auth Buttons -->
+                    <li class="nav-item ms-3">
+                        <button class="btn btn-primary auth-btn" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <button class="btn btn-secondary auth-btn" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</button>
+                    </li>
                 </ul>
-                <div class="d-flex">
-                    <button class="btn btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</button>
-                </div>
             </div>
         </div>
     </nav>
@@ -585,15 +814,15 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-right">
-                    <h1>Excel in Your O & A Level English Journey</h1>
-                    <p>Get expert guidance, comprehensive resources, and personalized support from Dr. Kamran Ali to master English Language and Literature.</p>
+                    <h1 class="hero-title">Excel in Your O & A Level English Journey</h1>
+                    <p class="hero-subtitle">Get expert guidance, comprehensive resources, and personalized support from Dr. Kamran Ali to master English Language and Literature.</p>
                     <div class="d-flex gap-3">
-                        <a href="resources.html" class="btn btn-light btn-lg">Explore Resources</a>
+                        <a href="resources-loader.html" class="btn btn-light btn-lg">Explore Resources</a>
                         <a href="#services" class="btn btn-outline-light btn-lg">Our Services</a>
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Students studying" class="hero-img float-animation d-none d-lg-block">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Students studying" class="hero-image float-animation d-none d-lg-block">
                 </div>
             </div>
         </div>
@@ -754,8 +983,8 @@
     <section class="cta-section">
         <div class="container">
             <div class="cta-content" data-aos="zoom-in">
-                <h2 class="mb-4">Ready to Excel in Your O & A Level English Exams?</h2>
-                <p class="mb-4">Join our English learning community today and get access to premium resources, expert guidance, and a supportive learning environment.</p>
+                <h2 class="mb-4 cta-title">Ready to Excel in Your O & A Level English Exams?</h2>
+                <p class="mb-4 cta-subtitle">Join our English learning community today and get access to premium resources, expert guidance, and a supportive learning environment.</p>
                 <button class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up Now</button>
             </div>
         </div>
@@ -790,7 +1019,7 @@
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
-                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="resources-loader.html">Resources</a></li>
                         <li><a href="contact.html">Contact</a></li>
                         <li><a href="#">FAQ</a></li>
                     </ul>
@@ -829,30 +1058,28 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="loginForm">
                         <div class="mb-3">
                             <label for="loginEmail" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email">
+                            <input type="email" class="form-control" id="loginEmail" required>
                         </div>
                         <div class="mb-3">
                             <label for="loginPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password">
+                            <input type="password" class="form-control" id="loginPassword" required>
                         </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="rememberMe">
-                            <label class="form-check-label" for="rememberMe">Remember me</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
-                        <div class="text-center mt-3">
-                            <a href="#" class="text-decoration-none">Forgot Password?</a>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Login</button>
                         </div>
                     </form>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <p class="mb-0">Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-dismiss="modal">Sign up</a></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Sign Up Modal -->
+    <!-- Signup Modal -->
     <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -861,50 +1088,52 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="signupForm">
                         <div class="mb-3">
-                            <label for="fullName" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
+                            <label for="signupName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="signupName" required>
                         </div>
                         <div class="mb-3">
                             <label for="signupEmail" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="signupEmail" placeholder="Enter your email">
+                            <input type="email" class="form-control" id="signupEmail" required>
                         </div>
                         <div class="mb-3">
                             <label for="signupPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="signupPassword" placeholder="Create a password">
+                            <input type="password" class="form-control" id="signupPassword" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="confirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password">
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
                         </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="agreeTerms">
-                            <label class="form-check-label" for="agreeTerms">I agree to the Terms and Conditions</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Create Account</button>
                     </form>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <p class="mb-0">Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login</a></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Alerts Container -->
+    <div id="alertsContainer" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
 
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <!-- AOS Animations -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <!-- Custom Scripts -->
+    <!-- Custom JS -->
+    <script src="js/users.js"></script>
+    <script src="js/auth.js"></script>
     <script>
-        // Initialize AOS animation
+        // Initialize AOS
         AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
         });
         
-        // Add scrolled class to navbar on scroll
+        // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
@@ -912,40 +1141,6 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
-        });
-
-        // Animate DK Logo
-        document.addEventListener('DOMContentLoaded', function() {
-            const logoContainers = document.querySelectorAll('.dk-logo-container');
-            
-            logoContainers.forEach(logoContainer => {
-                const logoInner = logoContainer.querySelector('.dk-logo-inner');
-                
-                // Hover effect
-                logoContainer.addEventListener('mouseenter', () => {
-                    logoInner.style.transform = 'scale(1.1) rotateY(10deg)';
-                    const glow = logoContainer.querySelector('.dk-logo-glow');
-                    if (glow) glow.style.opacity = '0.8';
-                });
-                
-                logoContainer.addEventListener('mouseleave', () => {
-                    logoInner.style.transform = '';
-                    const glow = logoContainer.querySelector('.dk-logo-glow');
-                    if (glow) glow.style.opacity = '0.5';
-                });
-                
-                // Click effect
-                logoContainer.addEventListener('click', () => {
-                    // Quick pulse animation
-                    logoInner.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        logoInner.style.transform = 'scale(1.1)';
-                        setTimeout(() => {
-                            logoInner.style.transform = '';
-                        }, 200);
-                    }, 200);
-                });
-            });
         });
     </script>
 </body>

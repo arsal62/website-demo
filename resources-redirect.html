@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to Resources</title>
+    <script>
+        // Check if user is logged in by loading users.js first
+        const script = document.createElement('script');
+        script.src = 'js/users.js';
+        script.onload = function() {
+            // After users.js is loaded, check login status
+            if (typeof isLoggedIn === 'function' && !isLoggedIn()) {
+                // If not logged in, redirect to secure-resources page
+                window.location.href = 'secure-resources.html';
+            } else {
+                // If logged in, redirect to resources page
+                window.location.href = 'resources.html#auth=true';
+            }
+        };
+        document.head.appendChild(script);
+    </script>
+</head>
+<body>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div style="text-align: center;">
+            <h2>Checking authentication...</h2>
+            <p>Please wait while we verify your access.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+/* Responsive adjustments for Exam Tips section */
+@media (max-width: 600px) {
+    .tips-section {
+        padding: 1rem;
+        min-height: auto;
+    }
+
+    .tips-icons {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .tip-icon-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .tip-cards-container {
+        min-height: auto;
+    }
+
+    .tip-card {
+        padding: 1rem;
+        gap: 10px;
+    }
+
+    .tip-content h4 {
+        font-size: 1rem;
+    }
+
+    .tip-content p {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .tips-section {
+        padding: 0.5rem;
+    }
+
+    .tip-icon-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+
+    .tip-card {
+        padding: 0.75rem;
+    }
+
+    .tip-content h4 {
+        font-size: 0.9rem;
+    }
+
+    .tip-content p {
+        font-size: 0.8rem;
+    }
+}

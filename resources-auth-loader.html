@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0;url=resources.html">
+    <title>Loading Resources</title>
+    <script>
+        // Add a script tag to the resources.html page when it loads
+        window.addEventListener('DOMContentLoaded', function() {
+            // Create a script element to inject our authentication script
+            const script = document.createElement('script');
+            script.src = 'js/inject-resources-auth.js';
+            document.body.appendChild(script);
+        });
+    </script>
+</head>
+<body>
+    <p>Redirecting to resources page...</p>
+</body>
+</html>

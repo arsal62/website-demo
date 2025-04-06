@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Dr. Kamran Ali</title>
+    <!-- Authentication check script -->
+    <script src="js/users.js"></script>
+    <script>
+        // Check if user is logged in
+        if (typeof isLoggedIn === 'function' && !isLoggedIn()) {
+            // Redirect to auth page if not logged in
+            window.location.href = 'resources-auth.html';
+        }
+    </script>
+    <!-- Original head content will be here -->

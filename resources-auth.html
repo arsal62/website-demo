@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Kamran Ali - Resources</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .navbar {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+        .dk-logo-container {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .dk-logo-inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .dk-logo-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3498db, #1abc9c);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .dk-logo-text {
+            position: relative;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            z-index: 2;
+        }
+        .dk-logo-glow {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(52,152,219,0.5) 0%, rgba(52,152,219,0) 70%);
+            opacity: 0.5;
+            z-index: 1;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+        .auth-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .auth-card {
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .auth-header {
+            background: linear-gradient(135deg, #3498db, #1abc9c);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .auth-body {
+            padding: 2rem;
+            background-color: white;
+        }
+        .btn-signup {
+            background: linear-gradient(135deg, #3498db, #1abc9c);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-signup:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52,152,219,0.3);
+        }
+        .btn-login {
+            background-color: transparent;
+            border: 2px solid #3498db;
+            color: #3498db;
+            transition: all 0.3s ease;
+        }
+        .btn-login:hover {
+            background-color: #f0f7fc;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <div class="dk-logo-container">
+                    <div class="dk-logo-inner">
+                        <div class="dk-logo-circle"></div>
+                        <div class="dk-logo-text">DK</div>
+                        <div class="dk-logo-glow"></div>
+                    </div>
+                </div>
+                <span>Dr. Kamran Ali</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Resources</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Authentication Container -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <i class="fas fa-lock fa-3x mb-3"></i>
+                <h2>Authentication Required</h2>
+                <p class="mb-0">Please sign up or log in to access O and A Level English resources</p>
+            </div>
+            <div class="auth-body">
+                <p class="text-center mb-4">Dr. Kamran Ali's exclusive educational resources are available only to registered users.</p>
+                <div class="d-grid gap-3">
+                    <button id="signupBtn" class="btn btn-signup btn-lg py-3">
+                        <i class="fas fa-user-plus me-2"></i>Sign Up
+                    </button>
+                    <button id="loginBtn" class="btn btn-login btn-lg py-3">
+                        <i class="fas fa-sign-in-alt me-2"></i>Log In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/users.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is already logged in
+            if (typeof isLoggedIn === 'function' && isLoggedIn()) {
+                // User is already logged in, redirect to resources
+                window.location.href = 'resources.html';
+            }
+            
+            // Add event listeners to buttons
+            document.getElementById('signupBtn').addEventListener('click', function() {
+                // Redirect to index.html with signup action
+                localStorage.setItem('authAction', 'signup');
+                window.location.href = 'index.html';
+            });
+            
+            document.getElementById('loginBtn').addEventListener('click', function() {
+                // Redirect to index.html with login action
+                localStorage.setItem('authAction', 'login');
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+</html>
