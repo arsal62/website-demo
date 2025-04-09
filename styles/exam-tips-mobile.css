@@ -34,7 +34,7 @@
     }
 }
 
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
     .tips-section {
         padding: 0.5rem;
     }
@@ -56,4 +56,4 @@
     .tip-content p {
         font-size: 0.8rem;
     }
-}
+} */
