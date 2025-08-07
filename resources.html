@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources - Dr. Kamran Ali</title>
+    <title>Resources</title>
+    <link rel="stylesheet" href="styles.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
         :root {
             --primary-color: #3498db;
@@ -67,23 +69,45 @@
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-            border-left: 3px solid var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .resource-title {
-            font-weight: 600;
-            color: var(--dark-color);
+            margin: 0;
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 500;
         }
         .resource-meta {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-            margin-bottom: 10px;
+            color: #666;
+            font-size: 14px;
+            margin: 8px 0 12px 0;
+        }
+        .resource-meta i {
+            margin-right: 4px;
+        }
+        .resource-card p {
+            color: #666;
+            margin: 8px 0 16px 0;
         }
         .btn-download {
-            background: var(--primary-color);
+            background-color: #3498db;
             color: white;
-            padding: 8px 20px;
+            padding: 8px 16px;
+            border-radius: 4px;
             border: none;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-download:hover {
+            background-color: #2980b9;
+            color: white;
+            text-decoration: none;
+        }
+        .btn-download i {
+            margin-right: 8px;
         }
         .btn-back {
             margin-bottom: 20px;
@@ -209,11 +233,6 @@
                 text-align: center;
             }
         }
-
-        
-
-
-
     </style>
 </head>
 <body>
@@ -350,206 +369,176 @@
             <h2 class="mb-4">{{ currentLevel }} English {{ currentPaper }} - {{ currentCategory }}</h2>
 
             <!-- O Level Resources -->
-            <div v-if="currentLevel === 'O Level'">
-                <!-- O Level Paper 1 Resources -->
-                <div v-if="currentPaper === 'Paper 1'">
-                    <!-- Reading Resources -->
-                    <div v-if="currentCategory === 'Reading'">
-                        <!-- Page 1 -->
-                        <div v-if="currentPage === 1">
-                            <div class="resource-card">
-                                <h4 class="resource-title">Class practice 1 language use (Page 1)</h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>  2025</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.2 MB</span>
-                                </div>
-                                <p>practice with this resource</p>
-                                <a href="https://drive.google.com/uc?export=download&id=1zf80i_CWuA4fLtqQaAfh2tl7fpfxyLEW" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-                            <div class="resource-card">
-                                <h4 class="resource-title">Home Work may june directed Writing (Page 1)</h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>  2025</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.5 MB</span>
-                                </div>
-                                <p>practice with this resource</p>
-                                <a href="https://drive.google.com/uc?export=download&id=1zf80i_CWuA4fLtqQaAfh2tl7fpfxyLEW" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-                            <div class="resource-card">
-                                <h4 class="resource-title">Summary writng Mock Practice (Page 1)</h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>  2025</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.8 MB</span>
-                                </div>
-                                <p>practice with this resource</p>
-                                <a href="https://drive.google.com/uc?export=download&id=1jVJNGvn0KR27cMjoWUqDzbP8kaaNaNR4" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Page 2 -->
-                        <div v-if="currentPage === 2">
-                            <div class="resource-card">
-                                <h4 class="resource-title">Text 5 key</h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>  2025</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.7 MB</span>
-                                </div>
-                                <p>practice with this resouce</p>
-                                <a href="https://drive.google.com/uc?export=download&id=1ANP-gtggz-vJAjViasYHu4X-pVoqRgaF" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-                            <div class="resource-card">
-                                <h4 class="resource-title">Enchanted forest key (Page 2)</h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>  2025</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 3.9 MB</span>
-                                </div>
-                                <p>practice with this resouce</p>
-                                <a href="https://drive.google.com/uc?export=download&id=1o9kTr9WjTm_FMfW-PgpzKA6o2ssXUWGT" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-                            <div class="resource-card">
-                                <h4 class="resource-title">MOCK EXAM PRACTICE  PAPER 1 PASSAGE A (2025).pdf (Page 2)</h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>  2025</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.2 MB</span>
-                                </div>
-                                <p>practice it with this resource</p>
-                                <a href="https://drive.google.com/uc?export=download&id=1TyBva-yHtlq2alno3l5HJWJrET7itMyA" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-                        </div>
-
-                        <div v-if="currentPage === 3">
-                            <div class="resource-card">
-                                <h4 class="resource-title">O level Paper 1  Reading Practice 3.pdf (Page 3)</h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>  2025</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.7 MB</span>
-                                </div>
-                                <p>practice it with this resource</p>
-                                <a href="https://drive.google.com/uc?export=download&id=1Ir9R3JTcBwbZkV41Wcxbv71Kuz8URzFJ" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-                            <div class="resource-card">
-                                <h4 class="resource-title">thrill of skyiing (Page 3)</h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>  2025</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 3.9 MB</span>
-                                </div>
-                                <p>pr</p>
-                                <a href="https://drive.google.com/uc?export=download&id=1gecBV0x4D7nTI2F13tmibuvbymVIFZxM" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-                            <div class="resource-card">
-                                <h4 class="resource-title">3rd simulation exam type paper 1 2025 (Page 3)</h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 5 Feb 2023</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.2 MB</span>
-                                </div>
-                                <p>practice it with this resource</p>
-                                <a href="https://drive.google.com/uc?export=download&id=1720DDifOBlX8RqXlD-mGN5-N9zynMGW-" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-                        </div>
-
-                        <div v-if="currentPage === 4">
-                            <div class="resource-card">
-                                <h4 class="resource-title">Cambridge o level simulation 2 paper 1 2025 (Page 4)</h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 25 Jan 2023</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.7 MB</span>
-                                </div>
-                                <p>Learn how to make inferences and read between the lines</p>
-                                <a href="https://drive.google.com/uc?export=download&id=1tuaaseUNyu6uARQFDYCeSTwOyrB7Y9Zc" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-                            <div class="resource-card">
-                                <h4 class="resource-title">Class practice 1 language use (Page 4)</h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 30 Jan 2023</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 3.9 MB</span>
-                                </div>
-                                <p>Improve your reading efficiency with these techniques</p>
-                                <a href="https://drive.google.com/uc?export=download&id=179qWu_d6RdTey-9JTJrLourrSIR8zo-8" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-                            <div class="resource-card">
-                                <h4 class="resource-title">New o level may june 2025 paper 1 simulation (Page 4)</h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 5 Feb 2023</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.2 MB</span>
-                                </div>
-                                <p>Step-by-step framework for analyzing different text types</p>
-                                <a href="https://drive.google.com/uc?export=download&id=129z-QqhachSOF4w7aNBo6E8ZqVX_-Ykt" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-                        </div>
-
-                        <div v-if="currentPage === 5">
-                            <div class="resource-card">
-                                <h4 class="resource-title">practice sheet 1 (Page 5)</h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 25 Jan 2025</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.7 MB</span>
-                                </div>
-                                <p>Practice sheet 1</p>
-                                <a href="https://drive.google.com/uc?export=download&id=1zy4RJRGnVzJ6fXA3Tp5Ocae_b5jcTQAD" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-
-                            <div class="resource-card">
-                                <h4 class="resource-title">Section paper 1 maya Reading model answers
-
-                                </h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 25 Jan 2025</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.7 MB</span>
-                                </div>
-                                <p>Answers </p>
-                                <a href="https://drive.google.com/uc?export=download&id=1S5hYZRTDr56C9MU7KI-7Iydc1UhwL8JK" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-
-                            <div class="resource-card">
-                                <h4 class="resource-title">SECTION-A-PAPER-1-READING-Practice-Sheet (1).pdf
-                                </h4>
-                                <div class="resource-meta">
-                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 25 Jan 2025</span>
-                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.7 MB</span>
-                                </div>
-                                <p>practice with this resorce </p>
-                                <a href="https://drive.google.com/uc?export=download&id=1owG7jL1C-mQy1rmCq1arVMRHoXPMUSQZ" class="btn btn-download">
-                                    <i class="fas fa-download me-2"></i>Download
-                                </a>
-                            </div>
-                            
-                    
-                        </div>
-
-                           
-                            
-                    
-                       
-
+<div v-if="currentLevel === 'O Level'">
+    <!-- O Level Paper 1 Resources -->
+    <div v-if="currentPaper === 'Paper 1'">
+        <!-- Reading Resources -->
+        <div v-if="currentCategory === 'Reading'">
+            <!-- Page 1 -->
+            <div v-if="currentPage === 1">
+                <div class="resource-card">
+                    <h4 class="resource-title">Class practice 1 language use</h4>
+                    <div class="resource-meta">
+                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.2 MB</span>
                     </div>
+                    <p>practice with this resource</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1zf80i_CWuA4fLtqQaAfh2tl7fpfxyLEW" class="btn btn-download">
+                        <i class="fas fa-download me-2"></i>Download
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <h4 class="resource-title">Home Work may june directed Writing</h4>
+                    <div class="resource-meta">
+                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.5 MB</span>
+                    </div>
+                    <p>practice with this resource</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1zf80i_CWuA4fLtqQaAfh2tl7fpfxyLEW" class="btn btn-download">
+                        <i class="fas fa-download me-2"></i>Download
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <h4 class="resource-title">Summary writing Mock Practice</h4>
+                    <div class="resource-meta">
+                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.8 MB</span>
+                    </div>
+                    <p>practice with this resource</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1jVJNGvn0KR27cMjoWUqDzbP8kaaNaNR4" class="btn btn-download">
+                        <i class="fas fa-download me-2"></i>Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- Page 2 -->
+            <div v-if="currentPage === 2">
+                <div class="resource-card">
+                    <h4 class="resource-title">Text 5 key</h4>
+                    <div class="resource-meta">
+                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.7 MB</span>
+                    </div>
+                    <p>practice with this resource</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1ANP-gtggz-vJAjViasYHu4X-pVoqRgaF" class="btn btn-download">
+                        <i class="fas fa-download me-2"></i>Download
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <h4 class="resource-title">Enchanted forest key</h4>
+                    <div class="resource-meta">
+                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 3.9 MB</span>
+                    </div>
+                    <p>practice with this resource</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1o9kTr9WjTm_FMfW-PgpzKA6o2ssXUWGT" class="btn btn-download">
+                        <i class="fas fa-download me-2"></i>Download
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <h4 class="resource-title">MOCK EXAM PRACTICE PAPER 1 PASSAGE A (2025).pdf</h4>
+                    <div class="resource-meta">
+                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.2 MB</span>
+                    </div>
+                    <p>practice it with this resource</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1TyBva-yHtlq2alno3l5HJWJrET7itMyA" class="btn btn-download">
+                        <i class="fas fa-download me-2"></i>Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- Page 3 -->
+            <div v-if="currentPage === 3">
+                <div class="resource-card">
+                    <h4 class="resource-title">O level Paper 1 Reading Practice 3.pdf</h4>
+                    <div class="resource-meta">
+                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.7 MB</span>
+                    </div>
+                    <p>practice it with this resource</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1Ir9R3JTcBwbZkV41Wcxbv71Kuz8URzFJ" class="btn btn-download">
+                        <i class="fas fa-download me-2"></i>Download
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <h4 class="resource-title">thrill of skiing</h4>
+                    <div class="resource-meta">
+                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 3.9 MB</span>
+                    </div>
+                    <p>practice with this resource</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1gecBV0x4D7nTI2F13tmibuvbymVIFZxM" class="btn btn-download">
+                        <i class="fas fa-download me-2"></i>Download
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <h4 class="resource-title">3rd simulation exam type paper 1 2025</h4>
+                    <div class="resource-meta">
+                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.2 MB</span>
+                    </div>
+                    <p>practice it with this resource</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1720DDifOBlX8RqXlD-mGN5-N9zynMGW-" class="btn btn-download">
+                        <i class="fas fa-download me-2"></i>Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- Page 4 -->
+            <div v-if="currentPage === 4">
+                <div class="resource-card">
+                    <h4 class="resource-title">Cambridge o level simulation 2 paper 1 2025</h4>
+                    <div class="resource-meta">
+                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.7 MB</span>
+                    </div>
+                    <p>Learn how to make inferences and read between the lines</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1tuaaseUNyu6uARQFDYCeSTwOyrB7Y9Zc" class="btn btn-download">
+                        <i class="fas fa-download me-2"></i>Download
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <h4 class="resource-title">Class practice 1 language use</h4>
+                    <div class="resource-meta">
+                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 3.9 MB</span>
+                    </div>
+                    <p>Improve your reading efficiency with these techniques</p>
+                    <a href="https://drive.google.com/uc?export=download&id=179qWu_d6RdTey-9JTJrLourrSIR8zo-8" class="btn btn-download">
+                        <i class="fas fa-download me-2"></i>Download
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <h4 class="resource-title">New o level may june 2025 paper 1 simulation</h4>
+                    <div class="resource-meta">
+                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.2 MB</span>
+                    </div>
+                    <p>Step-by-step framework for analyzing different text types</p>
+                    <a href="https://drive.google.com/uc?export=download&id=129z-QqhachSOF4w7aNBo6E8ZqVX_-Ykt" class="btn btn-download">
+                        <i class="fas fa-download me-2"></i>Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- Page 5 -->
+            <div v-if="currentPage === 5">
+                <div class="resource-card">
+                    <h4 class="resource-title">practice sheet 1</h4>
+                    <div class="resource-meta">
+                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.7 MB</span>
+                    </div>
+                    <p>Learn how to make inferences and read between the lines</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1zy4RJRGnVzJ6fXA3Tp5Ocae_b5jcTQAD" class="btn btn-download">
+                        <i class="fas fa-download me-2"></i>Download
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
                     <!-- Writing Resources -->
                     <div v-if="currentCategory === 'Writing'">
@@ -1646,1744 +1635,313 @@
 
 
            <!-- A Level Resources -->
-<div v-if="currentLevel === 'A Level'">
-    <!-- A Level Paper 1 Resources -->
-    <div v-if="currentPaper === 'Paper 1'">
-        <!-- Reading Resources -->
-        <div v-if="currentCategory === 'Reading'">
-            <!-- Page 1 -->
-            <div v-if="currentPage === 1">
-                <div class="resource-card">
-                    <h4 class="resource-title">Mastering-AS-9093-Paper-1-Commentary-Techniques.pdf (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 25 Mar 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 9.7 MB</span>
+            <div v-if="currentLevel === 'A Level'">
+                <!-- A Level Paper 1 Resources -->
+                <div v-if="currentPaper === 'Paper 1'">
+                    <!-- Reading Resources -->
+                    <div v-if="currentCategory === 'Reading'">
+                        <!-- Page 1 -->
+                        <div v-if="currentPage === 1">
+                            <div class="resource-card">
+                                <h4 class="resource-title">Mastering-AS-9093-Paper-1-Commentary-Techniques.pdf (Page 1)</h4>
+                                <div class="resource-meta">
+                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 25 Mar 2023</span>
+                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 9.7 MB</span>
+                                </div>
+                                <p>Advanced techniques for critical reading and analysis at A Level standard</p>
+                                <a href="https://drive.google.com/uc?export=download&id=1-1FDKjR5K8d4iKo8o3-jPltH_boGorD_" class="btn btn-download">
+                                    <i class="fas fa-download me-2"></i>Download
+                                </a>
+                            </div>
+                            <div class="resource-card">
+                                <h4 class="resource-title">Critical Analysis Skills (Page 1)</h4>
+                                <div class="resource-meta">
+                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 28 Mar 2023</span>
+                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.4 MB</span>
+                                </div>
+                                <p>Develop skills to critically evaluate complex texts</p>
+                                <a href="https://drive.google.com/uc?export=download&id=17" class="btn btn-download">
+                                    <i class="fas fa-download me-2"></i>Download
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Page 2 -->
+                        <div v-if="currentPage === 2">
+                            <div class="resource-card">
+                                <h4 class="resource-title">A Level Vocabulary Enhancer (Page 2)</h4>
+                                <div class="resource-meta">
+                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 30 Mar 2023</span>
+                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.9 MB</span>
+                                </div>
+                                <p>Expand your advanced vocabulary for A Level success</p>
+                                <a href="https://drive.google.com/uc?export=download&id=18" class="btn btn-download">
+                                    <i class="fas fa-download me-2"></i>Download
+                                </a>
+                            </div>
+                            <div class="resource-card">
+                                <h4 class="resource-title">Textual Analysis Guide (Page 2)</h4>
+                                <div class="resource-meta">
+                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 2 Apr 2023</span>
+                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.5 MB</span>
+                                </div>
+                                <p>Master the art of analyzing complex texts</p>
+                                <a href="https://drive.google.com/uc?export=download&id=19" class="btn btn-download">
+                                    <i class="fas fa-download me-2"></i>Download
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Page 3 -->
+                        <div v-if="currentPage === 3">
+                            <div class="resource-card">
+                                <h4 class="resource-title">Reading Comprehension Strategies (Page 3)</h4>
+                                <div class="resource-meta">
+                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 5 Apr 2023</span>
+                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.2 MB</span>
+                                </div>
+                                <p>Advanced strategies for understanding complex texts</p>
+                                <a href="https://drive.google.com/uc?export=download&id=20" class="btn btn-download">
+                                    <i class="fas fa-download me-2"></i>Download
+                                </a>
+                            </div>
+                            <div class="resource-card">
+                                <h4 class="resource-title">Literary Analysis Techniques (Page 3)</h4>
+                                <div class="resource-meta">
+                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 8 Apr 2023</span>
+                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.8 MB</span>
+                                </div>
+                                <p>Techniques for analyzing literary texts at A Level</p>
+                                <a href="https://drive.google.com/uc?export=download&id=21" class="btn btn-download">
+                                    <i class="fas fa-download me-2"></i>Download
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Page 4 -->
+                        <div v-if="currentPage === 4">
+                            <div class="resource-card">
+                                <h4 class="resource-title">Critical Reading Workbook (Page 4)</h4>
+                                <div class="resource-meta">
+                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 12 Apr 2023</span>
+                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 9.1 MB</span>
+                                </div>
+                                <p>Practice exercises for critical reading skills</p>
+                                <a href="https://drive.google.com/uc?export=download&id=22" class="btn btn-download">
+                                    <i class="fas fa-download me-2"></i>Download
+                                </a>
+                            </div>
+                            <div class="resource-card">
+                                <h4 class="resource-title">Textual Interpretation Guide (Page 4)</h4>
+                                <div class="resource-meta">
+                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Apr 2023</span>
+                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.3 MB</span>
+                                </div>
+                                <p>Advanced techniques for interpreting complex texts</p>
+                                <a href="https://drive.google.com/uc?export=download&id=23" class="btn btn-download">
+                                    <i class="fas fa-download me-2"></i>Download
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Page 5 -->
+                        <div v-if="currentPage === 5">
+                            <div class="resource-card">
+                                <h4 class="resource-title">A Level Reading Mastery (Page 5)</h4>
+                                <div class="resource-meta">
+                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 18 Apr 2023</span>
+                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.7 MB</span>
+                                </div>
+                                <p>Comprehensive guide to A Level reading skills</p>
+                                <a href="https://drive.google.com/uc?export=download&id=24" class="btn btn-download">
+                                    <i class="fas fa-download me-2"></i>Download
+                                </a>
+                            </div>
+                            <div class="resource-card">
+                                <h4 class="resource-title">Advanced Text Analysis (Page 5)</h4>
+                                <div class="resource-meta">
+                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Apr 2023</span>
+                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.6 MB</span>
+                                </div>
+                                <p>Master advanced text analysis techniques</p>
+                                <a href="https://drive.google.com/uc?export=download&id=25" class="btn btn-download">
+                                    <i class="fas fa-download me-2"></i>Download
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Pagination Controls -->
+                        <div class="pagination-controls">
+                            <button class="btn btn-pagination" @click="prevPage" :disabled="currentPage === 1">
+                                <i class="fas fa-chevron-left"></i> Previous
+                            </button>
+                            <span class="page-indicator">Page {{ currentPage }} of 5</span>
+                            <button class="btn btn-pagination" @click="nextPage" :disabled="currentPage === 5">
+                                Next <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
                     </div>
-                    <p>Advanced techniques for critical reading and analysis at A Level standard</p>
-                    <a href="https://drive.google.com/uc?export=download&id=1-1FDKjR5K8d4iKo8o3-jPltH_boGorD_" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Critical Analysis Skills (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 28 Mar 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.4 MB</span>
-                    </div>
-                    <p>Develop skills to critically evaluate complex texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=17" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Vocabulary Enhancer (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 30 Mar 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.9 MB</span>
-                    </div>
-                    <p>Expand your advanced vocabulary for A Level success</p>
-                    <a href="https://drive.google.com/uc?export=download&id=18" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
                 </div>
             </div>
 
-            <!-- Page 2 -->
-            <div v-if="currentPage === 2">
-                <div class="resource-card">
-                    <h4 class="resource-title">Inferential Reading Techniques (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 2 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.5 MB</span>
-                    </div>
-                    <p>Master inferential reading for deeper text understanding</p>
-                    <a href="https://drive.google.com/uc?export=download&id=19" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Analytical Reading Strategies (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 5 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.1 MB</span>
-                    </div>
-                    <p>Strategies to break down and analyze complex A Level texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=20" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Text Interpretation Guide (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 8 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.3 MB</span>
-                    </div>
-                    <p>Guide to interpreting nuanced meanings in texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=21" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 3 -->
-            <div v-if="currentPage === 3">
-                <div class="resource-card">
-                    <h4 class="resource-title">Advanced Textual Analysis (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 9.0 MB</span>
-                    </div>
-                    <p>Techniques for in-depth analysis of A Level texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=22" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Comparative Reading Skills (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 12 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.8 MB</span>
-                    </div>
-                    <p>Learn to compare and contrast texts effectively</p>
-                    <a href="https://drive.google.com/uc?export=download&id=23" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Critical Thinking in Reading (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.5 MB</span>
-                    </div>
-                    <p>Enhance critical thinking skills for A Level reading</p>
-                    <a href="https://drive.google.com/uc?export=download&id=24" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 4 -->
-            <div v-if="currentPage === 4">
-                <div class="resource-card">
-                    <h4 class="resource-title">Synthesis Reading Skills (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 18 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.2 MB</span>
-                    </div>
-                    <p>Learn to synthesize information from multiple texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=25" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Advanced Skimming Techniques (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.8 MB</span>
-                    </div>
-                    <p>Efficient skimming techniques for A Level exams</p>
-                    <a href="https://drive.google.com/uc?export=download&id=26" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Contextual Reading Guide (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 22 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.0 MB</span>
-                    </div>
-                    <p>Understand texts within their historical and cultural contexts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=27" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 5 -->
-            <div v-if="currentPage === 5">
-                <div class="resource-card">
-                    <h4 class="resource-title">Evaluative Reading Skills (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 25 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.9 MB</span>
-                    </div>
-                    <p>Develop skills to evaluate the credibility of texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=28" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Advanced Annotation Techniques (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 28 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.5 MB</span>
-                    </div>
-                    <p>Effective annotation strategies for A Level texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=29" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Reading for Argumentation (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 30 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.3 MB</span>
-                    </div>
-                    <p>Learn to identify and analyze arguments in texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=30" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-        </div>
-
+                <!-- A Level Paper 2 Resources -->
+                <div v-if="currentPaper === 'Paper 2'">
         <!-- Writing Resources -->
         <div v-if="currentCategory === 'Writing'">
             <!-- Page 1 -->
             <div v-if="currentPage === 1">
                 <div class="resource-card">
-                    <h4 class="resource-title">Advanced Essay Writing Guide (Page 1)</h4>
+                                <h4 class="resource-title">A Level Writing Mastery Guide (Page 1)</h4>
                     <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 1 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 9.5 MB</span>
+                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Apr 2023</span>
+                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.2 MB</span>
                     </div>
-                    <p>Comprehensive guide to crafting high-quality A Level essays</p>
-                    <a href="https://drive.google.com/uc?export=download&id=31" class="btn btn-download">
+                                <p>Comprehensive guide to A Level writing techniques</p>
+                                <a href="https://drive.google.com/uc?export=download&id=19" class="btn btn-download">
                         <i class="fas fa-download me-2"></i>Download
                     </a>
                 </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Argumentative Writing Skills (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 3 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.7 MB</span>
                     </div>
-                    <p>Master the art of constructing persuasive arguments</p>
-                    <a href="https://drive.google.com/uc?export=download&id=32" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Critical Writing Techniques (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 5 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.9 MB</span>
-                    </div>
-                    <p>Techniques for writing critically at an advanced level</p>
-                    <a href="https://drive.google.com/uc?export=download&id=33" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
             <!-- Page 2 -->
             <div v-if="currentPage === 2">
                 <div class="resource-card">
-                    <h4 class="resource-title">Essay Structure Framework (Page 2)</h4>
+                                <h4 class="resource-title">Advanced Essay Writing (Page 2)</h4>
                     <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 7 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.2 MB</span>
+                                    <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Apr 2023</span>
+                                    <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.8 MB</span>
                     </div>
-                    <p>Step-by-step framework for structuring A Level essays</p>
-                    <a href="https://drive.google.com/uc?export=download&id=34" class="btn btn-download">
+                                <p>Master the art of advanced essay writing</p>
+                                <a href="https://drive.google.com/uc?export=download&id=20" class="btn btn-download">
                         <i class="fas fa-download me-2"></i>Download
                     </a>
                 </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Advanced Coherence Techniques (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 9 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.6 MB</span>
                     </div>
-                    <p>Ensure coherence and flow in your A Level writing</p>
-                    <a href="https://drive.google.com/uc?export=download&id=35" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Evidence Integration Guide (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 11 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.9 MB</span>
-                    </div>
-                    <p>Learn to integrate evidence seamlessly into your essays</p>
-                    <a href="https://drive.google.com/uc?export=download&id=36" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
                 </div>
             </div>
-
-            <!-- Page 3 -->
-            <div v-if="currentPage === 3">
-                <div class="resource-card">
-                    <h4 class="resource-title">Synthesis Writing Skills (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 13 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.4 MB</span>
-                    </div>
-                    <p>Master synthesizing ideas from multiple sources</p>
-                    <a href="https://drive.google.com/uc?export=download&id=37" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Advanced Paragraphing (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.8 MB</span>
-                    </div>
-                    <p>Techniques for crafting effective paragraphs</p>
-                    <a href="https://drive.google.com/uc?export=download&id=38" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Persuasive Writing Guide (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 17 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.3 MB</span>
-                    </div>
-                    <p>Guide to writing compelling persuasive essays</p>
-                    <a href="https://drive.google.com/uc?export=download&id=39" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 4 -->
-            <div v-if="currentPage === 4">
-                <div class="resource-card">
-                    <h4 class="resource-title">Analytical Writing Skills (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 19 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.7 MB</span>
-                    </div>
-                    <p>Develop advanced analytical writing techniques</p>
-                    <a href="https://drive.google.com/uc?export=download&id=40" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Concise Writing Techniques (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 21 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.5 MB</span>
-                    </div>
-                    <p>Learn to write concisely and effectively</p>
-                    <a href="https://drive.google.com/uc?export=download&id=41" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Counterargument Strategies (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 23 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.1 MB</span>
-                    </div>
-                    <p>Master the use of counterarguments in essays</p>
-                    <a href="https://drive.google.com/uc?export=download&id=42" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 5 -->
-            <div v-if="currentPage === 5">
-                <div class="resource-card">
-                    <h4 class="resource-title">Evaluative Writing Guide (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 25 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.8 MB</span>
-                    </div>
-                    <p>Guide to writing evaluative essays at A Level</p>
-                    <a href="https://drive.google.com/uc?export=download&id=43" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Advanced Editing Skills (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 27 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.9 MB</span>
-                    </div>
-                    <p>Techniques for refining and editing your writing</p>
-                    <a href="https://drive.google.com/uc?export=download&id=44" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Writing for Academic Audiences (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 29 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.4 MB</span>
-                    </div>
-                    <p>Tailor your writing for academic success</p>
-                    <a href="https://drive.google.com/uc?export=download&id=45" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-            
-
+    
+           <!-- Page 3 -->
+<div v-if="currentPage === 3">
+    <div class="resource-card">
+        <h4 class="resource-title">Paper 2 Analytical Writing Skills</h4>
+        <div class="resource-meta">
+            <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+            <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.4 MB</span>
         </div>
-
-        <div v-if="currentCategory === 'Past Papers'">
-            <!-- Page 1 -->
-            <div v-if="currentPage === 1">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2022 (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Aug 2022</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.3 MB</span>
-                    </div>
-                    <p>Past paper from the June 2022 session with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=60" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - November 2021 (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Jan 2022</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.9 MB</span>
-                    </div>
-                    <p>November 2021 past paper including examiner's report</p>
-                    <a href="https://drive.google.com/uc?export=download&id=61" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2021 (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Sep 2021</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.1 MB</span>
-                    </div>
-                    <p>June 2021 past paper with detailed solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=62" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 2 -->
-            <div v-if="currentPage === 2">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - November 2020 (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Feb 2021</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.0 MB</span>
-                    </div>
-                    <p>November 2020 past paper with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=63" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2020 (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Aug 2020</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.8 MB</span>
-                    </div>
-                    <p>June 2020 past paper with examiner's commentary</p>
-                    <a href="https://drive.google.com/uc?export=download&id=64" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - November 2019 (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Jan 2020</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.2 MB</span>
-                    </div>
-                    <p>November 2019 past paper with solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=65" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 3 -->
-            <div v-if="currentPage === 3">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2019 (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Aug 2019</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.4 MB</span>
-                    </div>
-                    <p>June 2019 past paper with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=66" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - November 2018 (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Jan 2019</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.7 MB</span>
-                    </div>
-                    <p>November 2018 past paper with examiner's report</p>
-                    <a href="https://drive.google.com/uc?export=download&id=67" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2018 (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Sep 2018</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.0 MB</span>
-                    </div>
-                    <p>June 2018 past paper with detailed solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=68" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 4 -->
-            <div v-if="currentPage === 4">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - November 2017 (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Feb 2018</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.9 MB</span>
-                    </div>
-                    <p>November 2017 past paper with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=69" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2017 (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Aug 2017</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.1 MB</span>
-                    </div>
-                    <p>June 2017 past paper with examiner's commentary</p>
-                    <a href="https://drive.google.com/uc?export=download&id=70" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - November 2016 (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Jan 2017</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.8 MB</span>
-                    </div>
-                    <p>November 2016 past paper with solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=71" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 5 -->
-            <div v-if="currentPage === 5">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2016 (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Aug 2016</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.2 MB</span>
-                    </div>
-                    <p>June 2016 past paper with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=72" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - November 2015 (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Jan 2016</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.7 MB</span>
-                    </div>
-                    <p>November 2015 past paper with examiner's report</p>
-                    <a href="https://drive.google.com/uc?export=download&id=73" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2015 (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Sep 2015</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.0 MB</span>
-                    </div>
-                    <p>June 2015 past paper with detailed solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=74" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-        <div v-if="currentCategory === 'Worksheets'">
-            <!-- Page 1 -->
-            <div v-if="currentPage === 1">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2022 (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Aug 2022</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.3 MB</span>
-                    </div>
-                    <p>Past paper from the June 2022 session with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=60" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - November 2021 (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Jan 2022</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.9 MB</span>
-                    </div>
-                    <p>November 2021 past paper including examiner's report</p>
-                    <a href="https://drive.google.com/uc?export=download&id=61" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2021 (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Sep 2021</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.1 MB</span>
-                    </div>
-                    <p>June 2021 past paper with detailed solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=62" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 2 -->
-            <div v-if="currentPage === 2">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - November 2020 (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Feb 2021</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.0 MB</span>
-                    </div>
-                    <p>November 2020 past paper with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=63" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2020 (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Aug 2020</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.8 MB</span>
-                    </div>
-                    <p>June 2020 past paper with examiner's commentary</p>
-                    <a href="https://drive.google.com/uc?export=download&id=64" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - November 2019 (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Jan 2020</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.2 MB</span>
-                    </div>
-                    <p>November 2019 past paper with solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=65" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 3 -->
-            <div v-if="currentPage === 3">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2019 (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Aug 2019</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.4 MB</span>
-                    </div>
-                    <p>June 2019 past paper with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=66" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - November 2018 (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Jan 2019</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.7 MB</span>
-                    </div>
-                    <p>November 2018 past paper with examiner's report</p>
-                    <a href="https://drive.google.com/uc?export=download&id=67" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2018 (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Sep 2018</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.0 MB</span>
-                    </div>
-                    <p>June 2018 past paper with detailed solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=68" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 4 -->
-            <div v-if="currentPage === 4">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - November 2017 (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Feb 2018</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.9 MB</span>
-                    </div>
-                    <p>November 2017 past paper with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=69" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2017 (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Aug 2017</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.1 MB</span>
-                    </div>
-                    <p>June 2017 past paper with examiner's commentary</p>
-                    <a href="https://drive.google.com/uc?export=download&id=70" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - November 2016 (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Jan 2017</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.8 MB</span>
-                    </div>
-                    <p>November 2016 past paper with solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=71" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 5 -->
-            <div v-if="currentPage === 5">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2016 (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Aug 2016</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.2 MB</span>
-                    </div>
-                    <p>June 2016 past paper with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=72" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - November 2015 (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Jan 2016</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.7 MB</span>
-                    </div>
-                    <p>November 2015 past paper with examiner's report</p>
-                    <a href="https://drive.google.com/uc?export=download&id=73" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 1 - June 2015 (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Sep 2015</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.0 MB</span>
-                    </div>
-                    <p>June 2015 past paper with detailed solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=74" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-
-
+        <p>Develop advanced analytical writing for Paper 2 tasks</p>
+        <a href="https://drive.google.com/uc?export=download&id=134" class="btn btn-download">
+            <i class="fas fa-download me-2"></i>Download
+        </a>
     </div>
-
-    <!-- A Level Paper 2 Resources -->
-    <div v-if="currentPaper === 'Paper 2'">
-        <!-- Past Papers Resources -->
-        <div v-if="currentCategory === 'Past Papers'">
-            <!-- Page 1 -->
-            <div v-if="currentPage === 1">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - June 2022 (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Aug 2022</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.5 MB</span>
-                    </div>
-                    <p>June 2022 Paper 2 past paper with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=75" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - November 2021 (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Jan 2022</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.1 MB</span>
-                    </div>
-                    <p>November 2021 Paper 2 past paper with examiner's report</p>
-                    <a href="https://drive.google.com/uc?export=download&id=76" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - June 2021 (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Sep 2021</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.3 MB</span>
-                    </div>
-                    <p>June 2021 Paper 2 past paper with solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=77" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 2 -->
-            <div v-if="currentPage === 2">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - November 2020 (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Feb 2021</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.2 MB</span>
-                    </div>
-                    <p>November 2020 Paper 2 past paper with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=78" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - June 2020 (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Aug 2020</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.0 MB</span>
-                    </div>
-                    <p>June 2020 Paper 2 past paper with examiner's commentary</p>
-                    <a href="https://drive.google.com/uc?export=download&id=79" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - November 2019 (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Jan 2020</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.4 MB</span>
-                    </div>
-                    <p>November 2019 Paper 2 past paper with solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=80" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 3 -->
-            <div v-if="currentPage === 3">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - June 2019 (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Aug 2019</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.6 MB</span>
-                    </div>
-                    <p>June 2019 Paper 2 past paper with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=81" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - November 2018 (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Jan 2019</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.9 MB</span>
-                    </div>
-                    <p>November 2018 Paper 2 past paper with examiner's report</p>
-                    <a href="https://drive.google.com/uc?export=download&id=82" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - June 2018 (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Sep 2018</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.2 MB</span>
-                    </div>
-                    <p>June 2018 Paper 2 past paper with detailed solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=83" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 4 -->
-            <div v-if="currentPage === 4">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - November 2017 (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Feb 2018</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.1 MB</span>
-                    </div>
-                    <p>November 2017 Paper 2 past paper with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=84" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - June 2017 (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Aug 2017</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.3 MB</span>
-                    </div>
-                    <p>June 2017 Paper 2 past paper with examiner's commentary</p>
-                    <a href="https://drive.google.com/uc?export=download&id=85" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - November 2016 (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Jan 2017</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.0 MB</span>
-                    </div>
-                    <p>November 2016 Paper 2 past paper with solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=86" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 5 -->
-            <div v-if="currentPage === 5">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - June 2016 (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Aug 2016</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.4 MB</span>
-                    </div>
-                    <p>June 2016 Paper 2 past paper with mark scheme</p>
-                    <a href="https://drive.google.com/uc?export=download&id=87" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - November 2015 (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Jan 2016</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 4.8 MB</span>
-                    </div>
-                    <p>November 2015 Paper 2 past paper with examiner's report</p>
-                    <a href="https://drive.google.com/uc?export=download&id=88" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Paper 2 - June 2015 (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Sep 2015</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 5.1 MB</span>
-                    </div>
-                    <p>June 2015 Paper 2 past paper with detailed solutions</p>
-                    <a href="https://drive.google.com/uc?export=download&id=89" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
+    <div class="resource-card">
+        <h4 class="resource-title">Synthesis Writing for Paper 2</h4>
+        <div class="resource-meta">
+            <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+            <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.9 MB</span>
         </div>
-
-        <div v-if="currentCategory === 'Listening'">
-            <!-- Page 1 -->
-            <div v-if="currentPage === 1">
-                <div class="resource-card">
-                    <h4 class="resource-title">Advanced Listening Comprehension Guide (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 10 Mar 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.5 MB</span>
-                    </div>
-                    <p>Comprehensive guide to advanced listening skills with practice audio links</p>
-                    <a href="https://drive.google.com/uc?export=download&id=90" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Critical Listening Techniques (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 12 Mar 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.9 MB</span>
-                    </div>
-                    <p>Techniques to critically analyze spoken content at A Level</p>
-                    <a href="https://drive.google.com/uc?export=download&id=91" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Listening Vocabulary (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Mar 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.8 MB</span>
-                    </div>
-                    <p>Key vocabulary for understanding complex audio materials</p>
-                    <a href="https://drive.google.com/uc?export=download&id=92" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 2 -->
-            <div v-if="currentPage === 2">
-                <div class="resource-card">
-                    <h4 class="resource-title">Inferential Listening Skills (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 18 Mar 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.6 MB</span>
-                    </div>
-                    <p>Learn to infer meaning from advanced spoken texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=93" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Listening for Argumentation (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 20 Mar 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.1 MB</span>
-                    </div>
-                    <p>Identify and evaluate arguments in spoken content</p>
-                    <a href="https://drive.google.com/uc?export=download&id=94" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Note-Taking for Listening (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 22 Mar 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.2 MB</span>
-                    </div>
-                    <p>Effective note-taking strategies for A Level listening tasks</p>
-                    <a href="https://drive.google.com/uc?export=download&id=95" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 3 -->
-            <div v-if="currentPage === 3">
-                <div class="resource-card">
-                    <h4 class="resource-title">Contextual Listening Guide (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 25 Mar 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.3 MB</span>
-                    </div>
-                    <p>Understand spoken content within its cultural and historical context</p>
-                    <a href="https://drive.google.com/uc?export=download&id=96" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Tone and Mood in Listening (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 27 Mar 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.5 MB</span>
-                    </div>
-                    <p>Analyze tone and mood in advanced audio materials</p>
-                    <a href="https://drive.google.com/uc?export=download&id=97" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Listening Comprehension Practice (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 29 Mar 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.7 MB</span>
-                    </div>
-                    <p>Practice exercises with audio links for A Level listening</p>
-                    <a href="https://drive.google.com/uc?export=download&id=98" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 4 -->
-            <div v-if="currentPage === 4">
-                <div class="resource-card">
-                    <h4 class="resource-title">Summarizing Spoken Texts (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 1 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.8 MB</span>
-                    </div>
-                    <p>Techniques to summarize key points from audio sources</p>
-                    <a href="https://drive.google.com/uc?export=download&id=99" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Listening for Detail (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 3 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.4 MB</span>
-                    </div>
-                    <p>Strategies to catch critical details in spoken content</p>
-                    <a href="https://drive.google.com/uc?export=download&id=100" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Advanced Audio Analysis (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 5 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.2 MB</span>
-                    </div>
-                    <p>Analyze complex audio materials for A Level exams</p>
-                    <a href="https://drive.google.com/uc?export=download&id=101" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 5 -->
-            <div v-if="currentPage === 5">
-                <div class="resource-card">
-                    <h4 class="resource-title">Evaluative Listening Skills (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 7 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.9 MB</span>
-                    </div>
-                    <p>Evaluate credibility and bias in spoken texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=102" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Listening Synthesis Guide (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 9 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.4 MB</span>
-                    </div>
-                    <p>Synthesize information from multiple audio sources</p>
-                    <a href="https://drive.google.com/uc?export=download&id=103" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Advanced Listening Practice (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 11 Apr 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 9.0 MB</span>
-                    </div>
-                    <p>Challenging exercises with audio to enhance listening skills</p>
-                    <a href="https://drive.google.com/uc?export=download&id=104" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-        </div>
+        <p>Learn to synthesize ideas effectively in Paper 2 essays</p>
+        <a href="https://drive.google.com/uc?export=download&id=135" class="btn btn-download">
+            <i class="fas fa-download me-2"></i>Download
+        </a>
     </div>
-
-    <!-- A Level Paper 2 Resources -->
-    <div v-if="currentPaper === 'Paper 2'">
-        <!-- Listening Resources -->
-        <div v-if="currentCategory === 'Worksheets'">
-            <!-- Page 1 -->
-            <div v-if="currentPage === 1">
-                <div class="resource-card">
-                    <h4 class="resource-title">A Level Listening Strategies (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 5 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 9.2 MB</span>
-                    </div>
-                    <p>Advanced strategies for listening comprehension in academic contexts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=105" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Critical Listening Practice (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 7 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.6 MB</span>
-                    </div>
-                    <p>Practice exercises to develop critical listening skills</p>
-                    <a href="https://drive.google.com/uc?export=download&id=106" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Listening Vocabulary Builder (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 9 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.3 MB</span>
-                    </div>
-                    <p>Expand your vocabulary for advanced listening tasks</p>
-                    <a href="https://drive.google.com/uc?export=download&id=107" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 2 -->
-            <div v-if="currentPage === 2">
-                <div class="resource-card">
-                    <h4 class="resource-title">Inferential Listening Guide (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 11 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.0 MB</span>
-                    </div>
-                    <p>Techniques to infer meaning from complex spoken texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=108" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Listening for Persuasion (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 13 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.7 MB</span>
-                    </div>
-                    <p>Identify persuasive techniques in spoken content</p>
-                    <a href="https://drive.google.com/uc?export=download&id=109" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Advanced Note-Taking Skills (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.1 MB</span>
-                    </div>
-                    <p>Enhance note-taking for complex audio materials</p>
-                    <a href="https://drive.google.com/uc?export=download&id=110" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 3 -->
-            <div v-if="currentPage === 3">
-                <div class="resource-card">
-                    <h4 class="resource-title">Contextual Listening Practice (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 17 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.8 MB</span>
-                    </div>
-                    <p>Practice understanding audio in its broader context</p>
-                    <a href="https://drive.google.com/uc?export=download&id=111" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Analyzing Tone in Audio (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 19 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.5 MB</span>
-                    </div>
-                    <p>Techniques to analyze tone in spoken texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=112" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Listening Practice Set 1 (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 21 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.9 MB</span>
-                    </div>
-                    <p>Set of advanced listening exercises with audio links</p>
-                    <a href="https://drive.google.com/uc?export=download&id=113" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 4 -->
-            <div v-if="currentPage === 4">
-                <div class="resource-card">
-                    <h4 class="resource-title">Summarizing Audio Content (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 23 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.6 MB</span>
-                    </div>
-                    <p>Learn to summarize key points from spoken materials</p>
-                    <a href="https://drive.google.com/uc?export=download&id=114" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Listening for Specific Details (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 25 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.0 MB</span>
-                    </div>
-                    <p>Strategies to identify critical details in audio</p>
-                    <a href="https://drive.google.com/uc?export=download&id=115" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Complex Audio Analysis (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 27 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.3 MB</span>
-                    </div>
-                    <p>Analyze challenging audio materials for A Level</p>
-                    <a href="https://drive.google.com/uc?export=download&id=116" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 5 -->
-            <div v-if="currentPage === 5">
-                <div class="resource-card">
-                    <h4 class="resource-title">Evaluative Listening Practice (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 29 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.9 MB</span>
-                    </div>
-                    <p>Practice evaluating bias and credibility in audio</p>
-                    <a href="https://drive.google.com/uc?export=download&id=117" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Synthesizing Audio Information (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 31 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.5 MB</span>
-                    </div>
-                    <p>Synthesize information from multiple audio sources</p>
-                    <a href="https://drive.google.com/uc?export=download&id=118" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Listening Practice Set 2 (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 2 Jun 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 9.1 MB</span>
-                    </div>
-                    <p>Advanced listening practice set with audio links</p>
-                    <a href="https://drive.google.com/uc?export=download&id=119" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
+    <div class="resource-card">
+        <h4 class="resource-title">Paper 2 Paragraphing Techniques</h4>
+        <div class="resource-meta">
+            <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+            <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.5 MB</span>
         </div>
-        
-
-
-    </div>
-
-    <!-- A Level Paper 2 Resources -->
-    <div v-if="currentPaper === 'Paper 2'">
-        <!-- Reading Resources -->
-        <div v-if="currentCategory === 'Reading'">
-            <!-- Page 1 -->
-            <div v-if="currentPage === 1">
-                <div class="resource-card">
-                    <h4 class="resource-title">Advanced Listening Strategies (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 5 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 9.2 MB</span>
-                    </div>
-                    <p>Advanced listening comprehension strategies for academic contexts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=22" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Critical Listening Skills (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 7 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.6 MB</span>
-                    </div>
-                    <p>Develop critical listening skills for A Level success</p>
-                    <a href="https://drive.google.com/uc?export=download&id=46" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Note-Taking for Listening (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 9 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.3 MB</span>
-                    </div>
-                    <p>Effective note-taking strategies for listening tasks</p>
-                    <a href="https://drive.google.com/uc?export=download&id=47" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 2 -->
-            <div v-if="currentPage === 2">
-                <div class="resource-card">
-                    <h4 class="resource-title">Inferential Listening Guide (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 11 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.0 MB</span>
-                    </div>
-                    <p>Learn to infer meaning from spoken content</p>
-                    <a href="https://drive.google.com/uc?export=download&id=48" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Listening for Argumentation (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 13 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.5 MB</span>
-                    </div>
-                    <p>Identify and analyze arguments in spoken texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=49" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Advanced Audio Analysis (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.8 MB</span>
-                    </div>
-                    <p>Techniques for analyzing complex audio materials</p>
-                    <a href="https://drive.google.com/uc?export=download&id=50" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 3 -->
-            <div v-if="currentPage === 3">
-                <div class="resource-card">
-                    <h4 class="resource-title">Contextual Listening Skills (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 17 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.7 MB</span>
-                    </div>
-                    <p>Understand spoken content in its broader context</p>
-                    <a href="https://drive.google.com/uc?export=download&id=51" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Listening Comprehension Practice (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 19 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.4 MB</span>
-                    </div>
-                    <p>Practice exercises for advanced listening comprehension</p>
-                    <a href="https://drive.google.com/uc?export=download&id=52" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Tone and Mood Analysis (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 21 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.9 MB</span>
-                    </div>
-                    <p>Analyze tone and mood in spoken texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=53" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 4 -->
-            <div v-if="currentPage === 4">
-                <div class="resource-card">
-                    <h4 class="resource-title">Summarizing Spoken Texts (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 23 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.6 MB</span>
-                    </div>
-                    <p>Learn to summarize key points from audio sources</p>
-                    <a href="https://drive.google.com/uc?export=download&id=54" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Advanced Listening Vocabulary (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 25 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.7 MB</span>
-                    </div>
-                    <p>Expand your vocabulary for listening tasks</p>
-                    <a href="https://drive.google.com/uc?export=download&id=55" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Listening for Detail (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 27 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.2 MB</span>
-                    </div>
-                    <p>Techniques to catch critical details in spoken content</p>
-                    <a href="https://drive.google.com/uc?export=download&id=56" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page 5 -->
-            <div v-if="currentPage === 5">
-                <div class="resource-card">
-                    <h4 class="resource-title">Evaluative Listening Skills (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 29 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.9 MB</span>
-                    </div>
-                    <p>Evaluate the credibility and bias in spoken texts</p>
-                    <a href="https://drive.google.com/uc?export=download&id=57" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Listening Synthesis Guide (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 31 May 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.5 MB</span>
-                    </div>
-                    <p>Synthesize information from multiple audio sources</p>
-                    <a href="https://drive.google.com/uc?export=download&id=58" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Advanced Listening Practice (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 2 Jun 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 9.0 MB</span>
-                    </div>
-                    <p>Challenging exercises to hone your listening skills</p>
-                    <a href="https://drive.google.com/uc?export=download&id=59" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div v-if="currentCategory === 'Writing'">
-            <!-- Page 1 -->
-            <div v-if="currentPage === 1">
-                <div class="resource-card">
-                    <h4 class="resource-title">Expressive-Vocabulary-A-Linguistic-Journey-Through-Environments-and-Characters.pdf</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 5 Jul 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 9.3 MB</span>
-                    </div>
-                    <p>Comprehensive guide to excelling in Paper 2 writing tasks</p>
-                    <a href="https://drive.google.com/uc?export=download&id=FILE_ID" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Argumentative Writing for Paper 2 (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 7 Jul 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.5 MB</span>
-                    </div>
-                    <p>Techniques to craft strong arguments for Paper 2 essays</p>
-                    <a href="https://drive.google.com/uc?export=download&id=129" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Paper 2 Essay Structure Tips (Page 1)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 9 Jul 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.8 MB</span>
-                    </div>
-                    <p>Step-by-step tips to structure effective Paper 2 essays</p>
-                    <a href="https://drive.google.com/uc?export=download&id=130" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-    
-            <!-- Page 2 -->
-            <div v-if="currentPage === 2">
-                <div class="resource-card">
-                    <h4 class="resource-title">Paper 2 Persuasive Writing Skills (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 11 Jul 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.2 MB</span>
-                    </div>
-                    <p>Master persuasive techniques for Paper 2 writing tasks</p>
-                    <a href="https://drive.google.com/uc?export=download&id=131" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Coherence in Paper 2 Writing (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 13 Jul 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.6 MB</span>
-                    </div>
-                    <p>Strategies to ensure flow and coherence in Paper 2 essays</p>
-                    <a href="https://drive.google.com/uc?export=download&id=132" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Paper 2 Evidence Use Guide (Page 2)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 15 Jul 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.9 MB</span>
-                    </div>
-                    <p>How to effectively integrate evidence in Paper 2 responses</p>
-                    <a href="https://drive.google.com/uc?export=download&id=133" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-    
-            <!-- Page 3 -->
-            <div v-if="currentPage === 3">
-                <div class="resource-card">
-                    <h4 class="resource-title">Paper 2 Analytical Writing Skills (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 17 Jul 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.4 MB</span>
-                    </div>
-                    <p>Develop advanced analytical writing for Paper 2 tasks</p>
-                    <a href="https://drive.google.com/uc?export=download&id=134" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Synthesis Writing for Paper 2 (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 19 Jul 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.9 MB</span>
-                    </div>
-                    <p>Learn to synthesize ideas effectively in Paper 2 essays</p>
-                    <a href="https://drive.google.com/uc?export=download&id=135" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Paper 2 Paragraphing Techniques (Page 3)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 21 Jul 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.5 MB</span>
-                    </div>
-                    <p>Techniques for crafting clear and effective paragraphs</p>
-                    <a href="https://drive.google.com/uc?export=download&id=136" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-    
-            <!-- Page 4 -->
-            <div v-if="currentPage === 4">
-                <div class="resource-card">
-                    <h4 class="resource-title">Paper 2 Concise Writing Guide (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 23 Jul 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.8 MB</span>
-                    </div>
-                    <p>Strategies to write concisely and effectively for Paper 2</p>
-                    <a href="https://drive.google.com/uc?export=download&id=137" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Counterarguments in Paper 2 (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 25 Jul 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.1 MB</span>
-                    </div>
-                    <p>Master the use of counterarguments in Paper 2 essays</p>
-                    <a href="https://drive.google.com/uc?export=download&id=138" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Paper 2 Critical Writing Skills (Page 4)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 27 Jul 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.7 MB</span>
-                    </div>
-                    <p>Enhance critical writing techniques for Paper 2 success</p>
-                    <a href="https://drive.google.com/uc?export=download&id=139" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-    
-            <!-- Page 5 -->
-            <div v-if="currentPage === 5">
-                <div class="resource-card">
-                    <h4 class="resource-title">Paper 2 Evaluative Writing Guide (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 29 Jul 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.3 MB</span>
-                    </div>
-                    <p>Guide to writing evaluative responses for Paper 2</p>
-                    <a href="https://drive.google.com/uc?export=download&id=140" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Paper 2 Editing and Refining (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 31 Jul 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.7 MB</span>
-                    </div>
-                    <p>Techniques to edit and refine Paper 2 writing</p>
-                    <a href="https://drive.google.com/uc?export=download&id=141" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <h4 class="resource-title">Writing for Paper 2 Audiences (Page 5)</h4>
-                    <div class="resource-meta">
-                        <span class="me-3"><i class="fas fa-calendar-alt me-1"></i> 2 Aug 2023</span>
-                        <span><i class="fas fa-file-pdf me-1"></i> PDF, 9.0 MB</span>
-                    </div>
-                    <p>Tailor your writing for Paper 2 academic audiences</p>
-                    <a href="https://drive.google.com/uc?export=download&id=142" class="btn btn-download">
-                        <i class="fas fa-download me-2"></i>Download
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-
-        
-
-
-
+        <p>Techniques for crafting clear and effective paragraphs</p>
+        <a href="https://drive.google.com/uc?export=download&id=136" class="btn btn-download">
+            <i class="fas fa-download me-2"></i>Download
+        </a>
     </div>
 </div>
 
-            <!-- Pagination Controls -->
-            <div class="pagination-controls">
-                <button class="btn-prev" @click="prevPage" :disabled="currentPage === 1">
-                    <i class="fas fa-chevron-left me-2"></i>Previous
-                </button>
-                <div class="page-indicator">
-                    Page {{ currentPage }} of 6
-                </div>
-                <button class="btn-next" @click="nextPage" :disabled="currentPage === 5">
-                    Next<i class="fas fa-chevron-right ms-2"></i>
-                </button>
-            </div>
+<!-- Page 4 -->
+<div v-if="currentPage === 4">
+    <div class="resource-card">
+        <h4 class="resource-title">Paper 2 Concise Writing Guide</h4>
+        <div class="resource-meta">
+            <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+            <span><i class="fas fa-file-pdf me-1"></i> PDF, 6.8 MB</span>
         </div>
+        <p>Strategies to write concisely and effectively for Paper 2</p>
+        <a href="https://drive.google.com/uc?export=download&id=137" class="btn btn-download">
+            <i class="fas fa-download me-2"></i>Download
+        </a>
     </div>
+    <div class="resource-card">
+        <h4 class="resource-title">Counterarguments in Paper 2</h4>
+        <div class="resource-meta">
+            <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+            <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.1 MB</span>
+        </div>
+        <p>Master the use of counterarguments in Paper 2 essays</p>
+        <a href="https://drive.google.com/uc?export=download&id=138" class="btn btn-download">
+            <i class="fas fa-download me-2"></i>Download
+        </a>
+    </div>
+    <div class="resource-card">
+        <h4 class="resource-title">Paper 2 Critical Writing Skills</h4>
+        <div class="resource-meta">
+            <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+            <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.7 MB</span>
+        </div>
+        <p>Enhance critical writing techniques for Paper 2 success</p>
+        <a href="https://drive.google.com/uc?export=download&id=139" class="btn btn-download">
+            <i class="fas fa-download me-2"></i>Download
+        </a>
+    </div>
+</div>
 
+<!-- Page 5 -->
+<div v-if="currentPage === 5">
+    <div class="resource-card">
+        <h4 class="resource-title">Paper 2 Evaluative Writing Guide</h4>
+        <div class="resource-meta">
+            <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+            <span><i class="fas fa-file-pdf me-1"></i> PDF, 8.3 MB</span>
+        </div>
+        <p>Guide to writing evaluative responses for Paper 2</p>
+        <a href="https://drive.google.com/uc?export=download&id=140" class="btn btn-download">
+            <i class="fas fa-download me-2"></i>Download
+        </a>
+    </div>
+    <div class="resource-card">
+        <h4 class="resource-title">Paper 2 Editing and Refining</h4>
+        <div class="resource-meta">
+            <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+            <span><i class="fas fa-file-pdf me-1"></i> PDF, 7.7 MB</span>
+        </div>
+        <p>Techniques to edit and refine Paper 2 writing</p>
+        <a href="https://drive.google.com/uc?export=download&id=141" class="btn btn-download">
+            <i class="fas fa-download me-2"></i>Download
+        </a>
+    </div>
+    <div class="resource-card">
+        <h4 class="resource-title">Writing for Paper 2 Audiences</h4>
+        <div class="resource-meta">
+            <span class="me-3"><i class="fas fa-calendar-alt me-1"></i>2025</span>
+            <span><i class="fas fa-file-pdf me-1"></i> PDF, 9.0 MB</span>
+        </div>
+        <p>Tailor your writing for Paper 2 academic audiences</p>
+        <a href="https://drive.google.com/uc?export=download&id=142" class="btn btn-download">
+            <i class="fas fa-download me-2"></i>Download
+        </a>
+    </div>
+</div>
+
+<!-- Pagination Controls -->
+<div class="pagination-controls">
+    <button class="btn-prev" @click="prevPage" :disabled="currentPage === 1">
+        <i class="fas fa-chevron-left me-2"></i>Previous
+    </button>
+    <div class="page-indicator">
+        Page {{ currentPage }} of 5
+    </div>
+    <button class="btn-next" @click="nextPage" :disabled="currentPage === 5">
+        Next<i class="fas fa-chevron-right ms-2"></i>
+    </button>
+</div>
     <!-- Footer -->
     <footer>
         <div class="container">

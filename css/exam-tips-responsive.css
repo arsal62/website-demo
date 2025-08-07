@@ -1,4 +1,4 @@
-@media (max-width: 768px) {
+/* @media (max-width: 468px) {
   /* Allow the tip cards container to size naturally */
   .tips-section .tip-cards-container {
     position: static;
@@ -13,72 +13,4 @@
     transform: none !important;
     margin-bottom: 1rem;
   }
-  
-  /* Improve display of tips icons */
-  .tips-section .tips-icons {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Add visibility indicator to active tip */
-  .tips-section .tip-icon.active {
-    background-color: var(--primary);
-    color: white;
-    transform: scale(1.1);
-  }
-}
-
-@media (max-width: 480px) {
-  /* Further optimizations for very small screens */
-  .tips-section {
-    padding: 1rem 0.5rem;
-  }
-  
-  .tips-section .section-header h3 {
-    font-size: 1.2rem;
-  }
-  
-  .tips-section .tip-card {
-    padding: 0.75rem;
-  }
-  
-  .tips-section .tip-content h4 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .tips-section .tip-content p {
-    font-size: 0.85rem;
-    line-height: 1.4;
-  }
-  
-  /* Ensure tip icons are properly spaced and sized */
-  .tips-section .tip-icon {
-    width: 30px;
-    height: 30px;
-    font-size: 0.9rem;
-    margin: 0 5px;
-  }
-}
-
-@media (max-width: 320px) {
-  /* Extreme small screen adjustments */
-  .tips-section .section-header h3 {
-    font-size: 1.1rem;
-  }
-  
-  .tips-section .tip-content h4 {
-    font-size: 0.9rem;
-  }
-  
-  .tips-section .tip-content p {
-    font-size: 0.8rem;
-  }
-  
-  .tips-section .tip-icon {
-    width: 25px;
-    height: 25px;
-    font-size: 0.8rem;
-  }
-}
+} */
