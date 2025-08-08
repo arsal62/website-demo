@@ -3,71 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Resources - Dr. Kamran Ali</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Resources - Dr. Kamran Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+        }
+        
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
         }
-        .main-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-        .resource-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-        .resource-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-        .filter-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-        .btn-primary {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border: none;
-            border-radius: 25px;
-            padding: 10px 25px;
-        }
-        .btn-primary:hover {
-            background: linear-gradient(45deg, #5a6fd8, #6a4190);
-            transform: translateY(-2px);
-        }
-        .form-control, .form-select {
-            border-radius: 25px;
-            border: 2px solid #e9ecef;
-            padding: 12px 20px;
-        }
-        .form-control:focus, .form-select:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-        }
+        
         .navbar {
-            background: linear-gradient(45deg, #667eea, #764ba2) !important;
+            background-color: var(--dark-color) !important;
         }
-        .stats-card {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+        
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        
+        .nav-link.active {
+            font-weight: bold;
+            color: var(--secondary-color) !important;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-header:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+        
+        .level-card, .subject-card, .paper-card {
+            transition: all 0.3s ease;
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+            text-align: center;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .level-card:hover, .subject-card:hover, .paper-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .resource-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .resource-title {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .resource-meta {
+            color: #666;
+            font-size: 14px;
+            margin: 8px 0 12px 0;
+        }
+        
+        .resource-meta i {
+            margin-right: 4px;
+        }
+        
+        .resource-card p {
+            color: #666;
+            margin: 8px 0 16px 0;
+        }
+        
+        .btn-download {
+            background-color: #3498db;
             color: white;
-            border-radius: 15px;
-        }
-        .loading-spinner {
-            display: flex;
-            justify-content: center;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            display: inline-flex;
             align-items: center;
-            height: 200px;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
+        
+        .btn-download:hover {
+            background-color: #2980b9;
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        .btn-download i {
+            margin-right: 8px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .loading i {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .back-button {
+            background-color: #95a5a6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: #7f8c8d;
+            color: white;
+        }
+        
+        .pagination {
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
         .no-resources {
             text-align: center;
-            padding: 50px;
-            color: #6c757d;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .no-resources i {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: #bdc3c7;
         }
     </style>
 </head>
@@ -76,7 +177,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <i class="fas fa-graduation-cap"></i> Dr. Kamran Ali
+                <i class="fas fa-graduation-cap me-2"></i>
+                Dr. Kamran Ali
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -103,214 +205,218 @@
         </div>
     </nav>
 
-    <div id="app" class="container-fluid py-4">
-        <div class="main-container p-4">
-            <!-- Header -->
-            <div class="text-center mb-5">
-                <h1 class="display-4 text-primary">
-                    <i class="fas fa-book-open"></i> Study Resources
-                </h1>
-                <p class="lead text-muted">Access comprehensive study materials for O and A Level students</p>
-            </div>
-
-            <!-- Stats Cards -->
-            <div class="row mb-4">
-                <div class="col-md-3">
-                    <div class="card stats-card">
-                        <div class="card-body text-center">
-                            <h3>{{ totalResources }}</h3>
-                            <p class="mb-0">Total Resources</p>
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div id="app">
+            <!-- Level Selection -->
+            <div v-if="!currentLevel">
+                <h2 class="section-header">Select Your Level</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="level-card" @click="setLevel('O Level')">
+                            <i class="fas fa-book fa-3x text-primary mb-3"></i>
+                            <h4>O Level</h4>
+                            <p class="text-muted">Ordinary Level English Resources</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card stats-card">
-                        <div class="card-body text-center">
-                            <h3>{{ totalDownloads }}</h3>
-                            <p class="mb-0">Total Downloads</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card stats-card">
-                        <div class="card-body text-center">
-                            <h3>{{ filteredResources.length }}</h3>
-                            <p class="mb-0">Showing</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card stats-card">
-                        <div class="card-body text-center">
-                            <h3>{{ currentPage }}</h3>
-                            <p class="mb-0">Current Page</p>
+                    <div class="col-md-6">
+                        <div class="level-card" @click="setLevel('A Level')">
+                            <i class="fas fa-graduation-cap fa-3x text-primary mb-3"></i>
+                            <h4>A Level</h4>
+                            <p class="text-muted">Advanced Level English Resources</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Filters -->
-            <div class="card filter-card mb-4">
-                <div class="card-header">
-                    <h5><i class="fas fa-filter"></i> Filter Resources</h5>
+            <!-- Subject Selection -->
+            <div v-if="currentLevel && !currentSubject">
+                <button class="back-button" @click="resetView">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Levels
+                </button>
+                <h2 class="section-header">{{ currentLevel }} - Select Subject</h2>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="subject-card" @click="setSubject('English')">
+                            <i class="fas fa-language fa-3x text-primary mb-3"></i>
+                            <h4>English</h4>
+                            <p class="text-muted">Comprehensive English language resources</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
+            </div>
+
+            <!-- Paper Selection -->
+            <div v-if="currentSubject && !currentPaper">
+                <button class="back-button" @click="backToMain">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Subjects
+                </button>
+                <h2 class="section-header">{{ currentLevel }} - {{ currentSubject }} - Select Paper</h2>
+                <div class="row">
+                    <div class="col-md-6" v-if="currentLevel === 'O Level'">
+                        <div class="paper-card" @click="setPaper('Paper 1')">
+                            <i class="fas fa-file-alt fa-3x text-primary mb-3"></i>
+                            <h4>Paper 1</h4>
+                            <p class="text-muted">Reading and Writing</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" v-if="currentLevel === 'O Level'">
+                        <div class="paper-card" @click="setPaper('Paper 2')">
+                            <i class="fas fa-headphones fa-3x text-primary mb-3"></i>
+                            <h4>Paper 2</h4>
+                            <p class="text-muted">Listening and Speaking</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" v-if="currentLevel === 'A Level'">
+                        <div class="paper-card" @click="setPaper('Paper 1')">
+                            <i class="fas fa-file-alt fa-3x text-primary mb-3"></i>
+                            <h4>Paper 1</h4>
+                            <p class="text-muted">Reading and Writing</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" v-if="currentLevel === 'A Level'">
+                        <div class="paper-card" @click="setPaper('Paper 2')">
+                            <i class="fas fa-headphones fa-3x text-primary mb-3"></i>
+                            <h4>Paper 2</h4>
+                            <p class="text-muted">Listening and Speaking</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" v-if="currentLevel === 'A Level'">
+                        <div class="paper-card" @click="setPaper('Paper 3')">
+                            <i class="fas fa-file-alt fa-3x text-primary mb-3"></i>
+                            <h4>Paper 3</h4>
+                            <p class="text-muted">Advanced Reading</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" v-if="currentLevel === 'A Level'">
+                        <div class="paper-card" @click="setPaper('Paper 4')">
+                            <i class="fas fa-headphones fa-3x text-primary mb-3"></i>
+                            <h4>Paper 4</h4>
+                            <p class="text-muted">Advanced Writing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Selection -->
+            <div v-if="currentPaper && !currentCategory">
+                <button class="back-button" @click="backToPapers">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Papers
+                </button>
+                <h2 class="section-header">{{ currentLevel }} - {{ currentSubject }} - {{ currentPaper }} - Select Category</h2>
+                <div class="row">
+                    <div class="col-md-4" v-if="canShowCategory('Reading')">
+                        <div class="paper-card" @click="setCategory('Reading')">
+                            <i class="fas fa-book-open fa-3x text-primary mb-3"></i>
+                            <h4>Reading</h4>
+                            <p class="text-muted">Reading comprehension materials</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" v-if="canShowCategory('Writing')">
+                        <div class="paper-card" @click="setCategory('Writing')">
+                            <i class="fas fa-pen-fancy fa-3x text-primary mb-3"></i>
+                            <h4>Writing</h4>
+                            <p class="text-muted">Writing guides and examples</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" v-if="canShowCategory('Listening')">
+                        <div class="paper-card" @click="setCategory('Listening')">
+                            <i class="fas fa-headphones fa-3x text-primary mb-3"></i>
+                            <h4>Listening</h4>
+                            <p class="text-muted">Listening comprehension resources</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" v-if="canShowCategory('Speaking')">
+                        <div class="paper-card" @click="setCategory('Speaking')">
+                            <i class="fas fa-microphone fa-3x text-primary mb-3"></i>
+                            <h4>Speaking</h4>
+                            <p class="text-muted">Speaking practice materials</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" v-if="canShowCategory('Past Papers')">
+                        <div class="paper-card" @click="setCategory('Past Papers')">
+                            <i class="fas fa-file-archive fa-3x text-primary mb-3"></i>
+                            <h4>Past Papers</h4>
+                            <p class="text-muted">Previous exam papers</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" v-if="canShowCategory('Worksheets')">
+                        <div class="paper-card" @click="setCategory('Worksheets')">
+                            <i class="fas fa-clipboard-list fa-3x text-primary mb-3"></i>
+                            <h4>Worksheets</h4>
+                            <p class="text-muted">Practice worksheets</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources Display -->
+            <div v-if="currentCategory">
+                <button class="back-button" @click="backToCategories">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Categories
+                </button>
+                <h2 class="section-header">
+                    {{ currentLevel }} - {{ currentSubject }} - {{ currentPaper }} - {{ currentCategory }}
+                </h2>
+                
+                <!-- Loading State -->
+                <div v-if="loading" class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading resources...</p>
+                </div>
+                
+                <!-- No Resources State -->
+                <div v-else-if="resources.length === 0" class="no-resources">
+                    <i class="fas fa-folder-open"></i>
+                    <h4>No Resources Available</h4>
+                    <p>There are no resources available for this category yet.</p>
+                </div>
+                
+                <!-- Resources List -->
+                <div v-else>
                     <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label">Level</label>
-                            <select class="form-select" v-model="filters.level">
-                                <option value="">All Levels</option>
-                                <option value="O Level">O Level</option>
-                                <option value="A Level">A Level</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label">Subject</label>
-                            <select class="form-select" v-model="filters.subject">
-                                <option value="">All Subjects</option>
-                                <option value="English">English</option>
-                                <option value="Mathematics">Mathematics</option>
-                                <option value="Physics">Physics</option>
-                                <option value="Chemistry">Chemistry</option>
-                                <option value="Biology">Biology</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label">Paper</label>
-                            <select class="form-select" v-model="filters.paper">
-                                <option value="">All Papers</option>
-                                <option value="Paper 1">Paper 1</option>
-                                <option value="Paper 2">Paper 2</option>
-                                <option value="Paper 3">Paper 3</option>
-                                <option value="Paper 4">Paper 4</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label">Category</label>
-                            <select class="form-select" v-model="filters.category">
-                                <option value="">All Categories</option>
-                                <option value="Past Papers">Past Papers</option>
-                                <option value="Notes">Notes</option>
-                                <option value="Practice Questions">Practice Questions</option>
-                                <option value="Study Guides">Study Guides</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Search</label>
-                            <input type="text" class="form-control" v-model="searchQuery" placeholder="Search resources...">
-                        </div>
-                        <div class="col-md-6 mb-3 d-flex align-items-end">
-                            <button class="btn btn-primary me-2" @click="clearFilters">
-                                <i class="fas fa-times"></i> Clear Filters
-                            </button>
-                            <button class="btn btn-outline-primary" @click="loadResources">
-                                <i class="fas fa-sync-alt"></i> Refresh
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Loading State -->
-            <div v-if="loading" class="loading-spinner">
-                <div class="text-center">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                    <p class="mt-3">Loading resources...</p>
-                </div>
-            </div>
-
-            <!-- Error State -->
-            <div v-else-if="error" class="alert alert-danger">
-                <i class="fas fa-exclamation-triangle"></i> {{ error }}
-            </div>
-
-            <!-- Resources Grid -->
-            <div v-else-if="filteredResources.length > 0" class="row">
-                <div v-for="resource in paginatedResources" :key="resource.id" class="col-md-6 col-lg-4 mb-4">
-                    <div class="card resource-card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ resource.title }}</h5>
-                            <p class="card-text text-muted">{{ resource.description || 'No description available.' }}</p>
-                            
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <small class="text-muted">
-                                        <i class="fas fa-layer-group"></i> {{ resource.level }}
-                                    </small>
+                        <div class="col-md-6" v-for="resource in paginatedResources" :key="resource.id">
+                            <div class="resource-card">
+                                <h4 class="resource-title">{{ resource.title }}</h4>
+                                <div class="resource-meta">
+                                    <span class="me-3">
+                                        <i class="fas fa-calendar-alt me-1"></i>
+                                        {{ formatDate(resource.upload_date) }}
+                                    </span>
+                                    <span>
+                                        <i class="fas fa-download me-1"></i>
+                                        {{ resource.download_count || 0 }} downloads
+                                    </span>
                                 </div>
-                                <div class="col-6">
-                                    <small class="text-muted">
-                                        <i class="fas fa-book"></i> {{ resource.subject }}
-                                    </small>
-                                </div>
-                            </div>
-                            
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <small class="text-muted">
-                                        <i class="fas fa-file-alt"></i> {{ resource.paper }}
-                                    </small>
-                                </div>
-                                <div class="col-6">
-                                    <small class="text-muted">
-                                        <i class="fas fa-tag"></i> {{ resource.category }}
-                                    </small>
-                                </div>
-                            </div>
-                            
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">
-                                    <i class="fas fa-download"></i> {{ resource.download_count || 0 }} downloads
-                                </small>
-                                <small class="text-muted">
-                                    <i class="fas fa-calendar"></i> {{ formatDate(resource.upload_date) }}
-                                </small>
+                                <p v-if="resource.description">{{ resource.description }}</p>
+                                <button class="btn-download" @click="downloadResource(resource)">
+                                    <i class="fas fa-download"></i>Download
+                                </button>
                             </div>
                         </div>
-                        <div class="card-footer bg-transparent">
-                            <button class="btn btn-primary w-100" @click="downloadResource(resource)">
-                                <i class="fas fa-download"></i> Download
-                            </button>
-                        </div>
                     </div>
+                    
+                    <!-- Pagination -->
+                    <nav v-if="totalPages > 1">
+                        <ul class="pagination">
+                            <li class="page-item" :class="{ disabled: currentPage === 1 }">
+                                <a class="page-link" href="#" @click.prevent="changePage(currentPage - 1)">Previous</a>
+                            </li>
+                            <li class="page-item" v-for="page in pageNumbers" :key="page" :class="{ active: page === currentPage }">
+                                <a class="page-link" href="#" @click.prevent="changePage(page)">{{ page }}</a>
+                            </li>
+                            <li class="page-item" :class="{ disabled: currentPage === totalPages }">
+                                <a class="page-link" href="#" @click.prevent="changePage(currentPage + 1)">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-            </div>
-
-            <!-- No Resources State -->
-            <div v-else class="no-resources">
-                <i class="fas fa-search fa-3x text-muted mb-3"></i>
-                <h4>No resources found</h4>
-                <p class="text-muted">Try adjusting your filters or check back later for new resources.</p>
-            </div>
-
-            <!-- Pagination -->
-            <div v-if="totalPages > 1" class="d-flex justify-content-center mt-4">
-                <nav>
-                    <ul class="pagination">
-                        <li class="page-item" :class="{ disabled: currentPage === 1 }">
-                            <a class="page-link" href="#" @click.prevent="goToPage(currentPage - 1)">
-                                <i class="fas fa-chevron-left"></i>
-                            </a>
-                        </li>
-                        <li v-for="page in visiblePages" :key="page" class="page-item" :class="{ active: page === currentPage }">
-                            <a class="page-link" href="#" @click.prevent="goToPage(page)">{{ page }}</a>
-                        </li>
-                        <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-                            <a class="page-link" href="#" @click.prevent="goToPage(currentPage + 1)">
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         const API_BASE_URL = 'https://web-production-17bd.up.railway.app';
@@ -320,89 +426,135 @@
         createApp({
             data() {
                 return {
+                    currentLevel: '',
+                    currentSubject: '',
+                    currentPaper: '',
+                    currentCategory: '',
                     resources: [],
-                    loading: true,
-                    error: '',
+                    loading: false,
                     currentPage: 1,
-                    itemsPerPage: 9,
-                    searchQuery: '',
-                    filters: {
-                        level: '',
-                        subject: '',
-                        paper: '',
-                        category: ''
-                    }
-                }
+                    itemsPerPage: 6,
+                    totalItems: 0
+                };
             },
             computed: {
-                filteredResources() {
-                    let filtered = this.resources;
-
-                    // Apply search filter
-                    if (this.searchQuery) {
-                        const query = this.searchQuery.toLowerCase();
-                        filtered = filtered.filter(resource => 
-                            resource.title.toLowerCase().includes(query) ||
-                            (resource.description && resource.description.toLowerCase().includes(query))
-                        );
-                    }
-
-                    // Apply filters
-                    if (this.filters.level) {
-                        filtered = filtered.filter(resource => resource.level === this.filters.level);
-                    }
-                    if (this.filters.subject) {
-                        filtered = filtered.filter(resource => resource.subject === this.filters.subject);
-                    }
-                    if (this.filters.paper) {
-                        filtered = filtered.filter(resource => resource.paper === this.filters.paper);
-                    }
-                    if (this.filters.category) {
-                        filtered = filtered.filter(resource => resource.category === this.filters.category);
-                    }
-
-                    return filtered;
+                totalPages() {
+                    return Math.ceil(this.totalItems / this.itemsPerPage);
                 },
                 paginatedResources() {
                     const start = (this.currentPage - 1) * this.itemsPerPage;
                     const end = start + this.itemsPerPage;
-                    return this.filteredResources.slice(start, end);
+                    return this.resources.slice(start, end);
                 },
-                totalPages() {
-                    return Math.ceil(this.filteredResources.length / this.itemsPerPage);
-                },
-                visiblePages() {
+                pageNumbers() {
                     const pages = [];
-                    const start = Math.max(1, this.currentPage - 2);
-                    const end = Math.min(this.totalPages, this.currentPage + 2);
+                    const maxPages = Math.min(this.totalPages, 5);
+                    let start = Math.max(1, this.currentPage - Math.floor(maxPages / 2));
+                    let end = Math.min(this.totalPages, start + maxPages - 1);
+                    
+                    if (end - start + 1 < maxPages) {
+                        start = Math.max(1, end - maxPages + 1);
+                    }
                     
                     for (let i = start; i <= end; i++) {
                         pages.push(i);
                     }
                     return pages;
-                },
-                totalResources() {
-                    return this.resources.length;
-                },
-                totalDownloads() {
-                    return this.resources.reduce((sum, resource) => sum + (resource.download_count || 0), 0);
                 }
             },
-            mounted() {
-                this.loadResources();
-            },
             methods: {
+                setLevel(level) {
+                    this.currentLevel = level;
+                    this.currentSubject = '';
+                    this.currentPaper = '';
+                    this.currentCategory = '';
+                    this.currentPage = 1;
+                },
+                setSubject(subject) {
+                    this.currentSubject = subject;
+                    this.currentPaper = '';
+                    this.currentCategory = '';
+                    this.currentPage = 1;
+                },
+                setPaper(paper) {
+                    this.currentPaper = paper;
+                    this.currentCategory = '';
+                    this.currentPage = 1;
+                },
+                setCategory(category) {
+                    this.currentCategory = category;
+                    this.currentPage = 1;
+                    this.loadResources();
+                },
+                canShowCategory(category) {
+                    // Prevent showing Writing or Worksheets category for A Level Paper 1
+                    if ((category === 'Writing' || category === 'Worksheets') && 
+                        this.currentLevel === 'A Level' && this.currentPaper === 'Paper 1') {
+                        return false;
+                    }
+                    // Prevent showing Reading or Worksheets category for A Level Paper 2
+                    if ((category === 'Reading' || category === 'Worksheets') && 
+                        this.currentLevel === 'A Level' && this.currentPaper === 'Paper 2') {
+                        return false;
+                    }
+                    // Prevent showing Writing or Worksheets category for O Level Paper 1
+                    if ((category === 'Writing' || category === 'Worksheets') && 
+                        this.currentLevel === 'O Level' && this.currentPaper === 'Paper 1') {
+                        return false;
+                    }
+                    // Prevent showing Reading or Worksheets category for O Level Paper 2
+                    if ((category === 'Reading' || category === 'Worksheets') && 
+                        this.currentLevel === 'O Level' && this.currentPaper === 'Paper 2') {
+                        return false;
+                    }
+                    return true;
+                },
+                resetView() {
+                    this.currentLevel = '';
+                    this.currentSubject = '';
+                    this.currentPaper = '';
+                    this.currentCategory = '';
+                    this.currentPage = 1;
+                    this.resources = [];
+                },
+                backToMain() {
+                    this.currentSubject = '';
+                    this.currentPaper = '';
+                    this.currentCategory = '';
+                    this.currentPage = 1;
+                    this.resources = [];
+                },
+                backToPapers() {
+                    this.currentPaper = '';
+                    this.currentCategory = '';
+                    this.currentPage = 1;
+                    this.resources = [];
+                },
+                backToCategories() {
+                    this.currentCategory = '';
+                    this.currentPage = 1;
+                    this.resources = [];
+                },
                 async loadResources() {
                     this.loading = true;
-                    this.error = '';
-                    
                     try {
+                        // Filter resources based on current selection
                         const response = await axios.get(`${API_BASE_URL}/api/resources`);
-                        this.resources = response.data.resources;
-                        this.currentPage = 1; // Reset to first page when loading new data
+                        const allResources = response.data.resources;
+                        
+                        // Filter resources based on current selection
+                        this.resources = allResources.filter(resource => 
+                            resource.level === this.currentLevel &&
+                            resource.subject === this.currentSubject &&
+                            resource.paper === this.currentPaper &&
+                            resource.category === this.currentCategory
+                        );
+                        
+                        this.totalItems = this.resources.length;
                     } catch (error) {
-                        this.error = 'Failed to load resources. Please try again later.';
                         console.error('Error loading resources:', error);
+                        this.resources = [];
+                        this.totalItems = 0;
                     } finally {
                         this.loading = false;
                     }
@@ -430,33 +582,16 @@
                         console.error('Error downloading resource:', error);
                     }
                 },
-                goToPage(page) {
+                changePage(page) {
                     if (page >= 1 && page <= this.totalPages) {
                         this.currentPage = page;
                     }
                 },
-                clearFilters() {
-                    this.filters = {
-                        level: '',
-                        subject: '',
-                        paper: '',
-                        category: ''
-                    };
-                    this.searchQuery = '';
-                    this.currentPage = 1;
-                },
                 formatDate(dateString) {
-                    if (!dateString) return 'Unknown date';
-                    const date = new Date(dateString);
-                    return date.toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric'
-                    });
+                    return new Date(dateString).toLocaleDateString();
                 }
             }
         }).mount('#app');
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
