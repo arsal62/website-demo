@@ -5,7 +5,6 @@ const FileSync = require('lowdb/adapters/FileSync');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const session = require('express-session');
-const SQLiteStore = require('connect-sqlite3')(session);
 const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
@@ -21,12 +20,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('.'));
 
-// Session configuration
+// Session configuration - using memory store instead of SQLite
 app.use(session({
-    store: new SQLiteStore({
-        db: 'sessions.db',
-        dir: './'
-    }),
     secret: process.env.JWT_SECRET || 'your-secret-key',
     resave: false,
     saveUninitialized: false,
