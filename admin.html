@@ -3,602 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Dr. Kamran Website</title>
+    <title>Admin Panel - Dr. Kamran Ali</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2ecc71;
-            --dark-color: #2c3e50;
-            --light-color: #ecf0f1;
-            --danger-color: #e74c3c;
-            --warning-color: #f39c12;
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
         }
-
+        
         body {
+            background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
         }
-
-        .navbar {
-            background-color: var(--dark-color) !important;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .sidebar {
-            background: white;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-            min-height: calc(100vh - 76px);
-        }
-
-        .sidebar .nav-link {
-            color: var(--dark-color);
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin: 4px 8px;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .main-content {
-            padding: 20px;
-        }
-
-        .card {
-            border: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-radius: 12px;
-        }
-
-        .card-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border-radius: 12px 12px 0 0 !important;
-            font-weight: 600;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        .btn-success {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
-        }
-
-        .btn-danger {
-            background-color: var(--danger-color);
-            border-color: var(--danger-color);
-        }
-
-        .form-control, .form-select {
-            border-radius: 8px;
-            border: 2px solid #e9ecef;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
-        }
-
-        .upload-area {
-            border: 2px dashed #dee2e6;
-            border-radius: 12px;
-            padding: 40px;
-            text-align: center;
-            transition: all 0.3s ease;
-            background-color: #f8f9fa;
-        }
-
-        .upload-area:hover {
-            border-color: var(--primary-color);
-            background-color: rgba(52, 152, 219, 0.05);
-        }
-
-        .upload-area.dragover {
-            border-color: var(--primary-color);
-            background-color: rgba(52, 152, 219, 0.1);
-        }
-
-        .resource-item {
-            background: white;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-
-        .resource-item:hover {
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
-
-        .stats-card {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
+        
         .login-container {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
         }
-
-        .login-card {
+        
+        .admin-card {
             background: white;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            padding: 40px;
-            width: 100%;
-            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .admin-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .admin-body {
+            padding: 30px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .dashboard-stats {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            margin-bottom: 15px;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .upload-section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .loading {
-            display: none;
-        }
-
-        .loading.show {
-            display: block;
+            opacity: 0.6;
+            pointer-events: none;
         }
 
         .alert {
-            border-radius: 8px;
-            border: none;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
     <!-- Login Screen -->
     <div id="loginScreen" class="login-container">
-        <div class="login-card">
-            <div class="text-center mb-4">
-                <h2 class="text-primary">Admin Panel</h2>
-                <p class="text-muted">Dr. Kamran Website Management</p>
+        <div class="admin-card" style="width: 400px;">
+            <div class="admin-header">
+                <h3><i class="fas fa-user-shield"></i> Admin Panel</h3>
+                <p class="mb-0">Dr. Kamran Website Management</p>
             </div>
-            
-            <div id="loginAlert" class="alert alert-danger" style="display: none;"></div>
-            
-            <form id="loginForm">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" required>
+            <div class="admin-body">
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary" id="loginBtn">
+                            <span id="loginBtnText">Login</span>
+                            <span id="loginBtnSpinner" class="spinner-border spinner-border-sm ms-2" style="display: none;"></span>
+                        </button>
+                    </div>
+                </form>
+                <div id="loginError" class="alert alert-danger mt-3" style="display: none;">
+                    Invalid credentials. Please try again.
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">
-                    <span class="loading" id="loginLoading">
-                        <i class="fas fa-spinner fa-spin me-2"></i>
-                    </span>
-                    Login
-                </button>
-            </form>
+            </div>
         </div>
     </div>
 
-    <!-- Main Admin Panel -->
-    <div id="adminPanel" style="display: none;">
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container-fluid">
+    <!-- Dashboard Screen -->
+    <div id="dashboardScreen" style="display: none;">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">
+            <div class="container">
                 <a class="navbar-brand" href="#">
-                    <i class="fas fa-graduation-cap me-2"></i>
-                    Dr. Kamran Admin Panel
+                    <i class="fas fa-user-shield"></i> Dr. Kamran Admin Panel
                 </a>
                 <div class="navbar-nav ms-auto">
-                    <span class="navbar-text me-3">
-                        Welcome, <span id="adminUsername"></span>
-                    </span>
-                    <button class="btn btn-outline-light" onclick="logout()">
-                        <i class="fas fa-sign-out-alt me-1"></i>Logout
-                    </button>
+                    <span class="navbar-text me-3">Welcome, <span id="adminUsername">Admin</span></span>
+                    <button class="btn btn-outline-light btn-sm" onclick="logout()">Logout</button>
                 </div>
             </div>
         </nav>
 
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Sidebar -->
-                <div class="col-md-3 col-lg-2 sidebar">
-                    <div class="d-flex flex-column flex-shrink-0 p-3">
-                        <ul class="nav nav-pills flex-column mb-auto">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link active" onclick="showSection('dashboard')">
-                                    <i class="fas fa-tachometer-alt me-2"></i>
-                                    Dashboard
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" onclick="showSection('uploadResource')">
-                                    <i class="fas fa-upload me-2"></i>
-                                    Upload Resource
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" onclick="showSection('uploadVideo')">
-                                    <i class="fas fa-video me-2"></i>
-                                    Upload Video
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" onclick="showSection('manageResources')">
-                                    <i class="fas fa-file-alt me-2"></i>
-                                    Manage Resources
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" onclick="showSection('manageVideos')">
-                                    <i class="fas fa-play-circle me-2"></i>
-                                    Manage Videos
-                                </a>
-                            </li>
-                        </ul>
+        <div class="container mt-4">
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <h4><i class="fas fa-chart-bar"></i> Dashboard Overview</h4>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalResources">0</div>
+                            <div class="stat-text">Total Resources</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalVideos">0</div>
+                            <div class="stat-text">Total Videos</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalDownloads">0</div>
+                            <div class="stat-text">Total Downloads</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalViews">0</div>
+                            <div class="stat-text">Total Views</div>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Main Content -->
-                <div class="col-md-9 col-lg-10 main-content">
-                    <!-- Dashboard Section -->
-                    <div id="dashboard" class="section">
-                        <h2 class="mb-4">Dashboard</h2>
-                        
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="stats-card">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <h3 id="totalResources">0</h3>
-                                            <p class="mb-0">Total Resources</p>
-                                        </div>
-                                        <div class="align-self-center">
-                                            <i class="fas fa-file-alt fa-2x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="stats-card">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <h3 id="totalVideos">0</h3>
-                                            <p class="mb-0">Total Videos</p>
-                                        </div>
-                                        <div class="align-self-center">
-                                            <i class="fas fa-video fa-2x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="stats-card">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <h3 id="totalDownloads">0</h3>
-                                            <p class="mb-0">Total Downloads</p>
-                                        </div>
-                                        <div class="align-self-center">
-                                            <i class="fas fa-download fa-2x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="stats-card">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <h3 id="totalViews">0</h3>
-                                            <p class="mb-0">Total Views</p>
-                                        </div>
-                                        <div class="align-self-center">
-                                            <i class="fas fa-eye fa-2x"></i>
-                                        </div>
-                                    </div>
-                                </div>
+            <!-- Upload Resource Section -->
+            <div class="upload-section">
+                <h4><i class="fas fa-upload"></i> Upload Study Resource</h4>
+                <form id="resourceForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="resourceTitle" class="form-label">Title *</label>
+                                <input type="text" class="form-control" id="resourceTitle" required>
                             </div>
                         </div>
-
-                        <div class="row mt-4">
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="mb-0">Recent Resources</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="recentResources"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="mb-0">Recent Videos</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="recentVideos"></div>
-                                    </div>
-                                </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="resourceLevel" class="form-label">Level *</label>
+                                <select class="form-select" id="resourceLevel" required>
+                                    <option value="">Select Level</option>
+                                    <option value="O Level">O Level</option>
+                                    <option value="A Level">A Level</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Upload Resource Section -->
-                    <div id="uploadResource" class="section" style="display: none;">
-                        <h2 class="mb-4">Upload Study Resource</h2>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="mb-0">Resource Information</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="resourceSubject" class="form-label">Subject *</label>
+                                <select class="form-select" id="resourceSubject" required>
+                                    <option value="">Select Subject</option>
+                                    <option value="English">English</option>
+                                </select>
                             </div>
-                            <div class="card-body">
-                                <div id="resourceUploadAlert" class="alert" style="display: none;"></div>
-                                
-                                <form id="resourceUploadForm">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="resourceTitle" class="form-label">Title *</label>
-                                                <input type="text" class="form-control" id="resourceTitle" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="resourceLevel" class="form-label">Level *</label>
-                                                <select class="form-select" id="resourceLevel" required>
-                                                    <option value="">Select Level</option>
-                                                    <option value="O Level">O Level</option>
-                                                    <option value="A Level">A Level</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="resourceSubject" class="form-label">Subject *</label>
-                                                <select class="form-select" id="resourceSubject" required>
-                                                    <option value="">Select Subject</option>
-                                                    <option value="English">English</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="resourcePaper" class="form-label">Paper *</label>
-                                                <select class="form-select" id="resourcePaper" required>
-                                                    <option value="">Select Paper</option>
-                                                    <option value="Paper 1">Paper 1</option>
-                                                    <option value="Paper 2">Paper 2</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="resourceCategory" class="form-label">Category *</label>
-                                                <select class="form-select" id="resourceCategory" required>
-                                                    <option value="">Select Category</option>
-                                                    <option value="Reading">Reading</option>
-                                                    <option value="Writing">Writing</option>
-                                                    <option value="Listening">Listening</option>
-                                                    <option value="Speaking">Speaking</option>
-                                                    <option value="Past Papers">Past Papers</option>
-                                                    <option value="Worksheets">Worksheets</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="resourceFile" class="form-label">File *</label>
-                                                <input type="file" class="form-control" id="resourceFile" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="resourceDescription" class="form-label">Description</label>
-                                        <textarea class="form-control" id="resourceDescription" rows="3"></textarea>
-                                    </div>
-                                    
-                                    <button type="submit" class="btn btn-primary">
-                                        <span class="loading" id="resourceUploadLoading">
-                                            <i class="fas fa-spinner fa-spin me-2"></i>
-                                        </span>
-                                        Upload Resource
-                                    </button>
-                                </form>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="resourcePaper" class="form-label">Paper *</label>
+                                <select class="form-select" id="resourcePaper" required>
+                                    <option value="">Select Paper</option>
+                                    <option value="Paper 1">Paper 1</option>
+                                    <option value="Paper 2">Paper 2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="resourceCategory" class="form-label">Category *</label>
+                                <select class="form-select" id="resourceCategory" required>
+                                    <option value="">Select Category</option>
+                                    <option value="Reading">Reading</option>
+                                    <option value="Writing">Writing</option>
+                                    <option value="Listening">Listening</option>
+                                    <option value="Speaking">Speaking</option>
+                                    <option value="Past Papers">Past Papers</option>
+                                    <option value="Worksheets">Worksheets</option>
+                                </select>
                             </div>
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <label for="resourceFile" class="form-label">File *</label>
+                        <input type="file" class="form-control" id="resourceFile" accept=".pdf,.doc,.docx,.txt" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="resourceDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="resourceDescription" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="resourceBtn">
+                        <i class="fas fa-upload"></i> Upload Resource
+                        <span id="resourceBtnSpinner" class="spinner-border spinner-border-sm ms-2" style="display: none;"></span>
+                    </button>
+                </form>
+                <div id="resourceAlert" class="alert mt-3" style="display: none;"></div>
+            </div>
 
-                    <!-- Upload Video Section -->
-                    <div id="uploadVideo" class="section" style="display: none;">
-                        <h2 class="mb-4">Upload Video Resource</h2>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="mb-0">Video Information</h5>
+            <!-- Upload Video Section -->
+            <div class="upload-section">
+                <h4><i class="fas fa-video"></i> Upload Video Resource</h4>
+                <form id="videoForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="videoTitle" class="form-label">Title *</label>
+                                <input type="text" class="form-control" id="videoTitle" required>
                             </div>
-                            <div class="card-body">
-                                <div id="videoUploadAlert" class="alert" style="display: none;"></div>
-                                
-                                <form id="videoUploadForm">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="videoTitle" class="form-label">Title *</label>
-                                                <input type="text" class="form-control" id="videoTitle" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="videoLevel" class="form-label">Level *</label>
-                                                <select class="form-select" id="videoLevel" required>
-                                                    <option value="">Select Level</option>
-                                                    <option value="O Level">O Level</option>
-                                                    <option value="A Level">A Level</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="videoSubject" class="form-label">Subject *</label>
-                                                <select class="form-select" id="videoSubject" required>
-                                                    <option value="">Select Subject</option>
-                                                    <option value="English">English</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="videoPaper" class="form-label">Paper *</label>
-                                                <select class="form-select" id="videoPaper" required>
-                                                    <option value="">Select Paper</option>
-                                                    <option value="Paper 1">Paper 1</option>
-                                                    <option value="Paper 2">Paper 2</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="videoCategory" class="form-label">Category *</label>
-                                                <select class="form-select" id="videoCategory" required>
-                                                    <option value="">Select Category</option>
-                                                    <option value="Reading">Reading</option>
-                                                    <option value="Writing">Writing</option>
-                                                    <option value="Listening">Listening</option>
-                                                    <option value="Speaking">Speaking</option>
-                                                    <option value="Past Papers">Past Papers</option>
-                                                    <option value="Worksheets">Worksheets</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="videoDuration" class="form-label">Duration (e.g., 15:30)</label>
-                                                <input type="text" class="form-control" id="videoDuration" placeholder="MM:SS">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="videoFile" class="form-label">Video File *</label>
-                                                <input type="file" class="form-control" id="videoFile" accept=".mp4,.avi,.mov,.wmv,.flv" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="videoThumbnail" class="form-label">Thumbnail (Optional)</label>
-                                                <input type="file" class="form-control" id="videoThumbnail" accept=".jpg,.jpeg,.png,.gif">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="videoDescription" class="form-label">Description</label>
-                                        <textarea class="form-control" id="videoDescription" rows="3"></textarea>
-                                    </div>
-                                    
-                                    <button type="submit" class="btn btn-primary">
-                                        <span class="loading" id="videoUploadLoading">
-                                            <i class="fas fa-spinner fa-spin me-2"></i>
-                                        </span>
-                                        Upload Video
-                                    </button>
-                                </form>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="videoDuration" class="form-label">Duration (e.g., 15:30)</label>
+                                <input type="text" class="form-control" id="videoDuration" placeholder="15:30">
                             </div>
                         </div>
                     </div>
-
-                    <!-- Manage Resources Section -->
-                    <div id="manageResources" class="section" style="display: none;">
-                        <h2 class="mb-4">Manage Resources</h2>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="mb-0">All Resources</h5>
-                                    <div class="d-flex gap-2">
-                                        <select class="form-select form-select-sm" id="resourceFilterLevel" style="width: auto;">
-                                            <option value="">All Levels</option>
-                                            <option value="O Level">O Level</option>
-                                            <option value="A Level">A Level</option>
-                                        </select>
-                                        <select class="form-select form-select-sm" id="resourceFilterCategory" style="width: auto;">
-                                            <option value="">All Categories</option>
-                                            <option value="Reading">Reading</option>
-                                            <option value="Writing">Writing</option>
-                                            <option value="Listening">Listening</option>
-                                            <option value="Speaking">Speaking</option>
-                                            <option value="Past Papers">Past Papers</option>
-                                            <option value="Worksheets">Worksheets</option>
-                                        </select>
-                                    </div>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="videoLevel" class="form-label">Level *</label>
+                                <select class="form-select" id="videoLevel" required>
+                                    <option value="">Select Level</option>
+                                    <option value="O Level">O Level</option>
+                                    <option value="A Level">A Level</option>
+                                </select>
                             </div>
-                            <div class="card-body">
-                                <div id="resourcesList"></div>
-                                <div id="resourcesPagination" class="d-flex justify-content-center mt-3"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="videoSubject" class="form-label">Subject *</label>
+                                <select class="form-select" id="videoSubject" required>
+                                    <option value="">Select Subject</option>
+                                    <option value="English">English</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="videoPaper" class="form-label">Paper *</label>
+                                <select class="form-select" id="videoPaper" required>
+                                    <option value="">Select Paper</option>
+                                    <option value="Paper 1">Paper 1</option>
+                                    <option value="Paper 2">Paper 2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="videoCategory" class="form-label">Category *</label>
+                                <select class="form-select" id="videoCategory" required>
+                                    <option value="">Select Category</option>
+                                    <option value="Reading">Reading</option>
+                                    <option value="Writing">Writing</option>
+                                    <option value="Listening">Listening</option>
+                                    <option value="Speaking">Speaking</option>
+                                    <option value="Past Papers">Past Papers</option>
+                                    <option value="Worksheets">Worksheets</option>
+                                </select>
                             </div>
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <label for="videoFile" class="form-label">Video File *</label>
+                        <input type="file" class="form-control" id="videoFile" accept="video/*" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="videoThumbnail" class="form-label">Thumbnail (Optional)</label>
+                        <input type="file" class="form-control" id="videoThumbnail" accept="image/*">
+                    </div>
+                    <div class="mb-3">
+                        <label for="videoDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="videoDescription" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="videoBtn">
+                        <i class="fas fa-upload"></i> Upload Video
+                        <span id="videoBtnSpinner" class="spinner-border spinner-border-sm ms-2" style="display: none;"></span>
+                    </button>
+                </form>
+                <div id="videoAlert" class="alert mt-3" style="display: none;"></div>
+            </div>
 
-                    <!-- Manage Videos Section -->
-                    <div id="manageVideos" class="section" style="display: none;">
-                        <h2 class="mb-4">Manage Videos</h2>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="mb-0">All Videos</h5>
-                                    <div class="d-flex gap-2">
-                                        <select class="form-select form-select-sm" id="videoFilterLevel" style="width: auto;">
-                                            <option value="">All Levels</option>
-                                            <option value="O Level">O Level</option>
-                                            <option value="A Level">A Level</option>
-                                        </select>
-                                        <select class="form-select form-select-sm" id="videoFilterCategory" style="width: auto;">
-                                            <option value="">All Categories</option>
-                                            <option value="Reading">Reading</option>
-                                            <option value="Writing">Writing</option>
-                                            <option value="Listening">Listening</option>
-                                            <option value="Speaking">Speaking</option>
-                                            <option value="Past Papers">Past Papers</option>
-                                            <option value="Worksheets">Worksheets</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div id="videosList"></div>
-                                <div id="videosPagination" class="d-flex justify-content-center mt-3"></div>
-                            </div>
-                        </div>
+            <!-- Quick Actions -->
+            <div class="upload-section">
+                <h4><i class="fas fa-cogs"></i> Quick Actions</h4>
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="resources-api.html" class="btn btn-outline-primary w-100 mb-2">
+                            <i class="fas fa-file-alt"></i> View Resources
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="videos-api.html" class="btn btn-outline-primary w-100 mb-2">
+                            <i class="fas fa-video"></i> View Videos
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="index.html" class="btn btn-outline-primary w-100 mb-2">
+                            <i class="fas fa-home"></i> View Website
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-outline-success w-100 mb-2" onclick="exportData()">
+                            <i class="fas fa-download"></i> Export Data
+                        </button>
                     </div>
                 </div>
             </div>
@@ -607,18 +357,18 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        let currentToken = '';
+        // API Configuration
+        const API_BASE_URL = window.location.hostname === 'localhost' 
+            ? 'http://localhost:3001' 
+            : 'https://your-railway-backend-url.railway.app'; // We'll update this after Railway deployment
+
+        let authToken = localStorage.getItem('authToken');
         let currentUser = null;
 
-        // Check if user is already logged in
-        document.addEventListener('DOMContentLoaded', function() {
-            const token = localStorage.getItem('adminToken');
-            if (token) {
-                currentToken = token;
-                showAdminPanel();
-                loadDashboard();
-            }
-        });
+        // Check if already logged in
+        if (authToken) {
+            showDashboard();
+        }
 
         // Login form handler
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
@@ -627,500 +377,214 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            showLoading('loginLoading', true);
-            hideAlert('loginAlert');
+            // Show loading state
+            const loginBtn = document.getElementById('loginBtn');
+            const loginBtnText = document.getElementById('loginBtnText');
+            const loginBtnSpinner = document.getElementById('loginBtnSpinner');
+            
+            loginBtn.disabled = true;
+            loginBtnText.textContent = 'Logging in...';
+            loginBtnSpinner.style.display = 'inline-block';
             
             try {
-                const response = await fetch('/api/admin/login', {
+                const response = await fetch(`${API_BASE_URL}/api/login`, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({ username, password })
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (response.ok) {
-                    currentToken = data.token;
+                    authToken = data.token;
                     currentUser = data.user;
-                    localStorage.setItem('adminToken', currentToken);
-                    showAdminPanel();
-                    loadDashboard();
+                    localStorage.setItem('authToken', authToken);
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    
+                    showDashboard();
+                    document.getElementById('loginError').style.display = 'none';
                 } else {
-                    showAlert('loginAlert', data.message, 'danger');
+                    document.getElementById('loginError').style.display = 'block';
                 }
             } catch (error) {
-                showAlert('loginAlert', 'Login failed. Please try again.', 'danger');
+                console.error('Login error:', error);
+                document.getElementById('loginError').style.display = 'block';
             } finally {
-                showLoading('loginLoading', false);
+                // Reset loading state
+                loginBtn.disabled = false;
+                loginBtnText.textContent = 'Login';
+                loginBtnSpinner.style.display = 'none';
             }
         });
 
-        // Logout function
-        async function logout() {
-            try {
-                await fetch('/api/admin/logout', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${currentToken}`
-                    }
-                });
-            } catch (error) {
-                console.error('Logout error:', error);
-            }
-            
-            currentToken = '';
-            currentUser = null;
-            localStorage.removeItem('adminToken');
-            showLoginScreen();
-        }
-
-        // Show/hide sections
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.style.display = 'none';
-            });
-            
-            // Remove active class from all nav links
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Show selected section
-            document.getElementById(sectionId).style.display = 'block';
-            
-            // Add active class to clicked nav link
-            event.target.classList.add('active');
-            
-            // Load data for specific sections
-            if (sectionId === 'dashboard') {
-                loadDashboard();
-            } else if (sectionId === 'manageResources') {
-                loadResources();
-            } else if (sectionId === 'manageVideos') {
-                loadVideos();
-            }
-        }
-
-        // Show admin panel
-        function showAdminPanel() {
+        // Show dashboard
+        function showDashboard() {
             document.getElementById('loginScreen').style.display = 'none';
-            document.getElementById('adminPanel').style.display = 'block';
-            document.getElementById('adminUsername').textContent = currentUser?.username || 'Admin';
+            document.getElementById('dashboardScreen').style.display = 'block';
+            
+            if (currentUser) {
+                document.getElementById('adminUsername').textContent = currentUser.username;
+            }
+            
+            loadDashboard();
         }
 
-        // Show login screen
-        function showLoginScreen() {
+        // Logout function
+        function logout() {
+            authToken = null;
+            currentUser = null;
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('currentUser');
+            
             document.getElementById('loginScreen').style.display = 'flex';
-            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('dashboardScreen').style.display = 'none';
             document.getElementById('loginForm').reset();
+            document.getElementById('loginError').style.display = 'none';
         }
 
         // Load dashboard data
         async function loadDashboard() {
             try {
                 const [resourcesResponse, videosResponse] = await Promise.all([
-                    fetch('/api/resources?limit=5'),
-                    fetch('/api/video-resources?limit=5')
+                    fetch(`${API_BASE_URL}/api/resources?limit=1000`),
+                    fetch(`${API_BASE_URL}/api/videos?limit=1000`)
                 ]);
-                
+
                 const resourcesData = await resourcesResponse.json();
                 const videosData = await videosResponse.json();
-                
-                // Update stats
-                document.getElementById('totalResources').textContent = resourcesData.pagination?.totalItems || 0;
-                document.getElementById('totalVideos').textContent = videosData.pagination?.totalItems || 0;
-                
-                // Calculate totals
-                const totalDownloads = resourcesData.resources?.reduce((sum, resource) => sum + (resource.download_count || 0), 0) || 0;
-                const totalViews = videosData.videos?.reduce((sum, video) => sum + (video.view_count || 0), 0) || 0;
-                
+
+                const totalDownloads = resourcesData.resources.reduce((sum, resource) => sum + (resource.download_count || 0), 0);
+                const totalViews = videosData.videos.reduce((sum, video) => sum + (video.view_count || 0), 0);
+
+                document.getElementById('totalResources').textContent = resourcesData.resources.length;
+                document.getElementById('totalVideos').textContent = videosData.videos.length;
                 document.getElementById('totalDownloads').textContent = totalDownloads;
                 document.getElementById('totalViews').textContent = totalViews;
-                
-                // Show recent resources
-                displayRecentResources(resourcesData.resources || []);
-                displayRecentVideos(videosData.videos || []);
-                
             } catch (error) {
                 console.error('Error loading dashboard:', error);
             }
         }
 
-        // Display recent resources
-        function displayRecentResources(resources) {
-            const container = document.getElementById('recentResources');
-            if (resources.length === 0) {
-                container.innerHTML = '<p class="text-muted">No resources uploaded yet.</p>';
-                return;
-            }
-            
-            container.innerHTML = resources.map(resource => `
-                <div class="resource-item">
-                    <div class="d-flex justify-content-between align-items-start">
-                        <div>
-                            <h6 class="mb-1">${resource.title}</h6>
-                            <small class="text-muted">
-                                ${resource.level} • ${resource.subject} • ${resource.paper} • ${resource.category}
-                            </small>
-                        </div>
-                        <small class="text-muted">${formatDate(resource.upload_date)}</small>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Display recent videos
-        function displayRecentVideos(videos) {
-            const container = document.getElementById('recentVideos');
-            if (videos.length === 0) {
-                container.innerHTML = '<p class="text-muted">No videos uploaded yet.</p>';
-                return;
-            }
-            
-            container.innerHTML = videos.map(video => `
-                <div class="resource-item">
-                    <div class="d-flex justify-content-between align-items-start">
-                        <div>
-                            <h6 class="mb-1">${video.title}</h6>
-                            <small class="text-muted">
-                                ${video.level} • ${video.subject} • ${video.paper} • ${video.category}
-                            </small>
-                        </div>
-                        <small class="text-muted">${formatDate(video.upload_date)}</small>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Resource upload form handler
-        document.getElementById('resourceUploadForm').addEventListener('submit', async function(e) {
+        // Resource form handler
+        document.getElementById('resourceForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const formData = new FormData();
             formData.append('title', document.getElementById('resourceTitle').value);
-            formData.append('description', document.getElementById('resourceDescription').value);
             formData.append('level', document.getElementById('resourceLevel').value);
             formData.append('subject', document.getElementById('resourceSubject').value);
             formData.append('paper', document.getElementById('resourcePaper').value);
             formData.append('category', document.getElementById('resourceCategory').value);
-            formData.append('resource', document.getElementById('resourceFile').files[0]);
+            formData.append('description', document.getElementById('resourceDescription').value);
+            formData.append('file', document.getElementById('resourceFile').files[0]);
             
-            showLoading('resourceUploadLoading', true);
-            hideAlert('resourceUploadAlert');
+            // Show loading state
+            const resourceBtn = document.getElementById('resourceBtn');
+            const resourceBtnSpinner = document.getElementById('resourceBtnSpinner');
+            const resourceAlert = document.getElementById('resourceAlert');
+            
+            resourceBtn.disabled = true;
+            resourceBtnSpinner.style.display = 'inline-block';
+            resourceAlert.style.display = 'none';
             
             try {
-                const response = await fetch('/api/admin/upload-resource', {
+                const response = await fetch(`${API_BASE_URL}/api/upload-resource`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${currentToken}`
+                        'Authorization': `Bearer ${authToken}`
                     },
                     body: formData
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (response.ok) {
-                    showAlert('resourceUploadAlert', 'Resource uploaded successfully!', 'success');
-                    document.getElementById('resourceUploadForm').reset();
+                    resourceAlert.className = 'alert alert-success mt-3';
+                    resourceAlert.textContent = 'Resource uploaded successfully!';
+                    resourceAlert.style.display = 'block';
+                    this.reset();
+                    loadDashboard(); // Refresh stats
                 } else {
-                    showAlert('resourceUploadAlert', data.message, 'danger');
+                    resourceAlert.className = 'alert alert-danger mt-3';
+                    resourceAlert.textContent = data.error || 'Failed to upload resource';
+                    resourceAlert.style.display = 'block';
                 }
             } catch (error) {
-                showAlert('resourceUploadAlert', 'Upload failed. Please try again.', 'danger');
+                console.error('Upload error:', error);
+                resourceAlert.className = 'alert alert-danger mt-3';
+                resourceAlert.textContent = 'Network error. Please try again.';
+                resourceAlert.style.display = 'block';
             } finally {
-                showLoading('resourceUploadLoading', false);
+                resourceBtn.disabled = false;
+                resourceBtnSpinner.style.display = 'none';
             }
         });
 
-        // Video upload form handler
-        document.getElementById('videoUploadForm').addEventListener('submit', async function(e) {
+        // Video form handler
+        document.getElementById('videoForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const formData = new FormData();
             formData.append('title', document.getElementById('videoTitle').value);
-            formData.append('description', document.getElementById('videoDescription').value);
             formData.append('level', document.getElementById('videoLevel').value);
             formData.append('subject', document.getElementById('videoSubject').value);
             formData.append('paper', document.getElementById('videoPaper').value);
             formData.append('category', document.getElementById('videoCategory').value);
             formData.append('duration', document.getElementById('videoDuration').value);
+            formData.append('description', document.getElementById('videoDescription').value);
             formData.append('video', document.getElementById('videoFile').files[0]);
             
-            const thumbnailFile = document.getElementById('videoThumbnail').files[0];
-            if (thumbnailFile) {
-                formData.append('thumbnail', thumbnailFile);
+            if (document.getElementById('videoThumbnail').files[0]) {
+                formData.append('thumbnail', document.getElementById('videoThumbnail').files[0]);
             }
             
-            showLoading('videoUploadLoading', true);
-            hideAlert('videoUploadAlert');
+            // Show loading state
+            const videoBtn = document.getElementById('videoBtn');
+            const videoBtnSpinner = document.getElementById('videoBtnSpinner');
+            const videoAlert = document.getElementById('videoAlert');
+            
+            videoBtn.disabled = true;
+            videoBtnSpinner.style.display = 'inline-block';
+            videoAlert.style.display = 'none';
             
             try {
-                const response = await fetch('/api/admin/upload-video', {
+                const response = await fetch(`${API_BASE_URL}/api/upload-video`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${currentToken}`
+                        'Authorization': `Bearer ${authToken}`
                     },
                     body: formData
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (response.ok) {
-                    showAlert('videoUploadAlert', 'Video uploaded successfully!', 'success');
-                    document.getElementById('videoUploadForm').reset();
+                    videoAlert.className = 'alert alert-success mt-3';
+                    videoAlert.textContent = 'Video uploaded successfully!';
+                    videoAlert.style.display = 'block';
+                    this.reset();
+                    loadDashboard(); // Refresh stats
                 } else {
-                    showAlert('videoUploadAlert', data.message, 'danger');
+                    videoAlert.className = 'alert alert-danger mt-3';
+                    videoAlert.textContent = data.error || 'Failed to upload video';
+                    videoAlert.style.display = 'block';
                 }
             } catch (error) {
-                showAlert('videoUploadAlert', 'Upload failed. Please try again.', 'danger');
+                console.error('Upload error:', error);
+                videoAlert.className = 'alert alert-danger mt-3';
+                videoAlert.textContent = 'Network error. Please try again.';
+                videoAlert.style.display = 'block';
             } finally {
-                showLoading('videoUploadLoading', false);
+                videoBtn.disabled = false;
+                videoBtnSpinner.style.display = 'none';
             }
         });
 
-        // Load resources for management
-        async function loadResources(page = 1) {
-            const level = document.getElementById('resourceFilterLevel').value;
-            const category = document.getElementById('resourceFilterCategory').value;
-            
-            let url = `/api/resources?page=${page}&limit=10`;
-            if (level) url += `&level=${level}`;
-            if (category) url += `&category=${category}`;
-            
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                
-                if (response.ok) {
-                    displayResources(data.resources, data.pagination);
-                }
-            } catch (error) {
-                console.error('Error loading resources:', error);
-            }
-        }
-
-        // Display resources
-        function displayResources(resources, pagination) {
-            const container = document.getElementById('resourcesList');
-            
-            if (resources.length === 0) {
-                container.innerHTML = '<p class="text-muted">No resources found.</p>';
-                return;
-            }
-            
-            container.innerHTML = resources.map(resource => `
-                <div class="resource-item">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="mb-1">${resource.title}</h6>
-                            <small class="text-muted">
-                                ${resource.level} • ${resource.subject} • ${resource.paper} • ${resource.category}
-                            </small>
-                            <br>
-                            <small class="text-muted">
-                                Uploaded: ${formatDate(resource.upload_date)} • Downloads: ${resource.download_count || 0}
-                            </small>
-                        </div>
-                        <div class="btn-group">
-                            <button class="btn btn-sm btn-outline-primary" onclick="downloadResource(${resource.id})">
-                                <i class="fas fa-download"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger" onclick="deleteResource(${resource.id})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            
-            displayPagination('resourcesPagination', pagination, loadResources);
-        }
-
-        // Load videos for management
-        async function loadVideos(page = 1) {
-            const level = document.getElementById('videoFilterLevel').value;
-            const category = document.getElementById('videoFilterCategory').value;
-            
-            let url = `/api/video-resources?page=${page}&limit=10`;
-            if (level) url += `&level=${level}`;
-            if (category) url += `&category=${category}`;
-            
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                
-                if (response.ok) {
-                    displayVideos(data.videos, data.pagination);
-                }
-            } catch (error) {
-                console.error('Error loading videos:', error);
-            }
-        }
-
-        // Display videos
-        function displayVideos(videos, pagination) {
-            const container = document.getElementById('videosList');
-            
-            if (videos.length === 0) {
-                container.innerHTML = '<p class="text-muted">No videos found.</p>';
-                return;
-            }
-            
-            container.innerHTML = videos.map(video => `
-                <div class="resource-item">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="mb-1">${video.title}</h6>
-                            <small class="text-muted">
-                                ${video.level} • ${video.subject} • ${video.paper} • ${video.category}
-                            </small>
-                            <br>
-                            <small class="text-muted">
-                                Uploaded: ${formatDate(video.upload_date)} • Views: ${video.view_count || 0}
-                                ${video.duration ? `• Duration: ${video.duration}` : ''}
-                            </small>
-                        </div>
-                        <div class="btn-group">
-                            <button class="btn btn-sm btn-outline-primary" onclick="playVideo(${video.id})">
-                                <i class="fas fa-play"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger" onclick="deleteVideo(${video.id})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            
-            displayPagination('videosPagination', pagination, loadVideos);
-        }
-
-        // Display pagination
-        function displayPagination(containerId, pagination, loadFunction) {
-            const container = document.getElementById(containerId);
-            
-            if (!pagination || pagination.totalPages <= 1) {
-                container.innerHTML = '';
-                return;
-            }
-            
-            let paginationHtml = '<nav><ul class="pagination">';
-            
-            // Previous button
-            if (pagination.currentPage > 1) {
-                paginationHtml += `<li class="page-item"><a class="page-link" href="#" onclick="loadFunction(${pagination.currentPage - 1})">Previous</a></li>`;
-            }
-            
-            // Page numbers
-            for (let i = 1; i <= pagination.totalPages; i++) {
-                if (i === pagination.currentPage) {
-                    paginationHtml += `<li class="page-item active"><span class="page-link">${i}</span></li>`;
-                } else {
-                    paginationHtml += `<li class="page-item"><a class="page-link" href="#" onclick="loadFunction(${i})">${i}</a></li>`;
-                }
-            }
-            
-            // Next button
-            if (pagination.currentPage < pagination.totalPages) {
-                paginationHtml += `<li class="page-item"><a class="page-link" href="#" onclick="loadFunction(${pagination.currentPage + 1})">Next</a></li>`;
-            }
-            
-            paginationHtml += '</ul></nav>';
-            container.innerHTML = paginationHtml;
-        }
-
-        // Delete resource
-        async function deleteResource(resourceId) {
-            if (!confirm('Are you sure you want to delete this resource?')) {
-                return;
-            }
-            
-            try {
-                const response = await fetch(`/api/admin/resources/${resourceId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${currentToken}`
-                    }
-                });
-                
-                if (response.ok) {
-                    loadResources();
-                    loadDashboard();
-                } else {
-                    alert('Failed to delete resource');
-                }
-            } catch (error) {
-                alert('Error deleting resource');
-            }
-        }
-
-        // Delete video
-        async function deleteVideo(videoId) {
-            if (!confirm('Are you sure you want to delete this video?')) {
-                return;
-            }
-            
-            try {
-                const response = await fetch(`/api/admin/videos/${videoId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${currentToken}`
-                    }
-                });
-                
-                if (response.ok) {
-                    loadVideos();
-                    loadDashboard();
-                } else {
-                    alert('Failed to delete video');
-                }
-            } catch (error) {
-                alert('Error deleting video');
-            }
-        }
-
-        // Download resource
-        function downloadResource(resourceId) {
-            window.open(`/api/resources/${resourceId}/download`, '_blank');
-        }
-
-        // Play video
-        function playVideo(videoId) {
-            window.open(`/api/videos/${videoId}`, '_blank');
-        }
-
-        // Filter change handlers
-        document.getElementById('resourceFilterLevel').addEventListener('change', () => loadResources(1));
-        document.getElementById('resourceFilterCategory').addEventListener('change', () => loadResources(1));
-        document.getElementById('videoFilterLevel').addEventListener('change', () => loadVideos(1));
-        document.getElementById('videoFilterCategory').addEventListener('change', () => loadVideos(1));
-
-        // Utility functions
-        function showLoading(elementId, show) {
-            const element = document.getElementById(elementId);
-            if (show) {
-                element.classList.add('show');
-            } else {
-                element.classList.remove('show');
-            }
-        }
-
-        function showAlert(elementId, message, type) {
-            const element = document.getElementById(elementId);
-            element.className = `alert alert-${type}`;
-            element.textContent = message;
-            element.style.display = 'block';
-        }
-
-        function hideAlert(elementId) {
-            document.getElementById(elementId).style.display = 'none';
-        }
-
-        function formatDate(dateString) {
-            return new Date(dateString).toLocaleDateString();
+        // Export data function
+        function exportData() {
+            alert('Export functionality will be available soon');
         }
     </script>
 </body>
