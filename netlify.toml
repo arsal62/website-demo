@@ -1,0 +1,21 @@
+[build]
+  publish = "."
+  functions = "functions"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/server/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200
+
+[[redirects]]
+  from = "/uploads/*"
+  to = "/.netlify/functions/server/uploads/:splat"
+  status = 200
