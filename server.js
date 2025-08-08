@@ -496,13 +496,13 @@ app.post('/api/contact', (req, res) => {
         }
     });
 
-    const mailOptions = {
+        const mailOptions = {
         from: process.env.EMAIL_USER,
         to: 'your-email@example.com', // Change this to your email
         subject: `Contact Form Message from ${name}`,
-        text: `
-            Name: ${name}
-            Email: ${email}
+            text: `
+                Name: ${name}
+                Email: ${email}
             Message: ${message}
         `
     };
