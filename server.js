@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
-const Database = require('better-sqlite3');
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const session = require('express-session');
@@ -32,19 +33,17 @@ app.use(session({
     cookie: { secure: false }
 }));
 
-// Database setup - Railway compatible with better-sqlite3
-const dbPath = process.env.DATABASE_URL || path.join(__dirname, 'database.sqlite');
-let db;
+// Database setup - Railway compatible with lowdb
+const dbPath = process.env.DATABASE_URL || path.join(__dirname, 'db.json');
+const adapter = new FileSync(dbPath);
+const db = low(adapter);
 
-try {
-    db = new Database(dbPath);
-    console.log('Connected to SQLite database');
-} catch (err) {
-    console.error('Error opening database:', err);
-    // Create database if it doesn't exist
-    db = new Database(dbPath);
-    console.log('Created new SQLite database');
-}
+// Set default data structure
+db.defaults({
+    users: [],
+    resources: [],
+    video_resources: []
+}).write();
 
 // Create uploads directory if it doesn't exist
 const uploadsDir = process.env.UPLOAD_PATH || path.join(__dirname, 'uploads');
@@ -52,58 +51,23 @@ if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
-// Initialize database tables
+// Initialize database with default admin user
 try {
-    // Users table
-    db.exec(`CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE NOT NULL,
-        password TEXT NOT NULL,
-        email TEXT,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )`);
-
-    // Create default admin user if not exists
-    const defaultPassword = bcrypt.hashSync('admin123', 10);
-    const stmt = db.prepare(`INSERT OR IGNORE INTO users (username, password, email) VALUES (?, ?, ?)`);
-    stmt.run('admin', defaultPassword, 'admin@example.com');
-    console.log('Default admin user created/verified');
-
-    // Resources table
-    db.exec(`CREATE TABLE IF NOT EXISTS resources (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        description TEXT,
-        filename TEXT NOT NULL,
-        original_filename TEXT NOT NULL,
-        file_size INTEGER,
-        level TEXT NOT NULL,
-        subject TEXT NOT NULL,
-        paper TEXT NOT NULL,
-        category TEXT NOT NULL,
-        upload_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-        download_count INTEGER DEFAULT 0
-    )`);
-
-    // Video resources table
-    db.exec(`CREATE TABLE IF NOT EXISTS video_resources (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        description TEXT,
-        filename TEXT NOT NULL,
-        original_filename TEXT NOT NULL,
-        thumbnail_filename TEXT,
-        duration TEXT,
-        file_size INTEGER,
-        level TEXT NOT NULL,
-        subject TEXT NOT NULL,
-        paper TEXT NOT NULL,
-        category TEXT NOT NULL,
-        upload_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-        view_count INTEGER DEFAULT 0
-    )`);
-
-    console.log('Database tables initialized successfully');
+    const users = db.get('users').value();
+    if (users.length === 0) {
+        const defaultPassword = bcrypt.hashSync('admin123', 10);
+        db.get('users').push({
+            id: 1,
+            username: 'admin',
+            password: defaultPassword,
+            email: 'admin@example.com',
+            created_at: new Date().toISOString()
+        }).write();
+        console.log('Default admin user created');
+    } else {
+        console.log('Admin user already exists');
+    }
+    console.log('Database initialized successfully');
 } catch (err) {
     console.error('Error initializing database:', err);
 }
@@ -181,8 +145,7 @@ app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
 
     try {
-        const stmt = db.prepare('SELECT * FROM users WHERE username = ?');
-        const user = stmt.get(username);
+        const user = db.get('users').find({ username }).value();
 
         if (!user) {
             return res.status(401).json({ error: 'Invalid credentials' });
@@ -221,38 +184,31 @@ app.get('/api/resources', (req, res) => {
         const offset = (page - 1) * limit;
         
         const { level, subject, paper, category } = req.query;
-        let whereClause = 'WHERE 1=1';
-        let params = [];
+        let resources = db.get('resources').value();
         
+        // Apply filters
         if (level) {
-            whereClause += ' AND level = ?';
-            params.push(level);
+            resources = resources.filter(r => r.level === level);
         }
         if (subject) {
-            whereClause += ' AND subject = ?';
-            params.push(subject);
+            resources = resources.filter(r => r.subject === subject);
         }
         if (paper) {
-            whereClause += ' AND paper = ?';
-            params.push(paper);
+            resources = resources.filter(r => r.paper === paper);
         }
         if (category) {
-            whereClause += ' AND category = ?';
-            params.push(category);
+            resources = resources.filter(r => r.category === category);
         }
 
-        // Get total count
-        const countStmt = db.prepare(`SELECT COUNT(*) as total FROM resources ${whereClause}`);
-        const countResult = countStmt.get(...params);
-        const total = countResult.total;
-        const totalPages = Math.ceil(total / limit);
+        // Sort by upload date
+        resources.sort((a, b) => new Date(b.upload_date) - new Date(a.upload_date));
 
-        // Get resources
-        const stmt = db.prepare(`SELECT * FROM resources ${whereClause} ORDER BY upload_date DESC LIMIT ? OFFSET ?`);
-        const resources = stmt.all(...params, limit, offset);
+        const total = resources.length;
+        const totalPages = Math.ceil(total / limit);
+        const paginatedResources = resources.slice(offset, offset + limit);
 
         res.json({
-            resources,
+            resources: paginatedResources,
             pagination: {
                 current: page,
                 total: totalPages,
@@ -275,38 +231,31 @@ app.get('/api/videos', (req, res) => {
         const offset = (page - 1) * limit;
         
         const { level, subject, paper, category } = req.query;
-        let whereClause = 'WHERE 1=1';
-        let params = [];
+        let videos = db.get('video_resources').value();
         
+        // Apply filters
         if (level) {
-            whereClause += ' AND level = ?';
-            params.push(level);
+            videos = videos.filter(v => v.level === level);
         }
         if (subject) {
-            whereClause += ' AND subject = ?';
-            params.push(subject);
+            videos = videos.filter(v => v.subject === subject);
         }
         if (paper) {
-            whereClause += ' AND paper = ?';
-            params.push(paper);
+            videos = videos.filter(v => v.paper === paper);
         }
         if (category) {
-            whereClause += ' AND category = ?';
-            params.push(category);
+            videos = videos.filter(v => v.category === category);
         }
 
-        // Get total count
-        const countStmt = db.prepare(`SELECT COUNT(*) as total FROM video_resources ${whereClause}`);
-        const countResult = countStmt.get(...params);
-        const total = countResult.total;
-        const totalPages = Math.ceil(total / limit);
+        // Sort by upload date
+        videos.sort((a, b) => new Date(b.upload_date) - new Date(a.upload_date));
 
-        // Get videos
-        const stmt = db.prepare(`SELECT * FROM video_resources ${whereClause} ORDER BY upload_date DESC LIMIT ? OFFSET ?`);
-        const videos = stmt.all(...params, limit, offset);
+        const total = videos.length;
+        const totalPages = Math.ceil(total / limit);
+        const paginatedVideos = videos.slice(offset, offset + limit);
 
         res.json({
-            videos,
+            videos: paginatedVideos,
             pagination: {
                 current: page,
                 total: totalPages,
@@ -330,13 +279,26 @@ app.post('/api/upload-resource', authenticateToken, upload.single('file'), (req,
     try {
         const { title, description, level, subject, paper, category } = req.body;
 
-        const stmt = db.prepare(`INSERT INTO resources (title, description, filename, original_filename, file_size, level, subject, paper, category) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`);
-        const result = stmt.run(title, description, req.file.filename, req.file.originalname, req.file.size, level, subject, paper, category);
+        const newResource = {
+            id: Date.now(),
+            title,
+            description,
+            filename: req.file.filename,
+            original_filename: req.file.originalname,
+            file_size: req.file.size,
+            level,
+            subject,
+            paper,
+            category,
+            upload_date: new Date().toISOString(),
+            download_count: 0
+        };
+
+        db.get('resources').push(newResource).write();
 
         res.json({
             message: 'Resource uploaded successfully',
-            id: result.lastInsertRowid
+            id: newResource.id
         });
     } catch (err) {
         console.error('Upload resource error:', err);
@@ -358,14 +320,28 @@ app.post('/api/upload-video', authenticateToken, upload.fields([
         const videoFile = req.files.video[0];
         const thumbnailFile = req.files.thumbnail ? req.files.thumbnail[0] : null;
 
-        const stmt = db.prepare(`INSERT INTO video_resources (title, description, filename, original_filename, thumbnail_filename, duration, file_size, level, subject, paper, category) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
-        const result = stmt.run(title, description, videoFile.filename, videoFile.originalname, thumbnailFile ? thumbnailFile.filename : null, 
-         duration, videoFile.size, level, subject, paper, category);
+        const newVideo = {
+            id: Date.now(),
+            title,
+            description,
+            filename: videoFile.filename,
+            original_filename: videoFile.originalname,
+            thumbnail_filename: thumbnailFile ? thumbnailFile.filename : null,
+            duration,
+            file_size: videoFile.size,
+            level,
+            subject,
+            paper,
+            category,
+            upload_date: new Date().toISOString(),
+            view_count: 0
+        };
+
+        db.get('video_resources').push(newVideo).write();
 
         res.json({
             message: 'Video uploaded successfully',
-            id: result.lastInsertRowid
+            id: newVideo.id
         });
     } catch (err) {
         console.error('Upload video error:', err);
@@ -378,8 +354,7 @@ app.get('/api/download/:id', (req, res) => {
     try {
         const { id } = req.params;
 
-        const stmt = db.prepare('SELECT * FROM resources WHERE id = ?');
-        const resource = stmt.get(id);
+        const resource = db.get('resources').find({ id: parseInt(id) }).value();
 
         if (!resource) {
             return res.status(404).json({ error: 'Resource not found' });
@@ -392,8 +367,10 @@ app.get('/api/download/:id', (req, res) => {
         }
 
         // Increment download count
-        const updateStmt = db.prepare('UPDATE resources SET download_count = download_count + 1 WHERE id = ?');
-        updateStmt.run(id);
+        db.get('resources')
+            .find({ id: parseInt(id) })
+            .assign({ download_count: resource.download_count + 1 })
+            .write();
 
         res.download(filePath, resource.original_filename);
     } catch (err) {
@@ -407,8 +384,7 @@ app.get('/api/stream/:id', (req, res) => {
     try {
         const { id } = req.params;
 
-        const stmt = db.prepare('SELECT * FROM video_resources WHERE id = ?');
-        const video = stmt.get(id);
+        const video = db.get('video_resources').find({ id: parseInt(id) }).value();
 
         if (!video) {
             return res.status(404).json({ error: 'Video not found' });
@@ -421,8 +397,10 @@ app.get('/api/stream/:id', (req, res) => {
         }
 
         // Increment view count
-        const updateStmt = db.prepare('UPDATE video_resources SET view_count = view_count + 1 WHERE id = ?');
-        updateStmt.run(id);
+        db.get('video_resources')
+            .find({ id: parseInt(id) })
+            .assign({ view_count: video.view_count + 1 })
+            .write();
 
         const stat = fs.statSync(filePath);
         const fileSize = stat.size;
@@ -461,8 +439,7 @@ app.delete('/api/resource/:id', authenticateToken, (req, res) => {
     try {
         const { id } = req.params;
 
-        const stmt = db.prepare('SELECT * FROM resources WHERE id = ?');
-        const resource = stmt.get(id);
+        const resource = db.get('resources').find({ id: parseInt(id) }).value();
 
         if (!resource) {
             return res.status(404).json({ error: 'Resource not found' });
@@ -476,8 +453,7 @@ app.delete('/api/resource/:id', authenticateToken, (req, res) => {
         }
 
         // Delete from database
-        const deleteStmt = db.prepare('DELETE FROM resources WHERE id = ?');
-        deleteStmt.run(id);
+        db.get('resources').remove({ id: parseInt(id) }).write();
 
         res.json({ message: 'Resource deleted successfully' });
     } catch (err) {
@@ -491,8 +467,7 @@ app.delete('/api/video/:id', authenticateToken, (req, res) => {
     try {
         const { id } = req.params;
 
-        const stmt = db.prepare('SELECT * FROM video_resources WHERE id = ?');
-        const video = stmt.get(id);
+        const video = db.get('video_resources').find({ id: parseInt(id) }).value();
 
         if (!video) {
             return res.status(404).json({ error: 'Video not found' });
@@ -510,8 +485,7 @@ app.delete('/api/video/:id', authenticateToken, (req, res) => {
         }
 
         // Delete from database
-        const deleteStmt = db.prepare('DELETE FROM video_resources WHERE id = ?');
-        deleteStmt.run(id);
+        db.get('video_resources').remove({ id: parseInt(id) }).write();
 
         res.json({ message: 'Video deleted successfully' });
     } catch (err) {
