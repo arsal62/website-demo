@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Admin Panel - Dr. Kamran Ali</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .admin-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .admin-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .admin-body {
+            padding: 30px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .dashboard-stats {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            margin-bottom: 15px;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .upload-section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="admin-card" style="width: 400px;">
+            <div class="admin-header">
+                <h3><i class="fas fa-user-shield"></i> Admin Panel</h3>
+                <p class="mb-0">Dr. Kamran Website Management</p>
+            </div>
+            <div class="admin-body">
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+                <div id="loginError" class="alert alert-danger mt-3" style="display: none;">
+                    Invalid credentials. Please try again.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboardScreen" style="display: none;">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-user-shield"></i> Dr. Kamran Admin Panel
+                </a>
+                <div class="navbar-nav ms-auto">
+                    <span class="navbar-text me-3">Welcome, Admin</span>
+                    <button class="btn btn-outline-light btn-sm" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mt-4">
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <h4><i class="fas fa-chart-bar"></i> Dashboard Overview</h4>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalResources">0</div>
+                            <div class="stat-text">Total Resources</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalVideos">0</div>
+                            <div class="stat-text">Total Videos</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalDownloads">0</div>
+                            <div class="stat-text">Total Downloads</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalViews">0</div>
+                            <div class="stat-text">Total Views</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Resource Section -->
+            <div class="upload-section">
+                <h4><i class="fas fa-upload"></i> Upload Study Resource</h4>
+                <form id="resourceForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="resourceTitle" class="form-label">Title *</label>
+                                <input type="text" class="form-control" id="resourceTitle" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="resourceLevel" class="form-label">Level *</label>
+                                <select class="form-select" id="resourceLevel" required>
+                                    <option value="">Select Level</option>
+                                    <option value="O Level">O Level</option>
+                                    <option value="A Level">A Level</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="resourceSubject" class="form-label">Subject *</label>
+                                <select class="form-select" id="resourceSubject" required>
+                                    <option value="">Select Subject</option>
+                                    <option value="English">English</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="resourcePaper" class="form-label">Paper *</label>
+                                <select class="form-select" id="resourcePaper" required>
+                                    <option value="">Select Paper</option>
+                                    <option value="Paper 1">Paper 1</option>
+                                    <option value="Paper 2">Paper 2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="resourceCategory" class="form-label">Category *</label>
+                                <select class="form-select" id="resourceCategory" required>
+                                    <option value="">Select Category</option>
+                                    <option value="Reading">Reading</option>
+                                    <option value="Writing">Writing</option>
+                                    <option value="Listening">Listening</option>
+                                    <option value="Speaking">Speaking</option>
+                                    <option value="Past Papers">Past Papers</option>
+                                    <option value="Worksheets">Worksheets</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="resourceFile" class="form-label">File *</label>
+                        <input type="file" class="form-control" id="resourceFile" accept=".pdf,.doc,.docx,.txt" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="resourceDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="resourceDescription" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-upload"></i> Upload Resource
+                    </button>
+                </form>
+            </div>
+
+            <!-- Upload Video Section -->
+            <div class="upload-section">
+                <h4><i class="fas fa-video"></i> Upload Video Resource</h4>
+                <form id="videoForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="videoTitle" class="form-label">Title *</label>
+                                <input type="text" class="form-control" id="videoTitle" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="videoDuration" class="form-label">Duration (e.g., 15:30)</label>
+                                <input type="text" class="form-control" id="videoDuration" placeholder="15:30">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="videoLevel" class="form-label">Level *</label>
+                                <select class="form-select" id="videoLevel" required>
+                                    <option value="">Select Level</option>
+                                    <option value="O Level">O Level</option>
+                                    <option value="A Level">A Level</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="videoSubject" class="form-label">Subject *</label>
+                                <select class="form-select" id="videoSubject" required>
+                                    <option value="">Select Subject</option>
+                                    <option value="English">English</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="videoPaper" class="form-label">Paper *</label>
+                                <select class="form-select" id="videoPaper" required>
+                                    <option value="">Select Paper</option>
+                                    <option value="Paper 1">Paper 1</option>
+                                    <option value="Paper 2">Paper 2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="videoCategory" class="form-label">Category *</label>
+                                <select class="form-select" id="videoCategory" required>
+                                    <option value="">Select Category</option>
+                                    <option value="Reading">Reading</option>
+                                    <option value="Writing">Writing</option>
+                                    <option value="Listening">Listening</option>
+                                    <option value="Speaking">Speaking</option>
+                                    <option value="Past Papers">Past Papers</option>
+                                    <option value="Worksheets">Worksheets</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="videoFile" class="form-label">Video File *</label>
+                        <input type="file" class="form-control" id="videoFile" accept="video/*" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="videoThumbnail" class="form-label">Thumbnail (Optional)</label>
+                        <input type="file" class="form-control" id="videoThumbnail" accept="image/*">
+                    </div>
+                    <div class="mb-3">
+                        <label for="videoDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="videoDescription" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-upload"></i> Upload Video
+                    </button>
+                </form>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="upload-section">
+                <h4><i class="fas fa-cogs"></i> Quick Actions</h4>
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="resources-api.html" class="btn btn-outline-primary w-100 mb-2">
+                            <i class="fas fa-file-alt"></i> View Resources
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="videos-api.html" class="btn btn-outline-primary w-100 mb-2">
+                            <i class="fas fa-video"></i> View Videos
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="index.html" class="btn btn-outline-primary w-100 mb-2">
+                            <i class="fas fa-home"></i> View Website
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-outline-success w-100 mb-2" onclick="exportData()">
+                            <i class="fas fa-download"></i> Export Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simple authentication
+        const CORRECT_USERNAME = 'admin';
+        const CORRECT_PASSWORD = 'admin123';
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === CORRECT_USERNAME && password === CORRECT_PASSWORD) {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('dashboardScreen').style.display = 'block';
+                loadDashboard();
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        });
+
+        // Logout function
+        function logout() {
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('dashboardScreen').style.display = 'none';
+            document.getElementById('loginForm').reset();
+            document.getElementById('loginError').style.display = 'none';
+        }
+
+        // Load dashboard data
+        function loadDashboard() {
+            // For now, show sample data
+            document.getElementById('totalResources').textContent = '5';
+            document.getElementById('totalVideos').textContent = '3';
+            document.getElementById('totalDownloads').textContent = '127';
+            document.getElementById('totalViews').textContent = '89';
+        }
+
+        // Resource form handler
+        document.getElementById('resourceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            formData.append('title', document.getElementById('resourceTitle').value);
+            formData.append('level', document.getElementById('resourceLevel').value);
+            formData.append('subject', document.getElementById('resourceSubject').value);
+            formData.append('paper', document.getElementById('resourcePaper').value);
+            formData.append('category', document.getElementById('resourceCategory').value);
+            formData.append('description', document.getElementById('resourceDescription').value);
+            formData.append('file', document.getElementById('resourceFile').files[0]);
+            
+            // For now, just show success message
+            alert('Resource uploaded successfully! (Note: This is a demo version)');
+            this.reset();
+        });
+
+        // Video form handler
+        document.getElementById('videoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            formData.append('title', document.getElementById('videoTitle').value);
+            formData.append('level', document.getElementById('videoLevel').value);
+            formData.append('subject', document.getElementById('videoSubject').value);
+            formData.append('paper', document.getElementById('videoPaper').value);
+            formData.append('category', document.getElementById('videoCategory').value);
+            formData.append('duration', document.getElementById('videoDuration').value);
+            formData.append('description', document.getElementById('videoDescription').value);
+            formData.append('video', document.getElementById('videoFile').files[0]);
+            
+            if (document.getElementById('videoThumbnail').files[0]) {
+                formData.append('thumbnail', document.getElementById('videoThumbnail').files[0]);
+            }
+            
+            // For now, just show success message
+            alert('Video uploaded successfully! (Note: This is a demo version)');
+            this.reset();
+        });
+
+        // Export data function
+        function exportData() {
+            alert('Export functionality will be available with backend integration');
+        }
+    </script>
+</body>
+</html>
