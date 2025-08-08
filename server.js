@@ -32,12 +32,18 @@ app.use(session({
     cookie: { secure: false }
 }));
 
-// Database setup
-const dbPath = process.env.DATABASE_URL || './database.sqlite';
-const db = new sqlite3.Database(dbPath);
+// Database setup - Railway compatible
+const dbPath = process.env.DATABASE_URL || path.join(__dirname, 'database.sqlite');
+const db = new sqlite3.Database(dbPath, (err) => {
+    if (err) {
+        console.error('Error opening database:', err);
+    } else {
+        console.log('Connected to SQLite database');
+    }
+});
 
 // Create uploads directory if it doesn't exist
-const uploadsDir = process.env.UPLOAD_PATH || './uploads';
+const uploadsDir = process.env.UPLOAD_PATH || path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
 }
@@ -496,13 +502,13 @@ app.post('/api/contact', (req, res) => {
         }
     });
 
-        const mailOptions = {
+    const mailOptions = {
         from: process.env.EMAIL_USER,
         to: 'your-email@example.com', // Change this to your email
         subject: `Contact Form Message from ${name}`,
-            text: `
-                Name: ${name}
-                Email: ${email}
+        text: `
+            Name: ${name}
+            Email: ${email}
             Message: ${message}
         `
     };

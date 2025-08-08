@@ -1,0 +1,17 @@
+# Ignore these files for Railway deployment
+node_modules/
+.git/
+.gitignore
+README.md
+*.log
+.env
+.env.local
+.env.production
+.env.development
+uploads/
+database.sqlite
+sessions.db
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
