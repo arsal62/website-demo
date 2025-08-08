@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const sqlite3 = require('sqlite3').verbose();
+const Database = require('better-sqlite3');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const session = require('express-session');
@@ -32,15 +32,19 @@ app.use(session({
     cookie: { secure: false }
 }));
 
-// Database setup - Railway compatible
+// Database setup - Railway compatible with better-sqlite3
 const dbPath = process.env.DATABASE_URL || path.join(__dirname, 'database.sqlite');
-const db = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-        console.error('Error opening database:', err);
-    } else {
-        console.log('Connected to SQLite database');
-    }
-});
+let db;
+
+try {
+    db = new Database(dbPath);
+    console.log('Connected to SQLite database');
+} catch (err) {
+    console.error('Error opening database:', err);
+    // Create database if it doesn't exist
+    db = new Database(dbPath);
+    console.log('Created new SQLite database');
+}
 
 // Create uploads directory if it doesn't exist
 const uploadsDir = process.env.UPLOAD_PATH || path.join(__dirname, 'uploads');
@@ -49,34 +53,24 @@ if (!fs.existsSync(uploadsDir)) {
 }
 
 // Initialize database tables
-db.serialize(() => {
+try {
     // Users table
-    db.run(`CREATE TABLE IF NOT EXISTS users (
+    db.exec(`CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE NOT NULL,
         password TEXT NOT NULL,
         email TEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )`, (err) => {
-        if (err) {
-            console.error('Error creating users table:', err);
-        } else {
-            // Create default admin user if not exists
-            const defaultPassword = bcrypt.hashSync('admin123', 10);
-            db.run(`INSERT OR IGNORE INTO users (username, password, email) VALUES (?, ?, ?)`,
-                ['admin', defaultPassword, 'admin@example.com'],
-                (err) => {
-                    if (err) {
-                        console.error('Error creating default admin:', err);
-                    } else {
-                        console.log('Default admin user created/verified');
-                    }
-                });
-        }
-    });
+    )`);
+
+    // Create default admin user if not exists
+    const defaultPassword = bcrypt.hashSync('admin123', 10);
+    const stmt = db.prepare(`INSERT OR IGNORE INTO users (username, password, email) VALUES (?, ?, ?)`);
+    stmt.run('admin', defaultPassword, 'admin@example.com');
+    console.log('Default admin user created/verified');
 
     // Resources table
-    db.run(`CREATE TABLE IF NOT EXISTS resources (
+    db.exec(`CREATE TABLE IF NOT EXISTS resources (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
         description TEXT,
@@ -89,12 +83,10 @@ db.serialize(() => {
         category TEXT NOT NULL,
         upload_date DATETIME DEFAULT CURRENT_TIMESTAMP,
         download_count INTEGER DEFAULT 0
-    )`, (err) => {
-        if (err) console.error('Error creating resources table:', err);
-    });
+    )`);
 
     // Video resources table
-    db.run(`CREATE TABLE IF NOT EXISTS video_resources (
+    db.exec(`CREATE TABLE IF NOT EXISTS video_resources (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
         description TEXT,
@@ -109,10 +101,12 @@ db.serialize(() => {
         category TEXT NOT NULL,
         upload_date DATETIME DEFAULT CURRENT_TIMESTAMP,
         view_count INTEGER DEFAULT 0
-    )`, (err) => {
-        if (err) console.error('Error creating video_resources table:', err);
-    });
-});
+    )`);
+
+    console.log('Database tables initialized successfully');
+} catch (err) {
+    console.error('Error initializing database:', err);
+}
 
 // Multer configuration for file uploads
 const storage = multer.diskStorage({
@@ -186,150 +180,145 @@ app.get('/api/health', (req, res) => {
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
 
-    db.get('SELECT * FROM users WHERE username = ?', [username], (err, user) => {
-        if (err) {
-            return res.status(500).json({ error: 'Database error' });
-        }
+    try {
+        const stmt = db.prepare('SELECT * FROM users WHERE username = ?');
+        const user = stmt.get(username);
 
         if (!user) {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
 
-        bcrypt.compare(password, user.password, (err, isMatch) => {
-            if (err || !isMatch) {
-                return res.status(401).json({ error: 'Invalid credentials' });
+        const isMatch = bcrypt.compareSync(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        const token = jwt.sign(
+            { id: user.id, username: user.username },
+            JWT_SECRET,
+            { expiresIn: '24h' }
+        );
+
+        res.json({
+            token,
+            user: {
+                id: user.id,
+                username: user.username,
+                email: user.email
             }
-
-            const token = jwt.sign(
-                { id: user.id, username: user.username },
-                JWT_SECRET,
-                { expiresIn: '24h' }
-            );
-
-            res.json({
-                token,
-                user: {
-                    id: user.id,
-                    username: user.username,
-                    email: user.email
-                }
-            });
         });
-    });
+    } catch (err) {
+        console.error('Login error:', err);
+        res.status(500).json({ error: 'Database error' });
+    }
 });
 
 // Get resources with pagination
 app.get('/api/resources', (req, res) => {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
-    const offset = (page - 1) * limit;
-    
-    const { level, subject, paper, category } = req.query;
-    let whereClause = 'WHERE 1=1';
-    let params = [];
-    
-    if (level) {
-        whereClause += ' AND level = ?';
-        params.push(level);
-    }
-    if (subject) {
-        whereClause += ' AND subject = ?';
-        params.push(subject);
-    }
-    if (paper) {
-        whereClause += ' AND paper = ?';
-        params.push(paper);
-    }
-    if (category) {
-        whereClause += ' AND category = ?';
-        params.push(category);
-    }
-
-    // Get total count
-    db.get(`SELECT COUNT(*) as total FROM resources ${whereClause}`, params, (err, countResult) => {
-        if (err) {
-            return res.status(500).json({ error: 'Database error' });
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const offset = (page - 1) * limit;
+        
+        const { level, subject, paper, category } = req.query;
+        let whereClause = 'WHERE 1=1';
+        let params = [];
+        
+        if (level) {
+            whereClause += ' AND level = ?';
+            params.push(level);
+        }
+        if (subject) {
+            whereClause += ' AND subject = ?';
+            params.push(subject);
+        }
+        if (paper) {
+            whereClause += ' AND paper = ?';
+            params.push(paper);
+        }
+        if (category) {
+            whereClause += ' AND category = ?';
+            params.push(category);
         }
 
+        // Get total count
+        const countStmt = db.prepare(`SELECT COUNT(*) as total FROM resources ${whereClause}`);
+        const countResult = countStmt.get(...params);
         const total = countResult.total;
         const totalPages = Math.ceil(total / limit);
 
         // Get resources
-        db.all(`SELECT * FROM resources ${whereClause} ORDER BY upload_date DESC LIMIT ? OFFSET ?`, 
-            [...params, limit, offset], (err, resources) => {
-            if (err) {
-                return res.status(500).json({ error: 'Database error' });
-            }
+        const stmt = db.prepare(`SELECT * FROM resources ${whereClause} ORDER BY upload_date DESC LIMIT ? OFFSET ?`);
+        const resources = stmt.all(...params, limit, offset);
 
-            res.json({
-                resources,
-                pagination: {
-                    current: page,
-                    total: totalPages,
-                    hasNext: page < totalPages,
-                    hasPrev: page > 1,
-                    totalItems: total
-                }
-            });
+        res.json({
+            resources,
+            pagination: {
+                current: page,
+                total: totalPages,
+                hasNext: page < totalPages,
+                hasPrev: page > 1,
+                totalItems: total
+            }
         });
-    });
+    } catch (err) {
+        console.error('Get resources error:', err);
+        res.status(500).json({ error: 'Database error' });
+    }
 });
 
 // Get videos with pagination
 app.get('/api/videos', (req, res) => {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
-    const offset = (page - 1) * limit;
-    
-    const { level, subject, paper, category } = req.query;
-    let whereClause = 'WHERE 1=1';
-    let params = [];
-    
-    if (level) {
-        whereClause += ' AND level = ?';
-        params.push(level);
-    }
-    if (subject) {
-        whereClause += ' AND subject = ?';
-        params.push(subject);
-    }
-    if (paper) {
-        whereClause += ' AND paper = ?';
-        params.push(paper);
-    }
-    if (category) {
-        whereClause += ' AND category = ?';
-        params.push(category);
-    }
-
-    // Get total count
-    db.get(`SELECT COUNT(*) as total FROM video_resources ${whereClause}`, params, (err, countResult) => {
-        if (err) {
-            return res.status(500).json({ error: 'Database error' });
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const offset = (page - 1) * limit;
+        
+        const { level, subject, paper, category } = req.query;
+        let whereClause = 'WHERE 1=1';
+        let params = [];
+        
+        if (level) {
+            whereClause += ' AND level = ?';
+            params.push(level);
+        }
+        if (subject) {
+            whereClause += ' AND subject = ?';
+            params.push(subject);
+        }
+        if (paper) {
+            whereClause += ' AND paper = ?';
+            params.push(paper);
+        }
+        if (category) {
+            whereClause += ' AND category = ?';
+            params.push(category);
         }
 
+        // Get total count
+        const countStmt = db.prepare(`SELECT COUNT(*) as total FROM video_resources ${whereClause}`);
+        const countResult = countStmt.get(...params);
         const total = countResult.total;
         const totalPages = Math.ceil(total / limit);
 
         // Get videos
-        db.all(`SELECT * FROM video_resources ${whereClause} ORDER BY upload_date DESC LIMIT ? OFFSET ?`, 
-            [...params, limit, offset], (err, videos) => {
-            if (err) {
-                return res.status(500).json({ error: 'Database error' });
-            }
+        const stmt = db.prepare(`SELECT * FROM video_resources ${whereClause} ORDER BY upload_date DESC LIMIT ? OFFSET ?`);
+        const videos = stmt.all(...params, limit, offset);
 
-            res.json({
-                videos,
-                pagination: {
-                    current: page,
-                    total: totalPages,
-                    hasNext: page < totalPages,
-                    hasPrev: page > 1,
-                    totalItems: total
-                }
-            });
+        res.json({
+            videos,
+            pagination: {
+                current: page,
+                total: totalPages,
+                hasNext: page < totalPages,
+                hasPrev: page > 1,
+                totalItems: total
+            }
         });
-    });
+    } catch (err) {
+        console.error('Get videos error:', err);
+        res.status(500).json({ error: 'Database error' });
+    }
 });
 
 // Upload resource
@@ -338,21 +327,21 @@ app.post('/api/upload-resource', authenticateToken, upload.single('file'), (req,
         return res.status(400).json({ error: 'No file uploaded' });
     }
 
-    const { title, description, level, subject, paper, category } = req.body;
+    try {
+        const { title, description, level, subject, paper, category } = req.body;
 
-    db.run(`INSERT INTO resources (title, description, filename, original_filename, file_size, level, subject, paper, category) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [title, description, req.file.filename, req.file.originalname, req.file.size, level, subject, paper, category],
-        function(err) {
-            if (err) {
-                return res.status(500).json({ error: 'Database error' });
-            }
+        const stmt = db.prepare(`INSERT INTO resources (title, description, filename, original_filename, file_size, level, subject, paper, category) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+        const result = stmt.run(title, description, req.file.filename, req.file.originalname, req.file.size, level, subject, paper, category);
 
-            res.json({
-                message: 'Resource uploaded successfully',
-                id: this.lastID
-            });
+        res.json({
+            message: 'Resource uploaded successfully',
+            id: result.lastInsertRowid
         });
+    } catch (err) {
+        console.error('Upload resource error:', err);
+        res.status(500).json({ error: 'Database error' });
+    }
 });
 
 // Upload video
@@ -364,32 +353,35 @@ app.post('/api/upload-video', authenticateToken, upload.fields([
         return res.status(400).json({ error: 'No video uploaded' });
     }
 
-    const { title, description, duration, level, subject, paper, category } = req.body;
-    const videoFile = req.files.video[0];
-    const thumbnailFile = req.files.thumbnail ? req.files.thumbnail[0] : null;
+    try {
+        const { title, description, duration, level, subject, paper, category } = req.body;
+        const videoFile = req.files.video[0];
+        const thumbnailFile = req.files.thumbnail ? req.files.thumbnail[0] : null;
 
-    db.run(`INSERT INTO video_resources (title, description, filename, original_filename, thumbnail_filename, duration, file_size, level, subject, paper, category) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [title, description, videoFile.filename, videoFile.originalname, thumbnailFile ? thumbnailFile.filename : null, 
-         duration, videoFile.size, level, subject, paper, category],
-        function(err) {
-            if (err) {
-                return res.status(500).json({ error: 'Database error' });
-            }
+        const stmt = db.prepare(`INSERT INTO video_resources (title, description, filename, original_filename, thumbnail_filename, duration, file_size, level, subject, paper, category) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+        const result = stmt.run(title, description, videoFile.filename, videoFile.originalname, thumbnailFile ? thumbnailFile.filename : null, 
+         duration, videoFile.size, level, subject, paper, category);
 
-            res.json({
-                message: 'Video uploaded successfully',
-                id: this.lastID
-            });
+        res.json({
+            message: 'Video uploaded successfully',
+            id: result.lastInsertRowid
         });
+    } catch (err) {
+        console.error('Upload video error:', err);
+        res.status(500).json({ error: 'Database error' });
+    }
 });
 
 // Download resource
 app.get('/api/download/:id', (req, res) => {
-    const { id } = req.params;
+    try {
+        const { id } = req.params;
 
-    db.get('SELECT * FROM resources WHERE id = ?', [id], (err, resource) => {
-        if (err || !resource) {
+        const stmt = db.prepare('SELECT * FROM resources WHERE id = ?');
+        const resource = stmt.get(id);
+
+        if (!resource) {
             return res.status(404).json({ error: 'Resource not found' });
         }
 
@@ -400,18 +392,25 @@ app.get('/api/download/:id', (req, res) => {
         }
 
         // Increment download count
-        db.run('UPDATE resources SET download_count = download_count + 1 WHERE id = ?', [id]);
+        const updateStmt = db.prepare('UPDATE resources SET download_count = download_count + 1 WHERE id = ?');
+        updateStmt.run(id);
 
         res.download(filePath, resource.original_filename);
-    });
+    } catch (err) {
+        console.error('Download error:', err);
+        res.status(500).json({ error: 'Database error' });
+    }
 });
 
 // Stream video
 app.get('/api/stream/:id', (req, res) => {
-    const { id } = req.params;
+    try {
+        const { id } = req.params;
 
-    db.get('SELECT * FROM video_resources WHERE id = ?', [id], (err, video) => {
-        if (err || !video) {
+        const stmt = db.prepare('SELECT * FROM video_resources WHERE id = ?');
+        const video = stmt.get(id);
+
+        if (!video) {
             return res.status(404).json({ error: 'Video not found' });
         }
 
@@ -422,7 +421,8 @@ app.get('/api/stream/:id', (req, res) => {
         }
 
         // Increment view count
-        db.run('UPDATE video_resources SET view_count = view_count + 1 WHERE id = ?', [id]);
+        const updateStmt = db.prepare('UPDATE video_resources SET view_count = view_count + 1 WHERE id = ?');
+        updateStmt.run(id);
 
         const stat = fs.statSync(filePath);
         const fileSize = stat.size;
@@ -450,15 +450,21 @@ app.get('/api/stream/:id', (req, res) => {
             res.writeHead(200, head);
             fs.createReadStream(filePath).pipe(res);
         }
-    });
+    } catch (err) {
+        console.error('Stream error:', err);
+        res.status(500).json({ error: 'Database error' });
+    }
 });
 
 // Delete resource
 app.delete('/api/resource/:id', authenticateToken, (req, res) => {
-    const { id } = req.params;
+    try {
+        const { id } = req.params;
 
-    db.get('SELECT * FROM resources WHERE id = ?', [id], (err, resource) => {
-        if (err || !resource) {
+        const stmt = db.prepare('SELECT * FROM resources WHERE id = ?');
+        const resource = stmt.get(id);
+
+        if (!resource) {
             return res.status(404).json({ error: 'Resource not found' });
         }
 
@@ -470,22 +476,25 @@ app.delete('/api/resource/:id', authenticateToken, (req, res) => {
         }
 
         // Delete from database
-        db.run('DELETE FROM resources WHERE id = ?', [id], (err) => {
-            if (err) {
-                return res.status(500).json({ error: 'Database error' });
-            }
+        const deleteStmt = db.prepare('DELETE FROM resources WHERE id = ?');
+        deleteStmt.run(id);
 
-            res.json({ message: 'Resource deleted successfully' });
-        });
-    });
+        res.json({ message: 'Resource deleted successfully' });
+    } catch (err) {
+        console.error('Delete resource error:', err);
+        res.status(500).json({ error: 'Database error' });
+    }
 });
 
 // Delete video
 app.delete('/api/video/:id', authenticateToken, (req, res) => {
-    const { id } = req.params;
+    try {
+        const { id } = req.params;
 
-    db.get('SELECT * FROM video_resources WHERE id = ?', [id], (err, video) => {
-        if (err || !video) {
+        const stmt = db.prepare('SELECT * FROM video_resources WHERE id = ?');
+        const video = stmt.get(id);
+
+        if (!video) {
             return res.status(404).json({ error: 'Video not found' });
         }
 
@@ -501,14 +510,14 @@ app.delete('/api/video/:id', authenticateToken, (req, res) => {
         }
 
         // Delete from database
-        db.run('DELETE FROM video_resources WHERE id = ?', [id], (err) => {
-            if (err) {
-                return res.status(500).json({ error: 'Database error' });
-            }
+        const deleteStmt = db.prepare('DELETE FROM video_resources WHERE id = ?');
+        deleteStmt.run(id);
 
-            res.json({ message: 'Video deleted successfully' });
-        });
-    });
+        res.json({ message: 'Video deleted successfully' });
+    } catch (err) {
+        console.error('Delete video error:', err);
+        res.status(500).json({ error: 'Database error' });
+    }
 });
 
 // Contact form endpoint
