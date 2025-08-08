@@ -153,9 +153,33 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
+// Root endpoint for Railway health check
+app.get('/', (req, res) => {
+    res.json({ 
+        status: 'OK', 
+        message: 'Dr. Kamran Website API is running',
+        timestamp: new Date().toISOString()
+    });
+});
+
+// Simple test endpoint
+app.get('/test', (req, res) => {
+    res.json({ 
+        status: 'OK', 
+        message: 'Test endpoint working',
+        timestamp: new Date().toISOString()
+    });
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-    res.json({ status: 'OK', message: 'Server is running' });
+    res.json({ 
+        status: 'OK', 
+        message: 'Server is running',
+        timestamp: new Date().toISOString(),
+        port: PORT,
+        environment: process.env.NODE_ENV || 'development'
+    });
 });
 
 // Login endpoint
@@ -525,7 +549,9 @@ app.post('/api/contact', (req, res) => {
 // Serve static files from uploads directory
 app.use('/uploads', express.static(uploadsDir));
 
-app.listen(PORT, () => {
+// Start server
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
     console.log(`Health check: http://localhost:${PORT}/api/health`);
+    console.log(`Root endpoint: http://localhost:${PORT}/`);
 }); 
