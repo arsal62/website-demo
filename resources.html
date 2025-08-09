@@ -355,7 +355,12 @@
                        @click="setCategory('Worksheets')" class="btn category-btn">
                     <i class="fas fa-tasks me-2"></i>Worksheets
                 </button>
-                <a :href="currentLevel === 'A Level' && currentPaper === 'Paper 1' ? 'video_alevel.html' : (currentPaper === 'Paper 2' ? 'video-p2.html' : 'video.html')" class="btn category-btn">
+                <a :href="currentLevel === 'A Level' ? 
+                        (currentPaper === 'Paper 1' ? 'video_alevel.html' : 
+                         currentPaper === 'Paper 2' ? 'video_alevel_p2.html' : 
+                         currentPaper === 'Paper 3' ? 'video_alevel_p3.html' : 
+                         currentPaper === 'Paper 4' ? 'video_alevel_p4.html' : 'video_alevel.html') : 
+                        (currentPaper === 'Paper 2' ? 'video-p2.html' : 'video.html')" class="btn category-btn">
                     <i class="fas fa-video me-2"></i>Video Resources
                 </a>
             </div>

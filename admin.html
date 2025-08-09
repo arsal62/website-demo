@@ -235,18 +235,6 @@
                                                 <option v-if="resourceForm.level === 'A Level'" value="Paper 4">Paper 4</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Category</label>
-                                            <select class="form-control" v-model="resourceForm.category" required>
-                                                <option value="">Select Category</option>
-                                                <option value="Reading">Reading</option>
-                                                <option value="Writing">Writing</option>
-                                                <option value="Listening">Listening</option>
-                                                <option value="Speaking">Speaking</option>
-                                                <option value="Past Papers">Past Papers</option>
-                                                <option value="Worksheets">Worksheets</option>
-                                            </select>
-                                        </div>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Description</label>
@@ -307,23 +295,9 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Category</label>
-                                            <select class="form-control" v-model="videoForm.category" required>
-                                                <option value="">Select Category</option>
-                                                <option value="Reading">Reading</option>
-                                                <option value="Writing">Writing</option>
-                                                <option value="Listening">Listening</option>
-                                                <option value="Speaking">Speaking</option>
-                                                <option value="Past Papers">Past Papers</option>
-                                                <option value="Worksheets">Worksheets</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Duration</label>
-                                            <input type="text" class="form-control" v-model="videoForm.duration" placeholder="e.g., 15:30">
-                                        </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Duration</label>
+                                        <input type="text" class="form-control" v-model="videoForm.duration" placeholder="e.g., 15:30">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Description</label>
@@ -398,82 +372,44 @@
                             </button>
                             <h6 class="section-header">{{ currentResourceLevel }} - {{ currentResourceSubject }} - Select Paper</h6>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-lg-3 mb-3">
                                     <div class="paper-card" @click="setResourcePaper('Paper 1')">
                                         <i class="fas fa-file-alt fa-3x text-primary mb-3"></i>
                                         <h4>Paper 1</h4>
                                         <p class="text-muted">Reading and Writing</p>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-lg-3 mb-3">
                                     <div class="paper-card" @click="setResourcePaper('Paper 2')">
                                         <i class="fas fa-headphones fa-3x text-primary mb-3"></i>
                                         <h4>Paper 2</h4>
                                         <p class="text-muted">Listening and Speaking</p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Category Selection for Resources -->
-                        <div v-if="currentResourcePaper && !currentResourceCategory">
-                            <button class="btn btn-secondary mb-3" @click="backToResourcePapers">
-                                <i class="fas fa-arrow-left me-2"></i>Back to Papers
-                            </button>
-                            <h6 class="section-header">{{ currentResourceLevel }} - {{ currentResourceSubject }} - {{ currentResourcePaper }} - Select Category</h6>
-                            <div class="row">
-                                <div class="col-md-4" v-if="canShowResourceCategory('Reading')">
-                                    <div class="paper-card" @click="setResourceCategory('Reading')">
-                                        <i class="fas fa-book-open fa-3x text-primary mb-3"></i>
-                                        <h4>Reading</h4>
-                                        <p class="text-muted">Reading Resources</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4" v-if="canShowResourceCategory('Writing')">
-                                    <div class="paper-card" @click="setResourceCategory('Writing')">
+                                <div class="col-md-6 col-lg-3 mb-3" v-if="currentResourceLevel === 'A Level'">
+                                    <div class="paper-card" @click="setResourcePaper('Paper 3')">
                                         <i class="fas fa-pen-fancy fa-3x text-primary mb-3"></i>
-                                        <h4>Writing</h4>
-                                        <p class="text-muted">Writing Resources</p>
+                                        <h4>Paper 3</h4>
+                                        <p class="text-muted">Creative Writing</p>
                                     </div>
                                 </div>
-                                <div class="col-md-4" v-if="canShowResourceCategory('Listening')">
-                                    <div class="paper-card" @click="setResourceCategory('Listening')">
-                                        <i class="fas fa-headphones fa-3x text-primary mb-3"></i>
-                                        <h4>Listening</h4>
-                                        <p class="text-muted">Listening Resources</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4" v-if="canShowResourceCategory('Speaking')">
-                                    <div class="paper-card" @click="setResourceCategory('Speaking')">
-                                        <i class="fas fa-microphone fa-3x text-primary mb-3"></i>
-                                        <h4>Speaking</h4>
-                                        <p class="text-muted">Speaking Resources</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4" v-if="canShowResourceCategory('Past Papers')">
-                                    <div class="paper-card" @click="setResourceCategory('Past Papers')">
-                                        <i class="fas fa-file-archive fa-3x text-primary mb-3"></i>
-                                        <h4>Past Papers</h4>
-                                        <p class="text-muted">Past Papers</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4" v-if="canShowResourceCategory('Worksheets')">
-                                    <div class="paper-card" @click="setResourceCategory('Worksheets')">
-                                        <i class="fas fa-clipboard-list fa-3x text-primary mb-3"></i>
-                                        <h4>Worksheets</h4>
-                                        <p class="text-muted">Worksheets</p>
+                                <div class="col-md-6 col-lg-3 mb-3" v-if="currentResourceLevel === 'A Level'">
+                                    <div class="paper-card" @click="setResourcePaper('Paper 4')">
+                                        <i class="fas fa-book-open fa-3x text-primary mb-3"></i>
+                                        <h4>Paper 4</h4>
+                                        <p class="text-muted">Literature</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Resources List -->
-                        <div v-if="currentResourceCategory">
-                            <button class="btn btn-secondary mb-3" @click="backToResourceCategories">
-                                <i class="fas fa-arrow-left me-2"></i>Back to Categories
+                        <div v-if="currentResourcePaper">
+                            <button class="btn btn-secondary mb-3" @click="backToResourcePapers">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Papers
                             </button>
                             <h6 class="section-header">
-                                {{ currentResourceLevel }} - {{ currentResourceSubject }} - {{ currentResourcePaper }} - {{ currentResourceCategory }}
+                                {{ currentResourceLevel }} - {{ currentResourceSubject }} - {{ currentResourcePaper }} Resources
                             </h6>
                             
                             <div class="row">
@@ -556,7 +492,6 @@
                         level: '',
                         subject: '',
                         paper: '',
-                        category: ''
                     },
                     videoForm: {
                         title: '',
@@ -564,7 +499,6 @@
                         level: '',
                         subject: '',
                         paper: '',
-                        category: '',
                         duration: ''
                     },
                     resourceFile: null,
@@ -574,7 +508,6 @@
                     currentResourceLevel: '',
                     currentResourceSubject: '',
                     currentResourcePaper: '',
-                    currentResourceCategory: ''
                 }
             },
             computed: {
@@ -585,14 +518,13 @@
                     return this.videos.reduce((sum, video) => sum + (video.view_count || 0), 0);
                 },
                 filteredResources() {
-                    if (!this.currentResourceLevel || !this.currentResourceSubject || !this.currentResourcePaper || !this.currentResourceCategory) {
+                    if (!this.currentResourceLevel || !this.currentResourceSubject || !this.currentResourcePaper) {
                         return [];
                     }
                     return this.resources.filter(resource => 
                         resource.level === this.currentResourceLevel &&
                         resource.subject === this.currentResourceSubject &&
-                        resource.paper === this.currentResourcePaper &&
-                        resource.category === this.currentResourceCategory
+                        resource.paper === this.currentResourcePaper
                     );
                 }
             },
@@ -672,7 +604,6 @@
                     formData.append('level', this.resourceForm.level);
                     formData.append('subject', this.resourceForm.subject);
                     formData.append('paper', this.resourceForm.paper);
-                    formData.append('category', this.resourceForm.category);
 
                     try {
                         await axios.post(`${API_BASE_URL}/api/upload-resource`, formData, {
@@ -710,7 +641,6 @@
                     formData.append('level', this.videoForm.level);
                     formData.append('subject', this.videoForm.subject);
                     formData.append('paper', this.videoForm.paper);
-                    formData.append('category', this.videoForm.category);
                     formData.append('duration', this.videoForm.duration);
 
                     try {
@@ -737,7 +667,6 @@
                         level: '',
                         subject: '',
                         paper: '',
-                        category: ''
                     };
                     this.resourceFile = null;
                 },
@@ -748,7 +677,6 @@
                         level: '',
                         subject: '',
                         paper: '',
-                        category: '',
                         duration: ''
                     };
                     this.videoFile = null;
@@ -793,61 +721,26 @@
                     this.currentResourceLevel = level;
                     this.currentResourceSubject = '';
                     this.currentResourcePaper = '';
-                    this.currentResourceCategory = '';
                 },
                 setResourceSubject(subject) {
                     this.currentResourceSubject = subject;
                     this.currentResourcePaper = '';
-                    this.currentResourceCategory = '';
                 },
                 setResourcePaper(paper) {
                     this.currentResourcePaper = paper;
-                    this.currentResourceCategory = '';
-                },
-                setResourceCategory(category) {
-                    this.currentResourceCategory = category;
-                },
-                canShowResourceCategory(category) {
-                    // Prevent showing Writing or Worksheets category for A Level Paper 1
-                    if ((category === 'Writing' || category === 'Worksheets') && 
-                        this.currentResourceLevel === 'A Level' && this.currentResourcePaper === 'Paper 1') {
-                        return false;
-                    }
-                    // Prevent showing Reading or Worksheets category for A Level Paper 2
-                    if ((category === 'Reading' || category === 'Worksheets') && 
-                        this.currentResourceLevel === 'A Level' && this.currentResourcePaper === 'Paper 2') {
-                        return false;
-                    }
-                    // Prevent showing Writing or Worksheets category for O Level Paper 1
-                    if ((category === 'Writing' || category === 'Worksheets') && 
-                        this.currentResourceLevel === 'O Level' && this.currentResourcePaper === 'Paper 1') {
-                        return false;
-                    }
-                    // Prevent showing Reading or Worksheets category for O Level Paper 2
-                    if ((category === 'Reading' || category === 'Worksheets') && 
-                        this.currentResourceLevel === 'O Level' && this.currentResourcePaper === 'Paper 2') {
-                        return false;
-                    }
-                    return true;
                 },
                 resetResourceView() {
                     this.currentResourceLevel = '';
                     this.currentResourceSubject = '';
                     this.currentResourcePaper = '';
-                    this.currentResourceCategory = '';
                 },
                 backToResourceSubjects() {
                     this.currentResourceSubject = '';
                     this.currentResourcePaper = '';
-                    this.currentResourceCategory = '';
                 },
                 backToResourcePapers() {
                     this.currentResourcePaper = '';
-                    this.currentResourceCategory = '';
                 },
-                backToResourceCategories() {
-                    this.currentResourceCategory = '';
-                }
             }
         }).mount('#app');
     </script>

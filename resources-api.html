@@ -257,106 +257,54 @@
                         <div class="paper-card" @click="setPaper('Paper 1')">
                             <i class="fas fa-file-alt fa-3x text-primary mb-3"></i>
                             <h4>Paper 1</h4>
-                            <p class="text-muted">Reading and Writing</p>
+                            <p class="text-muted">English Paper 1</p>
                         </div>
                     </div>
                     <div class="col-md-6" v-if="currentLevel === 'O Level'">
                         <div class="paper-card" @click="setPaper('Paper 2')">
                             <i class="fas fa-headphones fa-3x text-primary mb-3"></i>
                             <h4>Paper 2</h4>
-                            <p class="text-muted">Listening and Speaking</p>
+                            <p class="text-muted">English Paper 2</p>
                         </div>
                     </div>
                     <div class="col-md-6" v-if="currentLevel === 'A Level'">
                         <div class="paper-card" @click="setPaper('Paper 1')">
                             <i class="fas fa-file-alt fa-3x text-primary mb-3"></i>
                             <h4>Paper 1</h4>
-                            <p class="text-muted">Reading and Writing</p>
+                            <p class="text-muted">English Paper 1</p>
                         </div>
                     </div>
                     <div class="col-md-6" v-if="currentLevel === 'A Level'">
                         <div class="paper-card" @click="setPaper('Paper 2')">
                             <i class="fas fa-headphones fa-3x text-primary mb-3"></i>
                             <h4>Paper 2</h4>
-                            <p class="text-muted">Listening and Speaking</p>
+                            <p class="text-muted">English Paper 2</p>
                         </div>
                     </div>
                     <div class="col-md-6" v-if="currentLevel === 'A Level'">
                         <div class="paper-card" @click="setPaper('Paper 3')">
                             <i class="fas fa-file-alt fa-3x text-primary mb-3"></i>
                             <h4>Paper 3</h4>
-                            <p class="text-muted">Advanced Reading</p>
+                            <p class="text-muted">English Paper 3</p>
                         </div>
                     </div>
                     <div class="col-md-6" v-if="currentLevel === 'A Level'">
                         <div class="paper-card" @click="setPaper('Paper 4')">
                             <i class="fas fa-headphones fa-3x text-primary mb-3"></i>
                             <h4>Paper 4</h4>
-                            <p class="text-muted">Advanced Writing</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category Selection -->
-            <div v-if="currentPaper && !currentCategory">
-                <button class="back-button" @click="backToPapers">
-                    <i class="fas fa-arrow-left me-2"></i>Back to Papers
-                </button>
-                <h2 class="section-header">{{ currentLevel }} - {{ currentSubject }} - {{ currentPaper }} - Select Category</h2>
-                <div class="row">
-                    <div class="col-md-4" v-if="canShowCategory('Reading')">
-                        <div class="paper-card" @click="setCategory('Reading')">
-                            <i class="fas fa-book-open fa-3x text-primary mb-3"></i>
-                            <h4>Reading</h4>
-                            <p class="text-muted">Reading comprehension materials</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4" v-if="canShowCategory('Writing')">
-                        <div class="paper-card" @click="setCategory('Writing')">
-                            <i class="fas fa-pen-fancy fa-3x text-primary mb-3"></i>
-                            <h4>Writing</h4>
-                            <p class="text-muted">Writing guides and examples</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4" v-if="canShowCategory('Listening')">
-                        <div class="paper-card" @click="setCategory('Listening')">
-                            <i class="fas fa-headphones fa-3x text-primary mb-3"></i>
-                            <h4>Listening</h4>
-                            <p class="text-muted">Listening comprehension resources</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4" v-if="canShowCategory('Speaking')">
-                        <div class="paper-card" @click="setCategory('Speaking')">
-                            <i class="fas fa-microphone fa-3x text-primary mb-3"></i>
-                            <h4>Speaking</h4>
-                            <p class="text-muted">Speaking practice materials</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4" v-if="canShowCategory('Past Papers')">
-                        <div class="paper-card" @click="setCategory('Past Papers')">
-                            <i class="fas fa-file-archive fa-3x text-primary mb-3"></i>
-                            <h4>Past Papers</h4>
-                            <p class="text-muted">Previous exam papers</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4" v-if="canShowCategory('Worksheets')">
-                        <div class="paper-card" @click="setCategory('Worksheets')">
-                            <i class="fas fa-clipboard-list fa-3x text-primary mb-3"></i>
-                            <h4>Worksheets</h4>
-                            <p class="text-muted">Practice worksheets</p>
+                            <p class="text-muted">English Paper 4</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Resources Display -->
-            <div v-if="currentCategory">
-                <button class="back-button" @click="backToCategories">
-                    <i class="fas fa-arrow-left me-2"></i>Back to Categories
+            <div v-if="currentPaper">
+                <button class="back-button" @click="backToPapers">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Papers
                 </button>
                 <h2 class="section-header">
-                    {{ currentLevel }} - {{ currentSubject }} - {{ currentPaper }} - {{ currentCategory }}
+                    {{ currentLevel }} - {{ currentSubject }} - {{ currentPaper }} Resources
                 </h2>
                 
                 <!-- Loading State -->
@@ -369,7 +317,7 @@
                 <div v-else-if="resources.length === 0" class="no-resources">
                     <i class="fas fa-folder-open"></i>
                     <h4>No Resources Available</h4>
-                    <p>There are no resources available for this category yet.</p>
+                    <p>There are no resources available for this paper yet.</p>
                 </div>
                 
                 <!-- Resources List -->
@@ -429,7 +377,6 @@
                     currentLevel: '',
                     currentSubject: '',
                     currentPaper: '',
-                    currentCategory: '',
                     resources: [],
                     loading: false,
                     currentPage: 1,
@@ -467,71 +414,33 @@
                     this.currentLevel = level;
                     this.currentSubject = '';
                     this.currentPaper = '';
-                    this.currentCategory = '';
                     this.currentPage = 1;
                 },
                 setSubject(subject) {
                     this.currentSubject = subject;
                     this.currentPaper = '';
-                    this.currentCategory = '';
                     this.currentPage = 1;
                 },
                 setPaper(paper) {
                     this.currentPaper = paper;
-                    this.currentCategory = '';
-                    this.currentPage = 1;
-                },
-                setCategory(category) {
-                    this.currentCategory = category;
                     this.currentPage = 1;
                     this.loadResources();
-                },
-                canShowCategory(category) {
-                    // Prevent showing Writing or Worksheets category for A Level Paper 1
-                    if ((category === 'Writing' || category === 'Worksheets') && 
-                        this.currentLevel === 'A Level' && this.currentPaper === 'Paper 1') {
-                        return false;
-                    }
-                    // Prevent showing Reading or Worksheets category for A Level Paper 2
-                    if ((category === 'Reading' || category === 'Worksheets') && 
-                        this.currentLevel === 'A Level' && this.currentPaper === 'Paper 2') {
-                        return false;
-                    }
-                    // Prevent showing Writing or Worksheets category for O Level Paper 1
-                    if ((category === 'Writing' || category === 'Worksheets') && 
-                        this.currentLevel === 'O Level' && this.currentPaper === 'Paper 1') {
-                        return false;
-                    }
-                    // Prevent showing Reading or Worksheets category for O Level Paper 2
-                    if ((category === 'Reading' || category === 'Worksheets') && 
-                        this.currentLevel === 'O Level' && this.currentPaper === 'Paper 2') {
-                        return false;
-                    }
-                    return true;
                 },
                 resetView() {
                     this.currentLevel = '';
                     this.currentSubject = '';
                     this.currentPaper = '';
-                    this.currentCategory = '';
                     this.currentPage = 1;
                     this.resources = [];
                 },
                 backToMain() {
                     this.currentSubject = '';
                     this.currentPaper = '';
-                    this.currentCategory = '';
                     this.currentPage = 1;
                     this.resources = [];
                 },
                 backToPapers() {
                     this.currentPaper = '';
-                    this.currentCategory = '';
-                    this.currentPage = 1;
-                    this.resources = [];
-                },
-                backToCategories() {
-                    this.currentCategory = '';
                     this.currentPage = 1;
                     this.resources = [];
                 },
@@ -546,8 +455,7 @@
                         this.resources = allResources.filter(resource => 
                             resource.level === this.currentLevel &&
                             resource.subject === this.currentSubject &&
-                            resource.paper === this.currentPaper &&
-                            resource.category === this.currentCategory
+                            resource.paper === this.currentPaper
                         );
                         
                         this.totalItems = this.resources.length;

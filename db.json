@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "$2a$10$j.t2GNUAZuS1kNpJhrjsM.aaQy4mnSANbgb.WU5gSMlP55KCL9Lh.",
+      "email": "admin@example.com",
+      "created_at": "2025-08-09T07:14:39.879Z"
+    }
+  ],
+  "resources": [],
+  "video_resources": []
+}
